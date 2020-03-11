@@ -96,7 +96,7 @@
 <li>灵活</li>
 </ol>
 <p>HTTP允许传输任意类型的数据对象，正在传输的类型由Conten-Type加以标记，常见的Content-Type的取值如下：</p>
-<p><img src="http%E5%8D%8F%E8%AE%AE/1583819076(1).jpg" alt></p>
+<p><img src="./http%E5%8D%8F%E8%AE%AE/1.jpg" alt></p>
 <ol start="4">
 <li>无连接</li>
 </ol>
@@ -114,9 +114,9 @@
 <p>http表示通过http协议来定位网络资源;host表示合法的Internet主机域名或者IP地址;port指定一个端口,如果缺省,默认是80端口.abs_path表示的是请求的资源的URL,如果什么都没写,则浏览器会帮我们加上/,作为初始的路径地址.</p>
 <p>###请求篇(Request)</p>
 <p>HTTP请求由三部分构成：请求行 请求头 空行 请求正文</p>
-<p><img src="http%E5%8D%8F%E8%AE%AE/2.jpg" alt></p>
+<p><img src="./http%E5%8D%8F%E8%AE%AE/2.jpg" alt></p>
 <p>下面是一个报文实例：</p>
-<p><img src="http%E5%8D%8F%E8%AE%AE/3.jpg" alt></p>
+<p><img src="./http%E5%8D%8F%E8%AE%AE/3.jpg" alt></p>
 <p> ①是请求方法，GET和POST是最常见的HTTP方法，除此以外还包括DELETE、HEAD、OPTIONS、PUT、TRACE。不过，当前的大多数浏览器只支持GET和POST<br> ②为请求对应的URL地址，它和报文头的Host属性组成完整的请求URL，<br> ③是协议名称及版本号。<br> ④是HTTP的报文头，报文头包含若干个属性，格式为“属性名:属性值”，服务端据此获取客户端的信息。<br> ⑤是报文体，它将一个页面表单中的组件值通过param1=value1&amp;param2=value2的键值对形式编码成一个格式化串，它承载多个请求参数的数据。不但报文体可以传递请求参数，请求URL也可以通过类似于“/chapter15/user.html? param1=value1&amp;param2=value2”的方式传递请求参数。</p>
 <p><strong>常见的报文头的属性</strong></p>
 <table>
@@ -512,16 +512,16 @@ Git clone &lt;repo&gt; &lt;directory&gt; 克隆项目到指定目录</code></p>
         <p>###Swiper5的使用</p>
 <p><strong>1.new Swiper(swiperContainer, parameters)</strong></p>
 <p><em>用于初始化一个Swiper，返回初始化后的Swiper实例。其中第一个参数为class选择器（必选），第二个为swiper的配置。</em></p>
-<p><img src="/.com//1583201505(1).jpg" alt></p>
+<p><img src="/2020/03/11/2019-12-16swiper/1583201505(1).jpg" alt></p>
 <p><strong>2.swiper第二个配置参数中的一般选项</strong></p>
 <blockquote>
 <p>initialslide  设置为2后，Swiper初始化时展示的页面成了第三个</p>
 </blockquote>
-<p><img src="/.com//1583201645(1).jpg" alt></p>
+<p><img src="/2020/03/11/2019-12-16swiper/1583201645(1).jpg" alt></p>
 <blockquote>
 <p>direction  页面的滑动方向，可设置水平(horizontal)或垂直(vertical)。可使用swiper.changeDirection()方法动态切换方向。</p>
 </blockquote>
-<p><img src="/.com//1583201725(1).jpg" alt></p>
+<p><img src="/2020/03/11/2019-12-16swiper/1583201725(1).jpg" alt></p>
 <blockquote>
 <p>speed 切换速度，即slider自动滑动开始到结束的时间（单位ms），也是触摸滑动时释放至贴合的时间。<br><em>小技巧：利用transition-timing-function或transition-delay改变Swiper的切换时间曲线</em><br><code>.swiper-wrapper{
    transition-timing-function:  ....  ;
@@ -540,11 +540,11 @@ Git clone &lt;repo&gt; &lt;directory&gt; 克隆项目到指定目录</code></p>
 <li>transition-timing-function: inherit;</li>
 </ol>
 </blockquote>
-<p><img src="/.com//1583202021(1).jpg" alt></p>
+<p><img src="/2020/03/11/2019-12-16swiper/1583202021(1).jpg" alt></p>
 <blockquote>
 <p>grabCursor 设置为true时，鼠标覆盖Swiper时指针会变成手掌形状，拖动时指针会变成抓手形状。（根据浏览器形状有所不同）</p>
 </blockquote>
-<p><img src="/.com//1583202127.jpg" alt></p>
+<p><img src="/2020/03/11/2019-12-16swiper/1583202127.jpg" alt></p>
 <blockquote>
 <p>parallax 设置为true开启视差效果。效果可以应用于container或slide的子元素。当应用于container的子元素（常用于视差背景图），每次切换时视差效果仅有设定值的slide个数-1分之1</p>
 </blockquote>
@@ -565,37 +565,37 @@ Git clone &lt;repo&gt; &lt;directory&gt; 克隆项目到指定目录</code></p>
 <blockquote>
 <p>在所需要的元素上增加data-swiper-parallax-scale属性。可选值如0.5，从一半大小进入一半大小出去<br>还可通过data-swiper-parallax-duration设定视差动画持续时间（ms）。默认值是Swiper的speed，与切换时间同步。<br><em>*设定透明度或缩放必须同时设定位移，否则无效(4.0.5) <code>&lt;div data-swiper-parallax=&quot;0&quot; data-swiper-parallax-opacity=&quot;0.5&quot; &gt;透明度变化&lt;/div&gt;</code></em></p>
 </blockquote>
-<p><img src="/.com//1583202513(1).jpg" alt></p>
+<p><img src="/2020/03/11/2019-12-16swiper/1583202513(1).jpg" alt></p>
 <blockquote>
 <p>breakpoints 断点设定：根据屏幕宽度设置某参数为不同的值，类似于响应式布局的media only screen and (min-width: 480px)</p>
 </blockquote>
 <p><em>只有部分不需要变换布局方式和逻辑结构的参数支持断点设定，如slidesPerView、slidesPerGroup、 spaceBetween、slidesPerColumn，而像loop、direction、effect等则无效。</em></p>
-<p><img src="/.com//1583202895(1).jpg" alt></p>
+<p><img src="/2020/03/11/2019-12-16swiper/1583202895(1).jpg" alt></p>
 <blockquote>
 <p>autoHeight 自动高度。设置为true时，wrapper和container会随着当前slide的高度而发生变化。</p>
 </blockquote>
-<p><img src="/.com//1583203521(1).jpg" alt></p>
+<p><img src="/2020/03/11/2019-12-16swiper/1583203521(1).jpg" alt></p>
 <blockquote>
 <p>// nested 用于嵌套相同方向的swiper时，当切换到子swiper时停止父swiper的切换。</p>
 </blockquote>
-<p><img src="/.com//1583203574(1).jpg" alt></p>
+<p><img src="/2020/03/11/2019-12-16swiper/1583203574(1).jpg" alt></p>
 <blockquote>
 <p>rubCallbacksOninit  因为loop模式初始化时会触发一次slideChange回调，如果刚加载时不想触发，就将次参数设置为false</p>
 </blockquote>
-<p><img src="/.com//1583203622(1).jpg" alt></p>
+<p><img src="/2020/03/11/2019-12-16swiper/1583203622(1).jpg" alt></p>
 <blockquote>
 <p>on 注册事件，从4版本开始使用关键词this代指Swiper实例</p>
 </blockquote>
-<p><img src="/.com//1583203673(1).jpg" alt></p>
+<p><img src="/2020/03/11/2019-12-16swiper/1583203673(1).jpg" alt></p>
 <blockquote>
 <p>init 当你创建一个Swiper实例时是否立即初始化。如果禁止了，可以稍后使用mySwiper.init()来初始化。</p>
 </blockquote>
-<p><img src="/.com//1583203740(1).jpg" alt></p>
+<p><img src="/2020/03/11/2019-12-16swiper/1583203740(1).jpg" alt></p>
 <p><strong>3.swiper页面的布局样式(网格分布)</strong></p>
 <blockquote>
 <p>centeredSlides 设定为true时，第一个显示页面会居中，而不是默认状态下的居左。</p>
 </blockquote>
-<p><em>centeredSlidesBounds 当设置了Active Slide居中后，还可以配合设置此参数，使得第一个和最后一个Slide 始终贴合边缘。</em><br><img src="/.com//1583203861(1).jpg" alt></p>
+<p><em>centeredSlidesBounds 当设置了Active Slide居中后，还可以配合设置此参数，使得第一个和最后一个Slide 始终贴合边缘。</em><br><img src="/2020/03/11/2019-12-16swiper/1583203861(1).jpg" alt></p>
 
       
     </div>
@@ -807,7 +807,7 @@ Git clone &lt;repo&gt; &lt;directory&gt; 克隆项目到指定目录</code></p>
 <li>设置消息监听，监听前端是否传递数据。</li>
 <li>.send方法向前台传递数据。</li>
 </ol>
-<p><img src="/.com//1583200171(1).jpg" alt></p>
+<p><img src="/2020/03/11/webSocket/1583200171(1).jpg" alt></p>
 <p><strong>Html代码</strong><br>方法如下：</p>
 <ol>
 <li>调用websocket的构造函数构造一个实例对象。<blockquote>
@@ -818,7 +818,7 @@ Git clone &lt;repo&gt; &lt;directory&gt; 克隆项目到指定目录</code></p>
 </blockquote>
 </li>
 <li>监听函数<blockquote>
-<p>onpen 当网络连接建立时触发该事件<br>onerror 当网络发生错误时触发该事件<br>onclose 当关闭链接时触发该事件<br>onmessage 当接收到服务器发来的消息的时候触发。数据在函数的参数里res.data<br><img src="/.com//1583201120(1).jpg" alt></p>
+<p>onpen 当网络连接建立时触发该事件<br>onerror 当网络发生错误时触发该事件<br>onclose 当关闭链接时触发该事件<br>onmessage 当接收到服务器发来的消息的时候触发。数据在函数的参数里res.data<br><img src="/2020/03/11/webSocket/1583201120(1).jpg" alt></p>
 </blockquote>
 </li>
 </ol>
@@ -866,13 +866,13 @@ Git clone &lt;repo&gt; &lt;directory&gt; 克隆项目到指定目录</code></p>
 <ol>
 <li>聊天信息要始终在底部显示问题</li>
 </ol>
-<p><img src="/.com//1.jpg" alt><br>使滚动条距离顶部的高度等于视图框的高度</p>
+<p><img src="/2020/03/11/vue%E8%81%8A%E5%A4%A9%E4%BF%A1%E6%81%AF%E8%87%B3%E5%BA%95/1.jpg" alt><br>使滚动条距离顶部的高度等于视图框的高度</p>
 <ol start="2">
 <li>聊天的视图框始终铺满除标题还有输入区域的高度</li>
 </ol>
 <p><em>使用绝对定位  留出上下位置</em></p>
 <p>父级获取屏幕的高度</p>
-<p><img src="/.com//2.jpg" alt></p>
+<p><img src="/2020/03/11/vue%E8%81%8A%E5%A4%A9%E4%BF%A1%E6%81%AF%E8%87%B3%E5%BA%95/2.jpg" alt></p>
 
       
     </div>
