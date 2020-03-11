@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>http协议 | 许先生的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="http请求协议HTTP(Hyper Text Transfer Protocol)&lt;超文本传输协议&gt;的缩写.是用于从WWW服务器传输超文本到本地浏览器的传输协议.HTTP是一个应用层协议,由请求和响应构成,是一个标准的个客户端和服务器模型.它的主要特点如下:  支持客服端&#x2F;服务器模型 简单快速  客户向服务器请求服务时，只需传送请求方式和路径。请求方式常用的有GET,HEAD,POS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="http协议">
+<meta property="og:url" content="http://yoursite.com/2020/03/11/http%E5%8D%8F%E8%AE%AE/index.html">
+<meta property="og:site_name" content="许先生的博客">
+<meta property="og:description" content="http请求协议HTTP(Hyper Text Transfer Protocol)&lt;超文本传输协议&gt;的缩写.是用于从WWW服务器传输超文本到本地浏览器的传输协议.HTTP是一个应用层协议,由请求和响应构成,是一个标准的个客户端和服务器模型.它的主要特点如下:  支持客服端&#x2F;服务器模型 简单快速  客户向服务器请求服务时，只需传送请求方式和路径。请求方式常用的有GET,HEAD,POS">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/03/11/http%E5%8D%8F%E8%AE%AE/http%E5%8D%8F%E8%AE%AE/1583819076(1).jpg">
+<meta property="og:image" content="http://yoursite.com/2020/03/11/http%E5%8D%8F%E8%AE%AE/http%E5%8D%8F%E8%AE%AE/2.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/03/11/http%E5%8D%8F%E8%AE%AE/http%E5%8D%8F%E8%AE%AE/3.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/03/11/http%E5%8D%8F%E8%AE%AE/http%E5%8D%8F%E8%AE%AE/4.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/03/11/http%E5%8D%8F%E8%AE%AE/http%E5%8D%8F%E8%AE%AE/5.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/03/11/http%E5%8D%8F%E8%AE%AE/http%E5%8D%8F%E8%AE%AE/6.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/03/11/http%E5%8D%8F%E8%AE%AE/http%E5%8D%8F%E8%AE%AE/7.jpg">
+<meta property="article:published_time" content="2020-03-11T05:03:17.520Z">
+<meta property="article:modified_time" content="2020-03-11T04:43:48.790Z">
+<meta property="article:author" content="许先生">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/03/11/http%E5%8D%8F%E8%AE%AE/http%E5%8D%8F%E8%AE%AE/1583819076(1).jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="许先生的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">许先生的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-http协议" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/11/http%E5%8D%8F%E8%AE%AE/" class="article-date">
+  <time datetime="2020-03-11T05:03:17.520Z" itemprop="datePublished">2020-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      http协议
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="http请求协议"><a href="#http请求协议" class="headerlink" title="http请求协议"></a>http请求协议</h3><p>HTTP(Hyper Text Transfer Protocol)&lt;超文本传输协议&gt;的缩写.是用于从WWW服务器传输超文本到本地浏览器的传输协议.HTTP是一个应用层协议,由请求和响应构成,是一个标准的个客户端和服务器模型.它的主要特点如下:</p>
+<ol>
+<li>支持客服端/服务器模型</li>
+<li>简单快速</li>
+</ol>
+<p>客户向服务器请求服务时，只需传送请求方式和路径。请求方式常用的有GET,HEAD,POST。每种方式规定了客户与服务器练习的类型不同。由于HTTP协议简单，使得HTTP服务器的程序规模小，因而通信速度快</p>
+<ol start="3">
+<li>灵活</li>
+</ol>
+<p>HTTP允许传输任意类型的数据对象，正在传输的类型由Conten-Type加以标记，常见的Content-Type的取值如下：</p>
+<p><img src="./http%E5%8D%8F%E8%AE%AE/1583819076(1).jpg" alt=""></p>
+<ol start="4">
+<li>无连接</li>
+</ol>
+<p>无连接的含义是限制每次连接只处理一个请求，服务器处理完客户端的请求，然后响应，并收到应答之后，就断开连接。这种方式可以节省传输时间</p>
+<ol start="5">
+<li>无状态</li>
+</ol>
+<p>HTTP协议是无状态协议。无状态是指协议对于事务处理没有记忆能力。这种方式的一个坏处就是，如果后续的处理需要用到之前的信息，则必须要重传，这样就导致了每次传输的数据量增大。好处就是，如果后续的连接不需要之前提供的信息，相应就会比较快。而为了解决HTTP的无状态特性，出现了Cookie和Session技术。</p>
+<blockquote>
+<ul>
+<li>URL篇</li>
+</ul>
+<p><em>HTTP协议是一个基于请求和应答模式的,存在于传输层之上的应用层协议,是一个无状态的协议,通常是基于TCP的连接方式.HTTP的URL是一种特殊类型的URI,包含了用于定位查找某个网络资源的路径,格式如下:<br><a href="http://host[&#39;:&#39;port][abs_path]">http://host[&#39;:&#39;port][abs_path]</a></em></p>
+</blockquote>
+<p>http表示通过http协议来定位网络资源;host表示合法的Internet主机域名或者IP地址;port指定一个端口,如果缺省,默认是80端口.abs_path表示的是请求的资源的URL,如果什么都没写,则浏览器会帮我们加上/,作为初始的路径地址.</p>
+<p>###请求篇(Request)</p>
+<p>HTTP请求由三部分构成：请求行 请求头 空行 请求正文</p>
+<p><img src="./http%E5%8D%8F%E8%AE%AE/2.jpg" alt=""></p>
+<p>下面是一个报文实例：</p>
+<p><img src="./http%E5%8D%8F%E8%AE%AE/3.jpg" alt=""></p>
+<p> ①是请求方法，GET和POST是最常见的HTTP方法，除此以外还包括DELETE、HEAD、OPTIONS、PUT、TRACE。不过，当前的大多数浏览器只支持GET和POST<br> ②为请求对应的URL地址，它和报文头的Host属性组成完整的请求URL，<br> ③是协议名称及版本号。<br> ④是HTTP的报文头，报文头包含若干个属性，格式为“属性名:属性值”，服务端据此获取客户端的信息。<br> ⑤是报文体，它将一个页面表单中的组件值通过param1=value1&amp;param2=value2的键值对形式编码成一个格式化串，它承载多个请求参数的数据。不但报文体可以传递请求参数，请求URL也可以通过类似于“/chapter15/user.html? param1=value1&amp;param2=value2”的方式传递请求参数。</p>
+<p><strong>常见的报文头的属性</strong></p>
+<table>
+<thead>
+<tr>
+<th>Accept</th>
+<th align="center">可接收的响应内容类型</th>
+<th>Accept:text/plain(文本类型)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Accept-Charset</td>
+<td align="center">可接收的字符集</td>
+<td>Accept-Charset:utf-8</td>
+</tr>
+<tr>
+<td>Accept-Encoding</td>
+<td align="center">可接受的响应内容的编码方式</td>
+<td>Accept-Encoding:gzipdeflate</td>
+</tr>
+<tr>
+<td>Accept-Language</td>
+<td align="center">可接受的响应内容语言</td>
+<td>Accept-Language:en-US</td>
+</tr>
+<tr>
+<td>Accept-Datetime</td>
+<td align="center">可接受的按照时间来表示的响应内容版本</td>
+<td>Accept-Datetime:Sat,26 Dec 2015 17:30:00 GMT</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td align="center">HTTP协议中需要认证资源的认证信息</td>
+<td>Authorization: Basic OSdjJGRpbjpvcGVuIANlc2SdDE==</td>
+</tr>
+<tr>
+<td>Cache-Control</td>
+<td align="center">请求/回复中的,是否使用缓存机制</td>
+<td>Cache-Control: no-cache</td>
+</tr>
+<tr>
+<td>Connection</td>
+<td align="center">客户端想要优先使用的连接类型</td>
+<td>Connection: keep-alive Connection: Upgrade</td>
+</tr>
+<tr>
+<td>Content-Length</td>
+<td align="center">以8进制表示的请求体的长度</td>
+<td>Content-Length: 348</td>
+</tr>
+<tr>
+<td>Content-Type</td>
+<td align="center">请求体的MIME类型</td>
+<td>Content-Type: application/x-www-form-urlencoded</td>
+</tr>
+<tr>
+<td>Date</td>
+<td align="center">发送该消息的日期和时间</td>
+<td>Date: Dec, 26 Dec 2015 17:30:00 GMT</td>
+</tr>
+<tr>
+<td>From</td>
+<td align="center">发起此请求的用户的邮件地址</td>
+<td>From: <a href="mailto:user@itbilu.com">user@itbilu.com</a></td>
+</tr>
+<tr>
+<td>Host</td>
+<td align="center">服务器域名和端口号,默认端口可省略</td>
+<td>Host: <a href="http://www.itbilu.com:80" target="_blank" rel="noopener">www.itbilu.com:80</a> or <a href="http://www.itbilu.com" target="_blank" rel="noopener">www.itbilu.com</a></td>
+</tr>
+<tr>
+<td>If-Match</td>
+<td align="center">主要用于PUT,实体匹配才可以操作</td>
+<td>If-Match: “9jd00cdj34pss9ejqiw39d82f20d0ikd”</td>
+</tr>
+<tr>
+<td>If-Modified-Since</td>
+<td align="center">资源未被修改的情况下返回304未修改</td>
+<td>If-Modified-Since: Dec, 26 Dec 2015 17:30:00 GMT</td>
+</tr>
+<tr>
+<td>User-Agent</td>
+<td align="center">浏览器的身份标识字符串</td>
+<td>User-Agent: Mozilla/</td>
+</tr>
+<tr>
+<td>Upgrade</td>
+<td align="center">要求服务器升级到一个高版本协议</td>
+<td>Upgrade: HTTP/2.0, SHTTP/1.3, IRC/6.9, RTA/x11</td>
+</tr>
+<tr>
+<td>Via</td>
+<td align="center">告诉服务器,这个请求是由哪个代理发出的</td>
+<td>Via: 1.0 fred, 1.1 itbilu.com.com (Apache/1.1)</td>
+</tr>
+<tr>
+<td>Referer</td>
+<td align="center">表示跳转到当前页面的之前的页面</td>
+<td>Referer: <a href="http://itbilu.com/nodejs" target="_blank" rel="noopener">http://itbilu.com/nodejs</a></td>
+</tr>
+<tr>
+<td>Origin</td>
+<td align="center">发起一个针对跨域资源共享的请求</td>
+<td>Origin: <a href="http://www.itbilu.com" target="_blank" rel="noopener">http://www.itbilu.com</a></td>
+</tr>
+</tbody></table>
+<p><strong>首先看看http请求消息（就是浏览器丢给服务器的）：</strong><br>一个http请求代表客户端浏览器向服务器发送的数据。一个完整的http请求消息，包含一个请求行，若干个消息头（请求头），换行，实体内容</p>
+<p>请求行：描述客户端的请求方式、请求资源的名称、http协议的版本号。 例如： GET/BOOK/JAVA.HTML HTTP/1.1</p>
+<p>请求头（消息头）包含（客户机请求的服务器主机名，客户机的环境信息等）：</p>
+<p>Accept：用于告诉服务器，客户机支持的数据类型  （例如：Accept:text/html,image/*）<br>Accept-Charset：用于告诉服务器，客户机采用的编码格式<br>Accept-Encoding：用于告诉服务器，客户机支持的数据压缩格式<br>Accept-Language：客户机语言环境<br>Host:客户机通过这个服务器，想访问的主机名<br>If-Modified-Since：客户机通过这个头告诉服务器，资源的缓存时间<br>Referer：客户机通过这个头告诉服务器，它（客户端）是从哪个资源来访问服务器的（防盗链）<br>User-Agent：客户机通过这个头告诉服务器，客户机的软件环境（操作系统，浏览器版本等）<br>Cookie：客户机通过这个头，将Coockie信息带给服务器<br>Connection：告诉服务器，请求完成后，是否保持连接<br>Date：告诉服务器，当前请求的时间</p>
+<p>实体内容：<br>就是指浏览器端通过http协议发送给服务器的实体数据。例如：name=dylan&amp;id=110<br>（get请求时，通过url传给服务器的值。post请求时，通过表单发送给服务器的值）</p>
+<p><strong>再看看HTTP响应消息（服务器返回给浏览器的）：</strong></p>
+<p><em>一个http响应代表服务器端向客户端回送的数据，它包括：<br>一个状态行，若干个消息头，以及实体内容</em></p>
+<p>响应头(消息头)包含:<br>Location：这个头配合302状态吗，用于告诉客户端找谁<br>Server：服务器通过这个头，告诉浏览器服务器的类型<br>Content-Encoding：告诉浏览器，服务器的数据压缩格式<br>Content-Length：告诉浏览器，回送数据的长度<br>Content-Type：告诉浏览器，回送数据的类型<br>Last-Modified：告诉浏览器当前资源缓存时间<br>Refresh：告诉浏览器，隔多长时间刷新<br>Content-Disposition：告诉浏览器以下载的方式打开数据。例如： context.Response.AddHeader(“Content-Disposition”,”attachment:filename=aa.jpg”);                                        context.Response.WriteFile(“aa.jpg”);<br>Transfer-Encoding：告诉浏览器，传送数据的编码格式<br>ETag：缓存相关的头（可以做到实时更新）<br>Expries：告诉浏览器回送的资源缓存多长时间。如果是-1或者0，表示不缓存<br>Cache-Control：控制浏览器不要缓存数据   no-cache<br>Pragma：控制浏览器不要缓存数据          no-cache</p>
+<p>Connection：响应完成后，是否断开连接。  close/Keep-Alive<br>Date：告诉浏览器，服务器响应时间<br>状态行：  例如：  HTTP/1.1  200 OK   （协议的版本号是1.1  响应状态码为200  响应结果为 OK）<br>实体内容（实体头）：响应包含浏览器能够解析的静态内容，例如：html，纯文本，图片等等信息<br>理解了以上的http请求消息和响应消息，相信你对于http协议已经理解得足够深刻了。关于http协议的更多具体细节，可以参照http RFC文档。</p>
+<p>###HTTP协议request常见的方法,请求行的首部常用的方法介绍</p>
+<ul>
+<li><p>get<br>当客户端要从服务器上读取文档,点开某个链接,或者是通过浏览器上输入网址来浏览网页的时候,使用的都是GET方法.GET方法请求参数和对应的值附加在URL后面,利用一个?代表URL的结尾以及附带参数的开始,参数用key=value键值对的方式书写,参数和参数之间用&amp;符号隔开.一般GET请求的参数的大小受限,最大不超过1024.由于参数明文的显示在了URL上面,因此不太适合传递私密的数据.</p>
+</li>
+<li><p>post<br>POST方法将请求的参数封装在了HTTP请求的请求体中,以名称/值的形式出现,可以传输大量的数据.POST请求一般用于表单数据的提交中.</p>
+</li>
+<li><p>GET和POST的区别</p>
+</li>
+</ul>
+<p>从参数的传递方面来看,GET请求的参数是直接拼接在地址栏URL的后面,而POST请求的参数是放到请求体里面的.<br>从长度限制方面来看,GET请求有具体的长度限制,一般不超过1024KB,而POST理论上没有,但是浏览器一般都有一个界限.<br>从安全方面来看,GET请求相较于POST,因为数据都是明文显示在URL上面的,所以安全和私密性不如POST<br>从本质上来说,GET和POST都是TCP连接,并无实质的区别.但是由于HTTP/浏览器的限定,导致它们在应用过程中体现出了一些不同.GET产生一个数据包,POST产生两个数据包.对于GET请求,浏览器会把http header 和 data 一并发出去,服务器响应200(返回数据).而对于POST,浏览器先发送header,服务器响应100 continue,浏览器再发送data,服务器响应200 ok</p>
+<p>###响应篇(Response)</p>
+<p>在接收到请求之后,服务器经过解释之后,会返回个一个HTTP响应<br>HTTP响应是由四部分构成:状态行 响应头 空行 响应体</p>
+<p><img src="./http%E5%8D%8F%E8%AE%AE/4.jpg" alt=""></p>
+<p>第一部分:<br>状态行,由HTTP/1.1(协议版本) 200(状态码) OK(状态码的描述) 构成<br>第二部分:<br>响应头,由一些键值对构成,用来说明客户端要使用的一些附加信息<br>第三部分:<br>空行,响应头后面的空行时必须的<br>第四部分:<br>响应正文,服务器返回给客户端的文本信息</p>
+<p><strong>HTTP响应的状态码</strong></p>
+<p><img src="./http%E5%8D%8F%E8%AE%AE/5.jpg" alt=""></p>
+<p>###HTTP的工作原理</p>
+<p>HTTP协议定义了web客户端如何从web服务器请求Web页面,以及服务器如何把Web页面传送给客户端.HTTP协议采用了请求/响应模型.客户端向服务器发送一个请求报文,请求报文包括请求的方法,url,协议版本,请求头部和请求数据.服务器以一个状态行作为响应,响应的内容包括协议的版本,成功或者错误代码,服务器信息,响应头部和响应数据</p>
+<p><strong>以下是HTTP协议的请求/响应步骤</strong></p>
+<ol>
+<li>客户端连接到we服务器</li>
+</ol>
+<p><em>一个HTTP客户端,通常是浏览器,与Web服务器的HTTP端口(默认是80)建立一个TCP套接字连接.</em></p>
+<ol start="2">
+<li>发送HTTP请求</li>
+</ol>
+<p><em>通过TCP套接字,客户端向Web服务器发送一个文本的请求报文,一个请求报文由请求行,请求头部,空行和请求体4个部分构成.</em></p>
+<ol start="3">
+<li>服务区接收解释请求并返回HTTP响应</li>
+</ol>
+<p><em>Web解析请求,定位请求资源.服务器将资源复本写到TCP套接字,由客户端获取.一个响应由状态行,响应 头,空行和响应数据4部分组成.</em></p>
+<ol start="4">
+<li>释放连接TCP连接</li>
+</ol>
+<p><em>若Connection模式为close,则服务器主动关闭TCP连接,客户端被动关闭TCP连接,释放TCP连接.若Connection为keepalive,则该连接会保持一段时间,该时间内可以持续使用该连接接收请求,做出响应</em></p>
+<ol start="5">
+<li>客户端浏览器解析HTML内容<br><img src="./http%E5%8D%8F%E8%AE%AE/6.jpg" alt=""></li>
+</ol>
+<p>###HTTP几个重要的概念</p>
+<ol>
+<li>连接: Connection</li>
+</ol>
+<p><img src="./http%E5%8D%8F%E8%AE%AE/7.jpg" alt=""></p>
+<ol start="2">
+<li>消息: Message</li>
+</ol>
+<p><em>HTTP通讯的基本单位,包括一个结构化的八元组序列并通过连续传输</em></p>
+<ol start="3">
+<li>请求:Request</li>
+</ol>
+<p><em>一个客户端到服务器的请求消息包括应用于资源的方法,资源的标识符和协议的版本号</em></p>
+<ol start="4">
+<li>响应:Response</li>
+</ol>
+<p><em>一个从服务器返回的信息包括HTTP协议的版本号、请求的状态(例如“成功”或“没找到”)和文档的MIME类型</em></p>
+<ol start="5">
+<li>资源: Resource</li>
+</ol>
+<p><em>由URL标识的网络数据对象或服务</em></p>
+<ol start="6">
+<li>实体:Entity</li>
+</ol>
+<p><em>数据资源或来自服务资源的回映的一种特殊表示方法，它可能被包围在一个请求或响应信息中。一个实体包括实体头信息和实体的本身内容</em></p>
+<ol start="7">
+<li>客户机:Client</li>
+</ol>
+<p><em>一个为发送请求目的而建立连接的应用程序</em></p>
+<ol start="8">
+<li>用户代理:User-Agent</li>
+</ol>
+<p><em>初始化一个请求的客户机.它们是浏览器,编辑器或者其他工具</em></p>
+<ol start="9">
+<li>代理:Proxy</li>
+</ol>
+<p><em>个中间程序，它可以充当一个服务器，也可以充当一个客户机，为其它客户机建立请求。请求是通过可能的翻译在内部或经过传递到其它的服务器中。一个代理在发送请求信息之前，必须解释并且如果可能重写它。<br>代理经常作为通过防火墙的客户机端的门户，代理还可以作为一个帮助应用来通过协议处理没有被用户代理完成的请求。</em></p>
+<ol start="10">
+<li>网关:Gateway</li>
+</ol>
+<p><em>一个作为其它服务器中间媒介的服务器。与代理不同的是，网关接受请求就好象对被请求的资源来说它就是源服务器；发出请求的客户机并没有意识到它在同网关打交道。<br>网关经常作为通过防火墙的服务器端的门户，网关还可以作为一个协议翻译器以便存取那些存储在非HTTP系统中的资源</em></p>
+<ol start="11">
+<li>通道：Tunnel</li>
+</ol>
+<p><em>是作为两个连接中继的中介程序。一旦激活，通道便被认为不属于HTTP通讯，尽管通道可能是被一个HTTP请求初始化的。当被中继的连接两端关闭时，通道便消失。当一个门户(Portal)必须存在或中介(Intermediary)不能解释中继的通讯时通道被经常使用。</em></p>
+<ol start="12">
+<li>缓存：Cache</li>
+</ol>
+<p><em>反应信息的局域存储</em></p>
+<blockquote>
+<p>参考文档地址：<br> 1.<a href="https://www.jianshu.com/p/7c8b4576e4bb" target="_blank" rel="noopener">https://www.jianshu.com/p/7c8b4576e4bb</a><br> 2.<a href="https://www.cnblogs.com/haiyan123/p/7777924.html" target="_blank" rel="noopener">https://www.cnblogs.com/haiyan123/p/7777924.html</a></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/11/http%E5%8D%8F%E8%AE%AE/" data-id="ck7muzf8c0004esvq4zd43jpz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/11/git%E4%BB%93%E5%BA%93%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">git仓库使用命令</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/03/11/http%E5%8D%8F%E8%AE%AE/">http协议</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/11/git%E4%BB%93%E5%BA%93%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4/">git仓库使用命令</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/11/gitlib/">gitlib</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/11/2019-12-16swiper/">2019-12-16swiper</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/11/%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/">搭建模拟机</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 许先生<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>wx.JSSDK | 许先生的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="###WX-JSSDK 概述 微信JS-SDK是微信公众平台 面向网页开发者提供的基于微信内的网页开发工具包。 通过使用微信JS-SDK，网页开发者可借助微信高效地使用拍照、选图、语音、位置等手机系统的能力，同时可以直接使用微信分享、扫一扫、卡券、支付等微信特有的能力，为微信用户提供更优质的网页体验。 此文档面向网页开发者介绍微信JS-SDK如何使用及相关注意事项。 步骤一：绑定域名 先登录微信公">
+<meta property="og:type" content="article">
+<meta property="og:title" content="wx.JSSDK">
+<meta property="og:url" content="http://yoursite.com/2020/03/11/wx.JSSDK/index.html">
+<meta property="og:site_name" content="许先生的博客">
+<meta property="og:description" content="###WX-JSSDK 概述 微信JS-SDK是微信公众平台 面向网页开发者提供的基于微信内的网页开发工具包。 通过使用微信JS-SDK，网页开发者可借助微信高效地使用拍照、选图、语音、位置等手机系统的能力，同时可以直接使用微信分享、扫一扫、卡券、支付等微信特有的能力，为微信用户提供更优质的网页体验。 此文档面向网页开发者介绍微信JS-SDK如何使用及相关注意事项。 步骤一：绑定域名 先登录微信公">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-11T05:03:17.441Z">
+<meta property="article:modified_time" content="2020-03-10T06:54:29.282Z">
+<meta property="article:author" content="许先生">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="许先生的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">许先生的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-wx.JSSDK" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/11/wx.JSSDK/" class="article-date">
+  <time datetime="2020-03-11T05:03:17.441Z" itemprop="datePublished">2020-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      wx.JSSDK
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###WX-JSSDK</p>
+<p><strong>概述</strong></p>
+<p>微信JS-SDK是微信公众平台 面向网页开发者提供的基于微信内的网页开发工具包。</p>
+<p>通过使用微信JS-SDK，网页开发者可借助微信高效地使用拍照、选图、语音、位置等手机系统的能力，同时可以直接使用微信分享、扫一扫、卡券、支付等微信特有的能力，为微信用户提供更优质的网页体验。</p>
+<p>此文档面向网页开发者介绍微信JS-SDK如何使用及相关注意事项。</p>
+<p><strong>步骤一：绑定域名</strong></p>
+<p>先登录微信公众平台进入“公众号设置”的“功能设置”里填写“JS接口安全域名”。</p>
+<p>备注：登录后可在“开发者中心”查看对应的接口权限。</p>
+<p><strong>步骤二：引入JS文件</strong></p>
+<p>在需要调用JS接口的页面引入如下JS文件，（支持https）：</p>
+<p><code>http://res.wx.qq.com/open/js/jweixin-1.4.0.js</code></p>
+<p>如需进一步提升服务稳定性，当上述资源不可访问时，可改访问：</p>
+<p><code>http://res2.wx.qq.com/open/js/jweixin-1.4.0.js （支持https）。</code></p>
+<p>备注：支持使用 AMD/CMD 标准模块加载方法加载</p>
+<p><strong>步骤三：通过config接口注入权限验证配置</strong></p>
+<p>所有需要使用JS-SDK的页面必须先注入配置信息，否则将无法调用（同一个url仅需调用一次，对于变化url的SPA的web app可在每次url变化时进行调用,目前Android微信客户端不支持pushState的H5新特性，所以使用pushState来实现web app的页面会导致签名失败，此问题会在Android6.2中修复）。</p>
+<p><code>wx.config({</code><br>  <code>debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，在pc端时才会打印。</code><br>  <code>appId: &#39;&#39;, // 必填，公众号的唯一标识</code><br>  <code>timestamp: , // 必填，生成签名的时间戳</code><br>  <code>nonceStr: &#39;&#39;, // 必填，生成签名的随机串</code><br>  <code>signature: &#39;&#39;,// 必填，签名</code><br>  <code>jsApiList: [] // 必填，需要使用的JS接口列表});</code></p>
+<p>  <strong>步骤四：通过ready接口处理成功验证</strong></p>
+<p>  <code>wx.ready(function(){
+  // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+});</code></p>
+<p> <strong>步骤五：通过error接口处理失败验证</strong></p>
+<p> <code>wx.error(function(res){
+  // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+});</code></p>
+<p>####接口调用说明<br>所有接口通过wx对象(也可使用jWeixin对象)来调用，参数是一个对象，除了每个接口本身需要传的参数之外，还有以下通用参数：</p>
+<ol>
+<li>success：接口调用成功时执行的回调函数。</li>
+<li>fail：接口调用失败时执行的回调函数。</li>
+<li>complete：接口调用完成时执行的回调函数，无论成功或失败都会执行。</li>
+<li>cancel：用户点击取消时的回调函数，仅部分有用户取消操作的api才会用到。</li>
+<li>trigger: 监听Menu中的按钮点击时触发的方法，该方法仅支持Menu中的相关接口。</li>
+</ol>
+<p><em>备注：不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回。<br>以上几个函数都带有一个参数，类型为对象，其中除了每个接口本身返回的数据之外，还有一个通用属性errMsg，其值格式如下：<br>调用成功时：”xxx:ok” ，其中xxx为调用的接口名<br>用户取消时：”xxx:cancel”，其中xxx为调用的接口名<br>调用失败时：其值为具体错误信息</em></p>
+<p>####地理位置</p>
+<p>使用微信内置地图查看位置接口</p>
+<p><code>wx.openLocation({</code><br>  <code>latitude: 0, // 纬度，浮点数，范围为90 ~ -90</code><br>  <code>longitude: 0, // 经度，浮点数，范围为180 ~ -180。</code><br>  <code>name: &#39;&#39;, // 位置名</code><br>  <code>address: &#39;&#39;, // 地址详情说明</code><br>  <code>scale: 1, // 地图缩放级别,整形值,范围从1~28。默认为最大</code><br>  <code>infoUrl: &#39;&#39; // 在查看位置界面底部显示的超链接,可点击跳转});</code></p>
+<p>  获取地理位置接口</p>
+<p>  <code>wx.getLocation({</code><br>  <code>type: &#39;wgs84&#39;, // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入&#39;gcj02&#39;</code><br>  <code>success: function (res) {</code><br>    <code>var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90</code><br>   <code>var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。</code><br>  <code>var speed = res.speed; // 速度，以米/每秒计</code><br>   <code>var accuracy = res.accuracy; // 位置精度</code><br>  <code>}});</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/11/wx.JSSDK/" data-id="ck7muzf8e0007esvq9axybahh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/03/11/%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          搭建模拟机
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/03/11/webSocket/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">webSocket</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/03/11/http%E5%8D%8F%E8%AE%AE/">http协议</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/11/git%E4%BB%93%E5%BA%93%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4/">git仓库使用命令</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/11/gitlib/">gitlib</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/11/2019-12-16swiper/">2019-12-16swiper</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/11/%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/">搭建模拟机</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 许先生<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
