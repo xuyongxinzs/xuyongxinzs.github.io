@@ -96,7 +96,7 @@
 <li>灵活</li>
 </ol>
 <p>HTTP允许传输任意类型的数据对象，正在传输的类型由Conten-Type加以标记，常见的Content-Type的取值如下：</p>
-<p><img src="./http%E5%8D%8F%E8%AE%AE/1583819076(1).jpg" alt=""></p>
+<p><img src="http%E5%8D%8F%E8%AE%AE/1583819076(1).jpg" alt></p>
 <ol start="4">
 <li>无连接</li>
 </ol>
@@ -114,9 +114,9 @@
 <p>http表示通过http协议来定位网络资源;host表示合法的Internet主机域名或者IP地址;port指定一个端口,如果缺省,默认是80端口.abs_path表示的是请求的资源的URL,如果什么都没写,则浏览器会帮我们加上/,作为初始的路径地址.</p>
 <p>###请求篇(Request)</p>
 <p>HTTP请求由三部分构成：请求行 请求头 空行 请求正文</p>
-<p><img src="./http%E5%8D%8F%E8%AE%AE/2.jpg" alt=""></p>
+<p><img src="http%E5%8D%8F%E8%AE%AE/2.jpg" alt></p>
 <p>下面是一个报文实例：</p>
-<p><img src="./http%E5%8D%8F%E8%AE%AE/3.jpg" alt=""></p>
+<p><img src="http%E5%8D%8F%E8%AE%AE/3.jpg" alt></p>
 <p> ①是请求方法，GET和POST是最常见的HTTP方法，除此以外还包括DELETE、HEAD、OPTIONS、PUT、TRACE。不过，当前的大多数浏览器只支持GET和POST<br> ②为请求对应的URL地址，它和报文头的Host属性组成完整的请求URL，<br> ③是协议名称及版本号。<br> ④是HTTP的报文头，报文头包含若干个属性，格式为“属性名:属性值”，服务端据此获取客户端的信息。<br> ⑤是报文体，它将一个页面表单中的组件值通过param1=value1&amp;param2=value2的键值对形式编码成一个格式化串，它承载多个请求参数的数据。不但报文体可以传递请求参数，请求URL也可以通过类似于“/chapter15/user.html? param1=value1&amp;param2=value2”的方式传递请求参数。</p>
 <p><strong>常见的报文头的属性</strong></p>
 <table>
@@ -244,10 +244,10 @@
 <p>从参数的传递方面来看,GET请求的参数是直接拼接在地址栏URL的后面,而POST请求的参数是放到请求体里面的.<br>从长度限制方面来看,GET请求有具体的长度限制,一般不超过1024KB,而POST理论上没有,但是浏览器一般都有一个界限.<br>从安全方面来看,GET请求相较于POST,因为数据都是明文显示在URL上面的,所以安全和私密性不如POST<br>从本质上来说,GET和POST都是TCP连接,并无实质的区别.但是由于HTTP/浏览器的限定,导致它们在应用过程中体现出了一些不同.GET产生一个数据包,POST产生两个数据包.对于GET请求,浏览器会把http header 和 data 一并发出去,服务器响应200(返回数据).而对于POST,浏览器先发送header,服务器响应100 continue,浏览器再发送data,服务器响应200 ok</p>
 <p>###响应篇(Response)</p>
 <p>在接收到请求之后,服务器经过解释之后,会返回个一个HTTP响应<br>HTTP响应是由四部分构成:状态行 响应头 空行 响应体</p>
-<p><img src="./http%E5%8D%8F%E8%AE%AE/4.jpg" alt=""></p>
+<p><img src="http%E5%8D%8F%E8%AE%AE/4.jpg" alt></p>
 <p>第一部分:<br>状态行,由HTTP/1.1(协议版本) 200(状态码) OK(状态码的描述) 构成<br>第二部分:<br>响应头,由一些键值对构成,用来说明客户端要使用的一些附加信息<br>第三部分:<br>空行,响应头后面的空行时必须的<br>第四部分:<br>响应正文,服务器返回给客户端的文本信息</p>
 <p><strong>HTTP响应的状态码</strong></p>
-<p><img src="./http%E5%8D%8F%E8%AE%AE/5.jpg" alt=""></p>
+<p><img src="http%E5%8D%8F%E8%AE%AE/5.jpg" alt></p>
 <p>###HTTP的工作原理</p>
 <p>HTTP协议定义了web客户端如何从web服务器请求Web页面,以及服务器如何把Web页面传送给客户端.HTTP协议采用了请求/响应模型.客户端向服务器发送一个请求报文,请求报文包括请求的方法,url,协议版本,请求头部和请求数据.服务器以一个状态行作为响应,响应的内容包括协议的版本,成功或者错误代码,服务器信息,响应头部和响应数据</p>
 <p><strong>以下是HTTP协议的请求/响应步骤</strong></p>
@@ -268,13 +268,13 @@
 </ol>
 <p><em>若Connection模式为close,则服务器主动关闭TCP连接,客户端被动关闭TCP连接,释放TCP连接.若Connection为keepalive,则该连接会保持一段时间,该时间内可以持续使用该连接接收请求,做出响应</em></p>
 <ol start="5">
-<li>客户端浏览器解析HTML内容<br><img src="./http%E5%8D%8F%E8%AE%AE/6.jpg" alt=""></li>
+<li>客户端浏览器解析HTML内容<br><img src="http%E5%8D%8F%E8%AE%AE/6.jpg" alt></li>
 </ol>
 <p>###HTTP几个重要的概念</p>
 <ol>
 <li>连接: Connection</li>
 </ol>
-<p><img src="./http%E5%8D%8F%E8%AE%AE/7.jpg" alt=""></p>
+<p><img src="http%E5%8D%8F%E8%AE%AE/7.jpg" alt></p>
 <ol start="2">
 <li>消息: Message</li>
 </ol>
@@ -425,8 +425,7 @@ Git clone &lt;repo&gt; &lt;directory&gt; 克隆项目到指定目录</code></p>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##gitlab ʹ��</p>
-<p>1.������Ŀ���ӱ������е�git�ֿ����ύ��Ŀ��Ҫ���޸Ĺ�����ַ��<br>   git remote set-url origin <your url>  ����ֱ���޸�Զ�ֿ̲��ַ��</p>
+        <h3 id="gitlab-ʹ��"><a href="#gitlab-ʹ��" class="headerlink" title="gitlab ʹ��"></a>gitlab ʹ��</h3><p>1.������Ŀ���ӱ������е�git�ֿ����ύ��Ŀ��Ҫ���޸Ĺ�����ַ��<br>   git remote set-url origin <your url>  ����ֱ���޸�Զ�ֿ̲��ַ��</your></p>
 <p><a href="https://www.cnblogs.com/vickystudy/p/11505936.html" target="_blank" rel="noopener">�ο���ַ</a></p>
 <p>2.���Ǩ����ǰ����Ŀ��gitlab</p>
 <ul>
@@ -513,16 +512,16 @@ Git clone &lt;repo&gt; &lt;directory&gt; 克隆项目到指定目录</code></p>
         <p>###Swiper5的使用</p>
 <p><strong>1.new Swiper(swiperContainer, parameters)</strong></p>
 <p><em>用于初始化一个Swiper，返回初始化后的Swiper实例。其中第一个参数为class选择器（必选），第二个为swiper的配置。</em></p>
-<p><img src="./2019-12-16swiper/1583201505(1).jpg" alt=""></p>
+<p><img src="/.com//1583201505(1).jpg" alt></p>
 <p><strong>2.swiper第二个配置参数中的一般选项</strong></p>
 <blockquote>
 <p>initialslide  设置为2后，Swiper初始化时展示的页面成了第三个</p>
 </blockquote>
-<p><img src="./2019-12-16swiper/1583201645(1).jpg" alt=""></p>
+<p><img src="/.com//1583201645(1).jpg" alt></p>
 <blockquote>
 <p>direction  页面的滑动方向，可设置水平(horizontal)或垂直(vertical)。可使用swiper.changeDirection()方法动态切换方向。</p>
 </blockquote>
-<p><img src="./2019-12-16swiper/1583201725(1).jpg" alt=""></p>
+<p><img src="/.com//1583201725(1).jpg" alt></p>
 <blockquote>
 <p>speed 切换速度，即slider自动滑动开始到结束的时间（单位ms），也是触摸滑动时释放至贴合的时间。<br><em>小技巧：利用transition-timing-function或transition-delay改变Swiper的切换时间曲线</em><br><code>.swiper-wrapper{
    transition-timing-function:  ....  ;
@@ -541,11 +540,11 @@ Git clone &lt;repo&gt; &lt;directory&gt; 克隆项目到指定目录</code></p>
 <li>transition-timing-function: inherit;</li>
 </ol>
 </blockquote>
-<p><img src="./2019-12-16swiper/1583202021(1).jpg" alt=""></p>
+<p><img src="/.com//1583202021(1).jpg" alt></p>
 <blockquote>
 <p>grabCursor 设置为true时，鼠标覆盖Swiper时指针会变成手掌形状，拖动时指针会变成抓手形状。（根据浏览器形状有所不同）</p>
 </blockquote>
-<p><img src="./2019-12-16swiper/1583202127.jpg" alt=""></p>
+<p><img src="/.com//1583202127.jpg" alt></p>
 <blockquote>
 <p>parallax 设置为true开启视差效果。效果可以应用于container或slide的子元素。当应用于container的子元素（常用于视差背景图），每次切换时视差效果仅有设定值的slide个数-1分之1</p>
 </blockquote>
@@ -566,37 +565,37 @@ Git clone &lt;repo&gt; &lt;directory&gt; 克隆项目到指定目录</code></p>
 <blockquote>
 <p>在所需要的元素上增加data-swiper-parallax-scale属性。可选值如0.5，从一半大小进入一半大小出去<br>还可通过data-swiper-parallax-duration设定视差动画持续时间（ms）。默认值是Swiper的speed，与切换时间同步。<br><em>*设定透明度或缩放必须同时设定位移，否则无效(4.0.5) <code>&lt;div data-swiper-parallax=&quot;0&quot; data-swiper-parallax-opacity=&quot;0.5&quot; &gt;透明度变化&lt;/div&gt;</code></em></p>
 </blockquote>
-<p><img src="./2019-12-16swiper/1583202513(1).jpg" alt=""></p>
+<p><img src="/.com//1583202513(1).jpg" alt></p>
 <blockquote>
 <p>breakpoints 断点设定：根据屏幕宽度设置某参数为不同的值，类似于响应式布局的media only screen and (min-width: 480px)</p>
 </blockquote>
 <p><em>只有部分不需要变换布局方式和逻辑结构的参数支持断点设定，如slidesPerView、slidesPerGroup、 spaceBetween、slidesPerColumn，而像loop、direction、effect等则无效。</em></p>
-<p><img src="./2019-12-16swiper/1583202895(1).jpg" alt=""></p>
+<p><img src="/.com//1583202895(1).jpg" alt></p>
 <blockquote>
 <p>autoHeight 自动高度。设置为true时，wrapper和container会随着当前slide的高度而发生变化。</p>
 </blockquote>
-<p><img src="./2019-12-16swiper/1583203521(1).jpg" alt=""></p>
+<p><img src="/.com//1583203521(1).jpg" alt></p>
 <blockquote>
 <p>// nested 用于嵌套相同方向的swiper时，当切换到子swiper时停止父swiper的切换。</p>
 </blockquote>
-<p><img src="./2019-12-16swiper/1583203574(1).jpg" alt=""></p>
+<p><img src="/.com//1583203574(1).jpg" alt></p>
 <blockquote>
 <p>rubCallbacksOninit  因为loop模式初始化时会触发一次slideChange回调，如果刚加载时不想触发，就将次参数设置为false</p>
 </blockquote>
-<p><img src="./2019-12-16swiper/1583203622(1).jpg" alt=""></p>
+<p><img src="/.com//1583203622(1).jpg" alt></p>
 <blockquote>
 <p>on 注册事件，从4版本开始使用关键词this代指Swiper实例</p>
 </blockquote>
-<p><img src="./2019-12-16swiper/1583203673(1).jpg" alt=""></p>
+<p><img src="/.com//1583203673(1).jpg" alt></p>
 <blockquote>
 <p>init 当你创建一个Swiper实例时是否立即初始化。如果禁止了，可以稍后使用mySwiper.init()来初始化。</p>
 </blockquote>
-<p><img src="./2019-12-16swiper/1583203740(1).jpg" alt=""></p>
+<p><img src="/.com//1583203740(1).jpg" alt></p>
 <p><strong>3.swiper页面的布局样式(网格分布)</strong></p>
 <blockquote>
 <p>centeredSlides 设定为true时，第一个显示页面会居中，而不是默认状态下的居左。</p>
 </blockquote>
-<p><em>centeredSlidesBounds 当设置了Active Slide居中后，还可以配合设置此参数，使得第一个和最后一个Slide 始终贴合边缘。</em><br><img src="./2019-12-16swiper/1583203861(1).jpg" alt=""></p>
+<p><em>centeredSlidesBounds 当设置了Active Slide居中后，还可以配合设置此参数，使得第一个和最后一个Slide 始终贴合边缘。</em><br><img src="/.com//1583203861(1).jpg" alt></p>
 
       
     </div>
@@ -635,8 +634,8 @@ Git clone &lt;repo&gt; &lt;directory&gt; 克隆项目到指定目录</code></p>
       
         <p>###搭建模拟机</p>
 <p><em>继昨天下载完成安装软件以及linux（ubuntu）镜像文件后，按照教程一步步搭建。</em></p>
-<p><img src="./%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/1583211666.png" alt=""></p>
-<p><em>联网测试</em><br><img src="./%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/1583212113(1).png" alt=""></p>
+<p><img src="/.com//1583211666.png" alt></p>
+<p><em>联网测试</em><br><img src="/.com//1583212113(1).png" alt></p>
 <p><em>成功搭建完成。</em></p>
 <p><strong>参考文献</strong><br><a href="https://blog.csdn.net/weixin_42533541/article/details/81877207" target="_blank" rel="noopener">Vmware虚拟机完整创建一个linux（Ubuntu）系统全过程</a></p>
 <p>###安装gitlab</p>
@@ -644,7 +643,7 @@ Git clone &lt;repo&gt; &lt;directory&gt; 克隆项目到指定目录</code></p>
 <blockquote>
 <p>安装依赖 （发送邮件模块）<br><code>sudo apt-get install curl openssh-server ca-certificates postfix</code></p>
 </blockquote>
-<p><em>突然出现错误，如下图</em><br><img src="./%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/a1.png" alt=""></p>
+<p><em>突然出现错误，如下图</em><br><img src="/.com//a1.png" alt></p>
 <p><em>别担心，两行命令解决：</em></p>
 <ol>
 <li>sudo rm /var/cache/apt/archives/lock</li>
@@ -652,7 +651,7 @@ Git clone &lt;repo&gt; &lt;directory&gt; 克隆项目到指定目录</code></p>
 </ol>
 <p><em>这时在运行sudo apt-get update</em><br><em>sudo apt-get install ….</em></p>
 <p><strong>参考文献</strong><br><a href="https://blog.csdn.net/zizle_lin/article/details/80469142" target="_blank" rel="noopener">Ubuntu安装出现无法锁定管理目录</a></p>
-<p><em>一波平一波起啊，看图</em><br><img src="./%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/a2.png" alt=""><br><em>点了取消</em><br><img src="./%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/a3.png" alt=""></p>
+<p><em>一波平一波起啊，看图</em><br><img src="/.com//a2.png" alt><br><em>点了取消</em><br><img src="/.com//a3.png" alt></p>
 <blockquote>
 <p>解决方法：<br><code>sudo dpkg -i --force-overwrite &lt;filename&gt;</code><br>接着运行：<br><code>sudo apt-get -f install</code><br><strong>参考文献</strong><br><a href="https://www.cnblogs.com/darklights/p/10542482.html" target="_blank" rel="noopener">”dpkg: 处理归档 /var/cache/apt/archives/XXXXXX(–unpack)时出错“的解决方法</a></p>
 </blockquote>
@@ -661,13 +660,13 @@ Git clone &lt;repo&gt; &lt;directory&gt; 克隆项目到指定目录</code></p>
 <p><em>如何从第三方招聘网站获取用户的简历信息，储存到自己公司的服务器上</em></p>
 <p><em>我觉得首先你得找到第三方网站提供出来供其他人使用的网络接口。</em></p>
 <p><strong>百度搜索：前程无忧api接口</strong></p>
-<p><img src="./%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/1583215024(1).png" alt=""></p>
+<p><img src="/.com//1583215024(1).png" alt></p>
 <p><em>发现无可用信息</em></p>
 <p><strong>百度搜索：boss直聘api接口</strong></p>
-<p><img src="./%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/1583215479(1).png" alt=""></p>
+<p><img src="/.com//1583215479(1).png" alt></p>
 <p><em>继续搜索一些其它的招聘网站，也都是没有可用的信息。有个别api接口字眼也都是软件测试用的页面，也并没有说明接口信息。</em></p>
 <p><strong>在知乎上搜索前程无忧api接口</strong></p>
-<p><img src="./%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/1583216050(1).png" alt=""></p>
+<p><img src="/.com//1583216050(1).png" alt></p>
 <p><em>没有可用信息</em></p>
 <p><em>咱们是不是可以换一种搜索方式，直接搜需求，看看有没有人实现过。</em></p>
 <p><strong>百度搜索：开发项目中如何导入第三方招聘网站的简历信息</strong><br><em>没有。。。。。。。此处省略图片（都不知道自己翻了多少页了。）</em></p>
@@ -675,12 +674,12 @@ Git clone &lt;repo&gt; &lt;directory&gt; 克隆项目到指定目录</code></p>
 <p><em>还是没有啊</em></p>
 <p><strong>继续搜索。。。。。。</strong><br><em>发现篇搭边的文档</em></p>
 <p><a href="https://www.cnblogs.com/MyZgqblogs/p/10437024.html" target="_blank" rel="noopener">分析智联招聘的API接口，进行数据爬取</a></p>
-<p><em>根据他的说法，进入控制台去趴接口，确实是能趴到一点接口。如图（此为简历信息的页面）</em><br><img src="./%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/1583219360(1).png" alt=""></p>
+<p><em>根据他的说法，进入控制台去趴接口，确实是能趴到一点接口。如图（此为简历信息的页面）</em><br><img src="/.com//1583219360(1).png" alt></p>
 <p><em>发现了一些接口。包含着简单的信息。但是这些无法直接拿过来用。首先就是跨域问题，别人家的服务器，你没法用。其次就是，你没法获得用户根据手机号和验证码登录后的标识数据。</em></p>
 <p><strong>没辙了。。。。。</strong></p>
 <p><strong>然后我想着网上搜不到，咱问问客服吧。</strong></p>
-<p><img src="./%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/1.jpg" alt=""></p>
-<p><img src="./%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/2(2).jpg" alt=""></p>
+<p><img src="/.com//1.jpg" alt></p>
+<p><img src="/.com//2(2).jpg" alt></p>
 <p><em>上图为智联招聘和boss直聘的反馈，智联说是没有提供服务，boss直聘并没有直观的回答问题。其它招聘网站没有回复。</em></p>
 
       
@@ -806,7 +805,7 @@ Git clone &lt;repo&gt; &lt;directory&gt; 克隆项目到指定目录</code></p>
 <li>设置消息监听，监听前端是否传递数据。</li>
 <li>.send方法向前台传递数据。</li>
 </ol>
-<p><img src="./webSocket/1583200171(1).jpg" alt=""></p>
+<p><img src="/.com//1583200171(1).jpg" alt></p>
 <p><strong>Html代码</strong><br>方法如下：</p>
 <ol>
 <li>调用websocket的构造函数构造一个实例对象。<blockquote>
@@ -817,7 +816,7 @@ Git clone &lt;repo&gt; &lt;directory&gt; 克隆项目到指定目录</code></p>
 </blockquote>
 </li>
 <li>监听函数<blockquote>
-<p>onpen 当网络连接建立时触发该事件<br>onerror 当网络发生错误时触发该事件<br>onclose 当关闭链接时触发该事件<br>onmessage 当接收到服务器发来的消息的时候触发。数据在函数的参数里res.data<br><img src="./webSocket/1583201120(1).jpg" alt=""></p>
+<p>onpen 当网络连接建立时触发该事件<br>onerror 当网络发生错误时触发该事件<br>onclose 当关闭链接时触发该事件<br>onmessage 当接收到服务器发来的消息的时候触发。数据在函数的参数里res.data<br><img src="/.com//1583201120(1).jpg" alt></p>
 </blockquote>
 </li>
 </ol>
@@ -865,13 +864,13 @@ Git clone &lt;repo&gt; &lt;directory&gt; 克隆项目到指定目录</code></p>
 <ol>
 <li>聊天信息要始终在底部显示问题</li>
 </ol>
-<p><img src="./vue%E8%81%8A%E5%A4%A9%E4%BF%A1%E6%81%AF%E8%87%B3%E5%BA%95/1.jpg" alt=""><br>使滚动条距离顶部的高度等于视图框的高度</p>
+<p><img src="/.com//1.jpg" alt><br>使滚动条距离顶部的高度等于视图框的高度</p>
 <ol start="2">
 <li>聊天的视图框始终铺满除标题还有输入区域的高度</li>
 </ol>
 <p><em>使用绝对定位  留出上下位置</em></p>
 <p>父级获取屏幕的高度</p>
-<p><img src="./vue%E8%81%8A%E5%A4%A9%E4%BF%A1%E6%81%AF%E8%87%B3%E5%BA%95/2.jpg" alt=""></p>
+<p><img src="/.com//2.jpg" alt></p>
 
       
     </div>
@@ -964,14 +963,14 @@ Git clone &lt;repo&gt; &lt;directory&gt; 克隆项目到指定目录</code></p>
 <li><code>hexo new &lt;文件名称&gt;</code> </li>
 </ol>
 <p><em>一般再source目录下_posts目录中新建。为了方便以后的管理建议再建一个同名的文件夹来存放图片。为了见面你每次创建时都要手动创建同名文件夹的麻烦。你可以：打开博客配置文件_config.yml。找到：<br><code>post_asset_folder: true</code><br>默认应该是false，改为true，注意冒号和true之间有一个空格，别删。<br>之后保存。</em></p>
-<p><img src="./SetUpBlog_github/1.jpg" alt=""></p>
+<p><img src="/.com//1.jpg" alt></p>
 <p><em>设置好之后再使用上述命令创建md文件时，即可自动创建一个同名的文件夹</em></p>
 <ol start="2">
 <li><p><code>hexo g</code><br><code>hexo server</code></p>
 <p><em>打开hexo的服务，在浏览器输入localhost:4000就可以看到你生成的博客了。</em></p>
-<p>大概长这样：<br><img src="./SetUpBlog_github/2.jpg" alt=""></p>
+<p>大概长这样：<br><img src="/.com//2.jpg" alt></p>
 <p><em>其实这时候就会发现你的总目录下多了个文件，</em></p>
-<p> <img src="./SetUpBlog_github/3.png" alt=""></p>
+<p> <img src="/.com//3.png" alt></p>
 <p> <em>这里面放的就是你md文件转换好的html文件。这时候你就可以把这里的内容提交到你的git仓库里去就好了。但是能不能自动部署呢</em></p>
 </li>
 <li><p>使用ctrl+c可以把服务关掉</p>
@@ -991,14 +990,17 @@ Git clone &lt;repo&gt; &lt;directory&gt; 克隆项目到指定目录</code></p>
 </ol>
 <p><em>注意deploy时可能要你输入username和password。</em></p>
 <p>提交完成后你就可以看到你的github仓库中有你想要的文件了。</p>
-<p> <img src="./SetUpBlog_github/4.jpg" alt=""></p>
+<p> <img src="/.com//4.jpg" alt></p>
 <p> 然后你在浏览器地址栏敲出你的github仓库地址</p>
-<p> <img src="./SetUpBlog_github/5.jpg" alt=""></p>
+<p> <img src="/.com//5.jpg" alt></p>
 <p> <strong>到这你的github博客就算搭建成功啦</strong></p>
 <p> <em>就是样子有点丑，你可以在hexo配置里切换主题。以及设置一些其他功能。目前就现这样吧。</em></p>
 <blockquote>
 <p>参考文档：<br> <a href="https://blog.csdn.net/sinat_37781304/article/details/82729029" target="_blank" rel="noopener">hexo史上最全搭建教程</a><br> <a href="https://hexo.io/zh-cn/docs/commands" target="_blank" rel="noopener">官方文档</a></p>
 </blockquote>
+<p> #####补充：<br> 想在网站你的博客网站上显示图片，你的下载插件<br> <code>npm install hexo-asset-image --save</code></p>
+<p> 然后你的md文件语法，前面不要带相对路径,否则会出如下错误:<br> <img src="/.com//7.jpg" alt></p>
+<p> <img src="/.com//6.jpg" alt></p>
 
       
     </div>
