@@ -64,6 +64,136 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-css单位vw和vh" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/17/css%E5%8D%95%E4%BD%8Dvw%E5%92%8Cvh/" class="article-date">
+  <time datetime="2020-03-17T01:42:04.000Z" itemprop="datePublished">2020-03-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/css%E6%A0%B7%E5%BC%8F/">css样式</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/17/css%E5%8D%95%E4%BD%8Dvw%E5%92%8Cvh/">css单位vw和vh</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="css单位vw和wh"><a href="#css单位vw和wh" class="headerlink" title="css单位vw和wh"></a>css单位vw和wh</h3><p>响应式布局的实现依靠媒体查询（ Media Queries ）来实现，选取主流设备宽度尺寸作为断点针对性写额外的样式进行适配，但这样做会比较麻烦，只能在选取的几个主流设备尺寸下呈现完美适配。</p>
+<p>即使是通过 rem 单位来实现适配，也是需要内嵌一段脚本去动态计算根元素大小。</p>
+<h5 id="认识视口单位（-Viewport-units"><a href="#认识视口单位（-Viewport-units" class="headerlink" title="认识视口单位（ Viewport units )"></a>认识视口单位（ Viewport units )</h5><p>首先，我们要了解什么是视口。</p>
+<p>在业界，极为推崇的一种理论是 Peter-Paul Koch (江湖人称“PPK大神”)提出的关于视口的解释——在桌面端，视口指的是在桌面端，指的是浏览器的可视区域；而在移动端较为复杂，它涉及到三个视口：分别是 Layout Viewport（布局视口）、 Visual Viewport（视觉视口）、Ideal Viewport。</p>
+<p>而视口单位中的“视口”，在桌面端，毫无疑问指的就是浏览器的可视区域；但是在移动端，它指的则是三个 Viewport 中的 Layout Viewport 。</p>
+<p><img src="/2020/03/17/css%E5%8D%95%E4%BD%8Dvw%E5%92%8Cvh/1.jpg" alt></p>
+<p>根据CSS3规范，视口单位主要包括以下4个：</p>
+<ul>
+<li>vw : 1vw 等于视口宽度的1%</li>
+<li>vh : 1vh 等于视口高度的1%</li>
+<li>vmin : 选取 vw 和 vh 中最小的那个</li>
+<li>vmax : 选取 vw 和 vh 中最大的那个</li>
+</ul>
+<p>视口单位区别于%单位，视口单位是依赖于视口的尺寸，根据视口尺寸的百分比来定义的；而%单位则是依赖于元素的祖先元素。</p>
+<h4 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h4><p>（1）桌面 PC<br>Chrome：自 26 版起就完美支持（2013年2月）<br>Firefox：自 19 版起就完美支持（2013年1月）<br>Safari：自 6.1 版起就完美支持（2013年10月）<br>Opera：自 15 版起就完美支持（2013年7月）<br>IE：自 IE10 起（包括 Edge）到现在还只是部分支持（不支持 vmax，同时 vm 代替 vmin）</p>
+<p>（2）移动设备<br>Android：自 4.4 版起就完美支持（2013年12月）<br>iOS：自 iOS8 版起就完美支持（2014年9月）<br>并且在微信 x5 内核中也得到完美的全面支持。</p>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><ol>
+<li>可以使用完全使用vw和wh进行布局，字体也可以使用。</li>
+<li>使用vw和rem结合，可以设置屏幕得最大最小宽度，提升用户体验</li>
+</ol>
+<blockquote>
+<p>参考文章<br><a href="http://caibaojian.com/vw-vh.html" target="_blank" rel="noopener">纯CSS3使用vw和vh视口单位实现自适应</a><br><a href="https://blog.csdn.net/ZNYSYS520/article/details/76053961" target="_blank" rel="noopener">css3新单位vw、vh、vmin、vmax的使用详解</a></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/2020/03/17/css%E5%8D%95%E4%BD%8Dvw%E5%92%8Cvh/" data-id="ck7va6qb00000gcvq9al9bgy1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vw-vh/" rel="tag">vw,vh</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-html网页转pdf并保存" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/16/html%E7%BD%91%E9%A1%B5%E8%BD%ACpdf%E5%B9%B6%E4%BF%9D%E5%AD%98/" class="article-date">
+  <time datetime="2020-03-16T09:03:08.000Z" itemprop="datePublished">2020-03-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%B0%8F%E6%96%B9%E6%B3%95/">小方法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/16/html%E7%BD%91%E9%A1%B5%E8%BD%ACpdf%E5%B9%B6%E4%BF%9D%E5%AD%98/">html网页转pdf并保存</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="html网页转pdf并保存"><a href="#html网页转pdf并保存" class="headerlink" title="html网页转pdf并保存"></a>html网页转pdf并保存</h3><ol>
+<li>安装插件</li>
+</ol>
+<p><code>// 第一个.将页面html转换成图片</code><br><code>npm install --save html2canvas</code><br><code>// 第二个.将图片生成pdf</code><br><code>npm install jspdf --save</code></p>
+<ol start="2">
+<li>创建方法（在组件中使用）</li>
+</ol>
+<blockquote>
+<p>引入<br><img src="/2020/03/16/html%E7%BD%91%E9%A1%B5%E8%BD%ACpdf%E5%B9%B6%E4%BF%9D%E5%AD%98/1.jpg" alt></p>
+</blockquote>
+<blockquote>
+<p>在div中设置id属性选中你想要转换的区域<br><img src="/2020/03/16/html%E7%BD%91%E9%A1%B5%E8%BD%ACpdf%E5%B9%B6%E4%BF%9D%E5%AD%98/2.jpg" alt></p>
+</blockquote>
+<blockquote>
+<p>方法<br><img src="/2020/03/16/html%E7%BD%91%E9%A1%B5%E8%BD%ACpdf%E5%B9%B6%E4%BF%9D%E5%AD%98/3.jpg" alt></p>
+</blockquote>
+<ol start="3">
+<li>使用事件触发这个方法你就得到你想要的啦</li>
+</ol>
+<p><em>有时在a4纸上的尺寸不太对，你可以根据实际情况更改。得到你想要的尺寸。</em></p>
+<blockquote>
+<p>参考文档：<br><a href="https://blog.csdn.net/csl125/article/details/94172038" target="_blank" rel="noopener">vue项目中 页面生成pdf并下载，vue 中页面转PDF</a></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/2020/03/16/html%E7%BD%91%E9%A1%B5%E8%BD%ACpdf%E5%B9%B6%E4%BF%9D%E5%AD%98/" data-id="ck7va6qb60001gcvq6ovk6th8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue-html%E8%BD%ACpdf/" rel="tag">vue-html转pdf</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Axure使用方法" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/03/12/Axure%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" class="article-date">
@@ -946,186 +1076,12 @@ Git clone &lt;repo&gt; &lt;directory&gt; 克隆项目到指定目录</code></p>
 
 
   
-    <article id="post-vue聊天信息至底" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/11/vue%E8%81%8A%E5%A4%A9%E4%BF%A1%E6%81%AF%E8%87%B3%E5%BA%95/" class="article-date">
-  <time datetime="2020-03-11T05:03:17.438Z" itemprop="datePublished">2020-03-11</time>
-</a>
+
+
+  <nav id="page-nav">
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/11/vue%E8%81%8A%E5%A4%A9%E4%BF%A1%E6%81%AF%E8%87%B3%E5%BA%95/">vue聊天信息至底</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>###vue聊天信息至底</p>
-<ol>
-<li>聊天信息要始终在底部显示问题</li>
-</ol>
-<p><img src="/2020/03/11/vue%E8%81%8A%E5%A4%A9%E4%BF%A1%E6%81%AF%E8%87%B3%E5%BA%95/1.jpg" alt><br>使滚动条距离顶部的高度等于视图框的高度</p>
-<ol start="2">
-<li>聊天的视图框始终铺满除标题还有输入区域的高度</li>
-</ol>
-<p><em>使用绝对定位  留出上下位置</em></p>
-<p>父级获取屏幕的高度</p>
-<p><img src="/2020/03/11/vue%E8%81%8A%E5%A4%A9%E4%BF%A1%E6%81%AF%E8%87%B3%E5%BA%95/2.jpg" alt></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://github.com/2020/03/11/vue%E8%81%8A%E5%A4%A9%E4%BF%A1%E6%81%AF%E8%87%B3%E5%BA%95/" data-id="ck7muzf8c0005esvq5s8h3wak" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-SetUpBlog_github" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/11/SetUpBlog_github/" class="article-date">
-  <time datetime="2020-03-11T05:03:17.437Z" itemprop="datePublished">2020-03-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/11/SetUpBlog_github/">SetUpBlog_github</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="使用github搭建个人博客"><a href="#使用github搭建个人博客" class="headerlink" title="使用github搭建个人博客"></a>使用github搭建个人博客</h3><p><strong>一、搭建github博客</strong></p>
-<ol>
-<li>创建仓库</li>
-</ol>
-<p>新建一个名为你的用户名.github.io的仓库，比如说，如果你的github用户名是test，那么你就新建test.github.io的仓库（必须是你的用户名，其它名称无效），将来你的网站访问地址就是 <a href="http://test.github.io" target="_blank" rel="noopener">http://test.github.io</a> 了，是不是很方便？</p>
-<p><em>由此可见，每一个github账户最多只能创建一个这样可以直接使用域名访问的仓库。</em></p>
-<blockquote>
-<p>几个需要注意的地方：</p>
-<ol>
-<li>注册的邮箱一定要验证，否则不会成功；</li>
-<li>仓库名字必须是：username.github.io，其中username是你的用户名；</li>
-<li>仓库创建成功不会立即生效，需要过一段时间，大概10-30分钟，或者更久</li>
-</ol>
-</blockquote>
-<p><em>创建成功后，默认会在你这个仓库里生成一些示例页面，以后你的网站所有代码都是放在这个仓库里啦。</em></p>
-<p><strong>注意注意：你改了名字不要傻乎乎的一直等，等来等去发现就是等不到他出一个示例页面。原因好像是他现在不支持了吧。所以你必须在你新建的仓库里放点东西。我往仓库添加了一个index.html文件后。就可以了。</strong></p>
-<blockquote>
-<p>参考：<a href="https://help.github.com/en/github/working-with-github-pages/creating-a-github-pages-site#creating-your-site" target="_blank" rel="noopener">创建GitHub Pages网站</a></p>
-</blockquote>
-<ol start="2">
-<li><p>绑定域名</p>
-<p><em>绑定域名后，就可以通过你注册的域名来访问你这个博客了。可以防止别人直接看你的url就可以找到你gitgub上的源码。一定程度上提高了安全性。</em><br><em>但是注册域名需要用钱，对于我这种穷屌，当然是不注册啦。反正现在写的博客也没人看，等以后发达了再说吧。</em></p>
-</li>
-</ol>
-<h3 id="Hexod的使用"><a href="#Hexod的使用" class="headerlink" title="Hexod的使用"></a>Hexod的使用</h3><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
-<h4 id="一、全局安装"><a href="#一、全局安装" class="headerlink" title="一、全局安装"></a>一、全局安装</h4><p><em>运行环境。node.js  git 你cmd终端中安装，也可在git bash 中安装。看文档说在cmd中安装可能会出现什么问题。所以本人选择在git bash中安装。</em></p>
-<p><code>$ npm install -g hexo-cli</code></p>
-<h4 id="二、建站（初始化hexo）"><a href="#二、建站（初始化hexo）" class="headerlink" title="二、建站（初始化hexo）"></a>二、建站（初始化hexo）</h4><p><code>$ hexo init &lt;folder&gt;</code><br><code>$ cd &lt;folder&gt;</code><br><code>$ npm install</code></p>
-<p><strong>文件夹作用：</strong></p>
-<ol>
-<li>_config.yml</li>
-</ol>
-<p><em>网站的 配置 信息，您可以在此配置大部分的参数。</em></p>
-<ol start="2">
-<li>package.json</li>
-</ol>
-<p><em>应用程序的信息。EJS, Stylus 和 Markdown renderer 已默认安装，您可以自由移除。</em></p>
-<ol start="3">
-<li>scaffolds</li>
-</ol>
-<p><em>模版 文件夹。当您新建文章时，Hexo 会根据 scaffold 来建立文件。</em><br><em>Hexo的模板是指在新建的文章文件中默认填充的内容。例如，如果您修改scaffold/post.md中的Front-matter内容，那么每次新建一篇文章时都会包含这个修改。</em></p>
-<ol start="4">
-<li>source</li>
-</ol>
-<p><em>资源文件夹是存放用户资源的地方。除 _posts 文件夹之外，开头命名为 _ (下划线)的文件 / 文件夹和隐藏的文件将会被忽略。Markdown 和 HTML 文件会被解析并放到 public 文件夹，而其他文件会被拷贝过去。</em></p>
-<ol start="5">
-<li>themes</li>
-</ol>
-<p><em>主题 文件夹。Hexo 会根据主题来生成静态页面。</em></p>
-<p>###三、命令的使用</p>
-<ol>
-<li><code>hexo new &lt;文件名称&gt;</code> </li>
-</ol>
-<p><em>一般再source目录下_posts目录中新建。为了方便以后的管理建议再建一个同名的文件夹来存放图片。为了见面你每次创建时都要手动创建同名文件夹的麻烦。你可以：打开博客配置文件_config.yml。找到：<br><code>post_asset_folder: true</code><br>默认应该是false，改为true，注意冒号和true之间有一个空格，别删。<br>之后保存。</em></p>
-<p><img src="/2020/03/11/SetUpBlog_github/1.jpg" alt></p>
-<p><em>设置好之后再使用上述命令创建md文件时，即可自动创建一个同名的文件夹</em></p>
-<ol start="2">
-<li><p><code>hexo g</code><br><code>hexo server</code></p>
-<p><em>打开hexo的服务，在浏览器输入localhost:4000就可以看到你生成的博客了。</em></p>
-<p>大概长这样：<br><img src="/2020/03/11/SetUpBlog_github/2.jpg" alt></p>
-<p><em>其实这时候就会发现你的总目录下多了个文件，</em></p>
-<p> <img src="/2020/03/11/SetUpBlog_github/3.png" alt></p>
-<p> <em>这里面放的就是你md文件转换好的html文件。这时候你就可以把这里的内容提交到你的git仓库里去就好了。但是能不能自动部署呢</em></p>
-</li>
-<li><p>使用ctrl+c可以把服务关掉</p>
-</li>
-</ol>
-<h4 id="自动部署"><a href="#自动部署" class="headerlink" title="自动部署"></a>自动部署</h4><ol>
-<li>将hexo和GitHub关联起来，也就是将hexo生成的文章部署到GitHub上</li>
-</ol>
-<p>打开站点配置文件 _config.yml，翻到最后，修改为<br>YourgithubName就是你的GitHub账户</p>
-<p><code>deploy:</code><br>  <code>type: git</code><br>  <code>repo: https://github.com/YourgithubName/YourgithubName.github.io.git</code><br>  <code>branch: master</code></p>
-<ol start="2">
-<li>这个时候需要先安装deploy-git ，也就是部署的命令,这样你才能用命令部署到GitHub。</li>
-</ol>
-<p><code>npm install hexo-deployer-git --save</code></p>
-<ol start="3">
-<li>部署<br><code>hexo clean</code> 清除了你之前生成的东西，也可以不加。<br><code>hexo generate</code>  顾名思义，生成静态文章，可以用 hexo g缩写<br><code>hexo deploy</code> 部署文章，可以用hexo d缩写</li>
-</ol>
-<p><em>注意deploy时可能要你输入username和password。</em></p>
-<p>提交完成后你就可以看到你的github仓库中有你想要的文件了。</p>
-<p> <img src="/2020/03/11/SetUpBlog_github/4.jpg" alt></p>
-<p> 然后你在浏览器地址栏敲出你的github仓库地址</p>
-<p> <img src="/2020/03/11/SetUpBlog_github/5.jpg" alt></p>
-<p> <strong>到这你的github博客就算搭建成功啦</strong></p>
-<p> <em>就是样子有点丑，你可以在hexo配置里切换主题。以及设置一些其他功能。目前就现这样吧。</em></p>
-<blockquote>
-<p>参考文档：<br> <a href="https://blog.csdn.net/sinat_37781304/article/details/82729029" target="_blank" rel="noopener">hexo史上最全搭建教程</a><br> <a href="https://hexo.io/zh-cn/docs/commands" target="_blank" rel="noopener">官方文档</a></p>
-</blockquote>
-<p> #####补充：<br> 想在网站你的博客网站上显示图片，你的下载插件<br> <code>npm install hexo-asset-image --save</code></p>
-<p> 然后你的md文件语法，前面不要带相对路径,否则会出如下错误:<br> <img src="/2020/03/11/SetUpBlog_github/7.jpg" alt></p>
-<p> <img src="/2020/03/11/SetUpBlog_github/6.jpg" alt></p>
-<h6 id="啊啊啊啊啊，这个图片问题"><a href="#啊啊啊啊啊，这个图片问题" class="headerlink" title="啊啊啊啊啊，这个图片问题"></a>啊啊啊啊啊，这个图片问题</h6><p>  <em>真的是整了好久，也是按照他们的做法来的啊。说hexo高版本不支持markdown语法的引入方式，那就更换成hexo语法<code></code>。但是你还是不行。</em><br>  最后最后还是别人大佬牛逼，改了扩展的源码。</p>
-<blockquote>
-<p>参考文章：<br>  <a href="https://blog.csdn.net/qq904305159/article/details/104162802" target="_blank" rel="noopener">hexo博客搭建时图片无法正常显示的问题</a></p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://github.com/2020/03/11/SetUpBlog_github/" data-id="ck7muzf890002esvq0sy9bwco" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+  </nav>
 
 </section>
         
@@ -1135,7 +1091,7 @@ Git clone &lt;repo&gt; &lt;directory&gt; 克隆项目到指定目录</code></p>
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/">软件使用</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/css%E6%A0%B7%E5%BC%8F/">css样式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B0%8F%E6%96%B9%E6%B3%95/">小方法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/">软件使用</a></li></ul>
     </div>
   </div>
 
@@ -1145,7 +1101,7 @@ Git clone &lt;repo&gt; &lt;directory&gt; 克隆项目到指定目录</code></p>
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Axure/" rel="tag">Axure</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Axure/" rel="tag">Axure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-html%E8%BD%ACpdf/" rel="tag">vue-html转pdf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vw-vh/" rel="tag">vw,vh</a></li></ul>
     </div>
   </div>
 
@@ -1155,7 +1111,7 @@ Git clone &lt;repo&gt; &lt;directory&gt; 克隆项目到指定目录</code></p>
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Axure/" style="font-size: 10px;">Axure</a>
+      <a href="/tags/Axure/" style="font-size: 10px;">Axure</a> <a href="/tags/vue-html%E8%BD%ACpdf/" style="font-size: 10px;">vue-html转pdf</a> <a href="/tags/vw-vh/" style="font-size: 10px;">vw,vh</a>
     </div>
   </div>
 
@@ -1177,6 +1133,14 @@ Git clone &lt;repo&gt; &lt;directory&gt; 克隆项目到指定目录</code></p>
       <ul>
         
           <li>
+            <a href="/2020/03/17/css%E5%8D%95%E4%BD%8Dvw%E5%92%8Cvh/">css单位vw和vh</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/16/html%E7%BD%91%E9%A1%B5%E8%BD%ACpdf%E5%B9%B6%E4%BF%9D%E5%AD%98/">html网页转pdf并保存</a>
+          </li>
+        
+          <li>
             <a href="/2020/03/12/Axure%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">Axure使用方法</a>
           </li>
         
@@ -1186,14 +1150,6 @@ Git clone &lt;repo&gt; &lt;directory&gt; 克隆项目到指定目录</code></p>
         
           <li>
             <a href="/2020/03/11/git%E4%BB%93%E5%BA%93%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4/">git仓库使用命令</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/11/gitlib/">gitlib</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/11/2019-12-16swiper/">2019-12-16swiper</a>
           </li>
         
       </ul>
