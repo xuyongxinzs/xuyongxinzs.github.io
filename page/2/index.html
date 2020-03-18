@@ -5,17 +5,17 @@
   
 
   
-  <title>许先生的博客</title>
+  <title>山有木兮木有枝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
-<meta property="og:title" content="许先生的博客">
+<meta property="og:title" content="山有木兮木有枝">
 <meta property="og:url" content="https://github.com/page/2/index.html">
-<meta property="og:site_name" content="许先生的博客">
+<meta property="og:site_name" content="山有木兮木有枝">
 <meta property="og:locale" content="en_US">
-<meta property="article:author" content="许先生">
+<meta property="article:author" content="许柴柴">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternate" href="/atom.xml" title="许先生的博客" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="山有木兮木有枝" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -36,7 +36,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">许先生的博客</a>
+        <a href="/" id="logo">山有木兮木有枝</a>
       </h1>
       
     </div>
@@ -63,6 +63,74 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-webSocket" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/11/webSocket/" class="article-date">
+  <time datetime="2020-03-11T05:03:17.440Z" itemprop="datePublished">2020-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/11/webSocket/">webSocket</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###webSocket</p>
+<p><strong>1.在node.js中使用ws创建WebSokcet服务器</strong></p>
+<blockquote>
+<p>下载命令：npm i ws</p>
+</blockquote>
+<p><em>下面为本汪自己写的简单的js代码。</em></p>
+<ol>
+<li>首先引入ws.Server构造函数。</li>
+<li>new这个构造函数创建一个实例，输入本地端口号。</li>
+<li>设置连接监听，监听前端连接。</li>
+<li>设置消息监听，监听前端是否传递数据。</li>
+<li>.send方法向前台传递数据。</li>
+</ol>
+<p><img src="/2020/03/11/webSocket/1583200171(1).jpg" alt></p>
+<p><strong>Html代码</strong><br>方法如下：</p>
+<ol>
+<li>调用websocket的构造函数构造一个实例对象。<blockquote>
+<p>这个实例对象拥有两个方法</p>
+<blockquote>
+<p>.send()向服务器发送数据<br>.close()关闭链接</p>
+</blockquote>
+</blockquote>
+</li>
+<li>监听函数<blockquote>
+<p>onpen 当网络连接建立时触发该事件<br>onerror 当网络发生错误时触发该事件<br>onclose 当关闭链接时触发该事件<br>onmessage 当接收到服务器发来的消息的时候触发。数据在函数的参数里res.data<br><img src="/2020/03/11/webSocket/1583201120(1).jpg" alt></p>
+</blockquote>
+</li>
+</ol>
+<p><em>websocket有一个缺点就是ie不兼容，那怎么办呢，还有一个办法就是socket.io.js，它看起来非常像客户端API,建立客户端Socket.IO.</em></p>
+<blockquote>
+<p>Socket.IO可以从GitHub下载，可以把socket.io.js文件包含到页面中：<br><code>&lt;script src=&quot;js/socket.io.js&quot;&gt;&lt;/script&gt;</code><br><em>关于Socket.IO的使用方法其实和websocket差不多</em><br>区别：<br>   1.在创建实例对象的时候<br> var socket = new io.Socke(bollmskn);//bollmskn代表的是请求地址，类似ajax的url<br>　　socket.connect();</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/2020/03/11/webSocket/" data-id="ck7muzf8d0006esvq2c024ll8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-vue聊天信息至底" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -268,7 +336,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Axure/" rel="tag">Axure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-html%E8%BD%ACpdf/" rel="tag">vue-html转pdf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vw-vh/" rel="tag">vw,vh</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Axure/" rel="tag">Axure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-html%E8%BD%ACpdf/" rel="tag">vue-html转pdf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vw-vh/" rel="tag">vw,vh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">搭建gitlab服务器</a></li></ul>
     </div>
   </div>
 
@@ -278,7 +346,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Axure/" style="font-size: 10px;">Axure</a> <a href="/tags/vue-html%E8%BD%ACpdf/" style="font-size: 10px;">vue-html转pdf</a> <a href="/tags/vw-vh/" style="font-size: 10px;">vw,vh</a>
+      <a href="/tags/Axure/" style="font-size: 10px;">Axure</a> <a href="/tags/vue-html%E8%BD%ACpdf/" style="font-size: 10px;">vue-html转pdf</a> <a href="/tags/vw-vh/" style="font-size: 10px;">vw,vh</a> <a href="/tags/%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">搭建gitlab服务器</a>
     </div>
   </div>
 
@@ -300,6 +368,10 @@
       <ul>
         
           <li>
+            <a href="/2020/03/18/%E5%9C%A8Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/">在Ubuntu上搭建gitlab服务器</a>
+          </li>
+        
+          <li>
             <a href="/2020/03/17/css%E5%8D%95%E4%BD%8Dvw%E5%92%8Cvh/">css单位vw和vh</a>
           </li>
         
@@ -315,10 +387,6 @@
             <a href="/2020/03/11/http%E5%8D%8F%E8%AE%AE/">http协议</a>
           </li>
         
-          <li>
-            <a href="/2020/03/11/git%E4%BB%93%E5%BA%93%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4/">git仓库使用命令</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -331,7 +399,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2020 许先生<br>
+      &copy; 2020 许柴柴<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

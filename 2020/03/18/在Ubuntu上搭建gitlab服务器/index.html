@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>在Ubuntu上搭建gitlab服务器 | 山有木兮木有枝</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在Ubuntu上搭建gitlab服务器首先安装必须的一些服务 sudo apt-get updatesudo apt-get install -y curl openssh-server ca-certificatessudo apt-get install -y postfix 这里要使用左右键和回车键选择确定、取消，弹出列表选项的时候，选择 Internet Site。我当初不知道还以为是卡了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Ubuntu上搭建gitlab服务器">
+<meta property="og:url" content="https://github.com/2020/03/18/%E5%9C%A8Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/index.html">
+<meta property="og:site_name" content="山有木兮木有枝">
+<meta property="og:description" content="在Ubuntu上搭建gitlab服务器首先安装必须的一些服务 sudo apt-get updatesudo apt-get install -y curl openssh-server ca-certificatessudo apt-get install -y postfix 这里要使用左右键和回车键选择确定、取消，弹出列表选项的时候，选择 Internet Site。我当初不知道还以为是卡了">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/2020/03/18/%E5%9C%A8Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/2.png">
+<meta property="og:image" content="https://github.com/2020/03/18/%E5%9C%A8Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/3.png">
+<meta property="og:image" content="https://github.com/2020/03/18/%E5%9C%A8Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/4.png">
+<meta property="og:image" content="https://github.com/2020/03/18/%E5%9C%A8Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/1.png">
+<meta property="og:image" content="https://github.com/2020/03/18/%E5%9C%A8Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/6.png">
+<meta property="og:image" content="https://github.com/2020/03/18/%E5%9C%A8Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/7.png">
+<meta property="article:published_time" content="2020-03-18T05:14:48.000Z">
+<meta property="article:modified_time" content="2020-03-18T10:58:51.789Z">
+<meta property="article:author" content="许柴柴">
+<meta property="article:tag" content="搭建gitlab服务器">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/2020/03/18/%E5%9C%A8Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/2.png">
+  
+    <link rel="alternate" href="/atom.xml" title="山有木兮木有枝" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">山有木兮木有枝</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://github.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-在Ubuntu上搭建gitlab服务器" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/18/%E5%9C%A8Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="article-date">
+  <time datetime="2020-03-18T05:14:48.000Z" itemprop="datePublished">2020-03-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%B0%8F%E6%96%B9%E6%B3%95/">小方法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      在Ubuntu上搭建gitlab服务器
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="在Ubuntu上搭建gitlab服务器"><a href="#在Ubuntu上搭建gitlab服务器" class="headerlink" title="在Ubuntu上搭建gitlab服务器"></a>在Ubuntu上搭建gitlab服务器</h3><p><strong>首先安装必须的一些服务</strong></p>
+<p><code>sudo apt-get update</code><br><code>sudo apt-get install -y curl openssh-server</code> <code>ca-certificates</code><br><code>sudo apt-get install -y postfix</code></p>
+<p><em>这里要使用左右键和回车键选择确定、取消，弹出列表选项的时候，选择 Internet Site。我当初不知道还以为是卡了呢。</em></p>
+<p><strong>接着信任 GitLab 的 GPG 公钥:</strong></p>
+<p><code>curl https://packages.gitlab.com/gpg.key 2&gt; /dev/null | sudo apt-key add - &amp;&gt;/dev/null</code></p>
+<p><strong>配置镜像路径</strong></p>
+<p><em>由于国外的下载速度过慢，所以配置清华大学镜像的路径。</em></p>
+<p><code>vi /etc/apt/sources.list.d/gitlab-ce.list</code></p>
+<p><strong>写入</strong><br>根据你的版本，选择对于的内容写入<code>/etc/apt/sources.list.d/gitlab-ce.list</code>，详见<a href="https://mirror.tuna.tsinghua.edu.cn/help/gitlab-ce/" target="_blank" rel="noopener">Gitlab Community Edition 镜像使用帮助</a></p>
+<p><code>deb https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/ubuntu xenial main</code></p>
+<hr>
+<p>在这里我出现了问题。<br><em>我按照<code>vi /etc/apt/sources.list.d/gitlab-ce.list</code>这个代码想修改配置源文件时，出现了我无法操作的页面。如图：</em><br><img src="/2020/03/18/%E5%9C%A8Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/2.png" alt></p>
+<p><em>现在有一行命令是后来有人指点才加上去的。本来是什么都没有的。并且怎么按页没反应。后来才知道<code>vi</code>是打开文本编译器的指令，在这个框里编辑文本也得也要固定的指令。<a href="https://blog.csdn.net/w88193363/article/details/80593389" target="_blank" rel="noopener">Ubuntu vi 命令大全</a></em></p>
+<p><em>当然你也可以直接打开文件在文件中直接复制粘贴进去，不用指令输入。按照指定路径，比如上面这个<code>vi /etc/apt/sources.list.d/gitlab-ce.list</code></em><br><em>加完之后：</em><br><img src="/2020/03/18/%E5%9C%A8Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/3.png" alt></p>
+<p><em>在gitlab-ce.list这个文档里粘贴上想配置的镜像路径。就好了</em><br><img src="/2020/03/18/%E5%9C%A8Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/4.png" alt></p>
+<p><em>当然你会发现这个文档无法编辑，为只读状态。这时候你就百度一下如何以管理员的身份打开文件夹。就可以啊。</em></p>
+<hr>
+<p><em>解决的上面的问题。我们继续向下</em></p>
+<p><strong>安装 gitlab-ce</strong><br><code>sudo apt-get update</code><br>没问题</p>
+<p><code>sudo apt-get install gitlab-ce</code><br><img src="/2020/03/18/%E5%9C%A8Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/1.png" alt></p>
+<p><em>我心态蹦了啊，有没有。本来看这下载速度搜搜的，还以为我就要成功了呢。唉////////</em></p>
+<p><em>然后再大牛的指导下手动下载安装包，然后再安装。然后就。。</em><br><img src="/2020/03/18/%E5%9C%A8Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/6.png" alt></p>
+<p><em>那我想这样都不行，那我就按官方文档的四部走好了呗。然后。。</em><br><img src="/2020/03/18/%E5%9C%A8Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/7.png" alt></p>
+<p>我真是<strong>*****</strong></p>
+<blockquote>
+<p>参考文档：<br><a href="https://blog.csdn.net/ldyboy1314/article/details/90417201" target="_blank" rel="noopener">ubuntu安装gitlab</a><br><a href="https://blog.csdn.net/qingchunweiliang/article/details/53869601" target="_blank" rel="noopener">ubuntu搭建gitlab服务器</a><br><a href="https://www.cnblogs.com/wangkevin5626/p/7595070.html" target="_blank" rel="noopener">gitlab本地部署方法（ubuntu16.04+gitlab9.5.5）</a><br><a href="https://www.jianshu.com/p/74a3a181dc36" target="_blank" rel="noopener">Ubuntu18.04 GitLab仓库服务器搭建</a><br><a href="https://www.cnblogs.com/m2ez/p/7063606.html" target="_blank" rel="noopener">Ubuntu 搭建 GitLab 笔记</a></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/2020/03/18/%E5%9C%A8Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="ck7x7qwql0000hkvqaya48498" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">搭建gitlab服务器</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/17/css%E5%8D%95%E4%BD%8Dvw%E5%92%8Cvh/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">css单位vw和vh</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/css%E6%A0%B7%E5%BC%8F/">css样式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B0%8F%E6%96%B9%E6%B3%95/">小方法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/">软件使用</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Axure/" rel="tag">Axure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-html%E8%BD%ACpdf/" rel="tag">vue-html转pdf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vw-vh/" rel="tag">vw,vh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">搭建gitlab服务器</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Axure/" style="font-size: 10px;">Axure</a> <a href="/tags/vue-html%E8%BD%ACpdf/" style="font-size: 10px;">vue-html转pdf</a> <a href="/tags/vw-vh/" style="font-size: 10px;">vw,vh</a> <a href="/tags/%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">搭建gitlab服务器</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/03/18/%E5%9C%A8Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/">在Ubuntu上搭建gitlab服务器</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/17/css%E5%8D%95%E4%BD%8Dvw%E5%92%8Cvh/">css单位vw和vh</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/16/html%E7%BD%91%E9%A1%B5%E8%BD%ACpdf%E5%B9%B6%E4%BF%9D%E5%AD%98/">html网页转pdf并保存</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/12/Axure%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">Axure使用方法</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/11/http%E5%8D%8F%E8%AE%AE/">http协议</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 许柴柴<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
