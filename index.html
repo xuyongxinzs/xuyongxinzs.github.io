@@ -64,6 +64,194 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Gulp前端自动化构建工具" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/27/Gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/" class="article-date">
+  <time datetime="2020-03-27T05:08:25.000Z" itemprop="datePublished">2020-03-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%B0%8F%E6%96%B9%E6%B3%95/">小方法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/27/Gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/">Gulp前端自动化构建工具</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Gulp前端自动化构建工具"><a href="#Gulp前端自动化构建工具" class="headerlink" title="Gulp前端自动化构建工具"></a>Gulp前端自动化构建工具</h3><p> <em>Gulp 是基于 NodeJS 的前端自动化构建工具，在项目开发过程中自动化地完成 html / css / js / image / sass / less 等文件的编译、合并、压缩、语法检查、浏览器自动刷新等重复性任务，在操作上使用了 NodeJS 中的 stream (流)，通过 pipe() 方法导入到指定的地方，将前一级的输出，作为后一级的输入，不再需要进行频繁的 IO 操作，但需要注意的是，这里的流内容，并非原始的文件流，而是一个虚拟的文件对象流 (Vinyl Files)，存储着原始文件的路径、文件名、内容等信息</em></p>
+<blockquote>
+<p>Gulp 是基于 NodeJS，所以需要安装 Node 和 npm 包管理工具，可根据自己的操作系统环境来下载相应的版本 <a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">Node | Downloads</a></p>
+</blockquote>
+<h4 id="npm介绍"><a href="#npm介绍" class="headerlink" title="npm介绍"></a>npm介绍</h4><p>  npm (Node Package Manager) 是随同 NodeJS 一起安装的包管理工具，用于 node 插件管理，包括插件的安装、卸载、管理依赖等</p>
+<p>  在命令行中执行 <code>npm install &lt;name&gt; [-g] [--save-dev]</code> 命令即可使用 npm 安装插件</p>
+<ul>
+<li><p><code>&lt;name&gt;</code> 为 node 插件名</p>
+</li>
+<li><p><code>-g</code> 为全局安装，全局安装可以通过命令行在任何地方调用该插件，而非全局安装只会安装在当前定位目录的 <code>node_modules</code> 文件夹下，通过 <code>require()</code> 方法进行调用</p>
+</li>
+<li><p><code>--save</code> 将配置信息保存到 <code>NodeJS</code> 项目配置文件 <code>package.json</code> 中</p>
+</li>
+<li><p><code>-dev</code> 将配置信息保存至 <code>package.json</code> 文件下的 <code>devDependencies</code> 节点</p>
+<p>有了 <code>package.json</code> 的配置信息之后，我们就可以通过 <code>npm install</code> 命令，一键下载 <code>package.json</code> 配置信息里的所有插件包</p>
+<p>如果需要删除插件包，可执行 <code>npm uninstall &lt;name&gt; [-g] [--save-dev]</code> 命令，而不要直接删除本地插件包，借助 <code>rimraf</code> 可以删除所有的插件包，通过命令 <code>npm install rimraf -g</code> 安装 <code>rimraf</code>之后，执行 <code>rimraf node_modules</code> 命令</p>
+</li>
+</ul>
+<p>  npm 安装插件是从国外服务器下载，受网络影响大，对不能翻墙的同学不太友好，而淘宝团队提供了一个 <code>npmjs.org</code> 镜像，同步频率目前为 10 分钟一次，以保证尽量与官方服务同步，安装方式也很简单，执行命令 <code>npm install cnpm -g --registry=https://registry.npm.taobao.org</code>，同样的，安装完成之后，执行 <code>cnpm -v</code> 命令来查看是否成功安装，而 <code>cnpm</code> 跟 <code>npm</code> 的用法完全一样，只是在执行命令的时候，将 <code>npm</code> 换为 <code>cnpm</code> 即可</p>
+<h4 id="gulp安装"><a href="#gulp安装" class="headerlink" title="gulp安装"></a>gulp安装</h4><p> 执行命令 <code>npm install gulp -g</code> 全局安装 gulp</p>
+<p> 然后我们创建一个 gulp 目录，在该目录下运行 npm init 新建 package.json 文件，以保存项目相关信息，该文件也可以手动新建，具体信息如下所示，需要注意的是，json 文件里不能写注释，在复制完之后记得把注释删除</p>
+<p>   <img src="/2020/03/27/Gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/1.jpg" alt></p>
+<p>   安装 <code>gulp</code> 依赖包到项目本地 <code>npm install gulp --save-dev</code>，并安装项目其他依赖包，在这里以 <code>gulp-less</code> 为例，<code>npm install gulp-less --save-dev</code>，同样的，Mac 用户要是提示权限错误，加上 <code>sudo</code> 指令即可</p>
+<p>   接下来我们新建一个 <code>gulpfile.js</code> 文件，具体代码如下所示</p>
+<p>   <img src="/2020/03/27/Gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/3.jpg" alt></p>
+<p>   我们在上面的代码里，先是通过 <code>require()</code> 方法引入了 <code>gulp</code> 和 <code>gulp-less</code> 两个组件，当然引入的前提是你已经将该组件下载到本地了，随后我们使用了 <code>gulp.task</code> 定义了一个 <code>less</code> 任务，该任务将 <code>/src/less</code> 文件下的 <code>test.less</code> 文件，转换为 <code>test.css</code> 文件，该文件将在 <code>/buil/css</code> 下生成.</p>
+<p><em>通过终端输入gulp来执行此任务。正常的话是这样的：</em></p>
+<p><img src="/2020/03/27/Gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/4.jpg" alt></p>
+<p> <em>可是我的确实这样的：</em></p>
+<p> <img src="/2020/03/27/Gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/5.jpg" alt></p>
+<p> <em>这是什么问题，难道是我的操作方法不对？？？</em></p>
+<p>  查阅资料时知道：原来和其他的工具一样，gulp.js也是有自己的配置文件的：<code>gulpfile.js</code></p>
+<blockquote>
+<p>参考文献：<a href="https://jingyan.baidu.com/article/636f38bb6879dcd6b84610f0.html" target="_blank" rel="noopener">怎么在本地启动利用gulp编译文件的文件</a></p>
+</blockquote>
+<p>  继续查找文档，说是gulp全局版本号和项目中版本号不一致导致的。</p>
+<p> 通过<code>gulp -v</code>查看版本号发现。真的不一样。</p>
+<p> <img src="/2020/03/27/Gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/6.png" alt></p>
+<p> 使用<code>cnpm i gulp@3.9.1 -g</code>全局安装<br> 使用<code>cnpm i gulp@3.9.1 --save -dev</code>本地安装后</p>
+<p>  <img src="/2020/03/27/Gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/7.jpg" alt></p>
+<blockquote>
+<p>参考文章：<a href="https://blog.csdn.net/qq_42855947/article/details/91345342" target="_blank" rel="noopener">gulp运行报错</a></p>
+</blockquote>
+<p>  <strong>版本号一致了</strong></p>
+<p>  <em>继续运行gulp</em><br>  <img src="/2020/03/27/Gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/8.jpg" alt></p>
+<p>  搜索发现是安装gulp版本与node版本不兼容的问题, 我的项目gulp版本是3.9.1 本地node版本是12.13.1</p>
+<p>  解决方法是回退node版本或升级gulp版本:</p>
+<blockquote>
+<p>参考文章：<a href="https://www.cnblogs.com/phen/p/12092800.html" target="_blank" rel="noopener">ReferenceError: primordials is not defined</a><br> <a href="https://blog.csdn.net/yym836659673/article/details/104847572/" target="_blank" rel="noopener">ReferenceError: primordials is not defined</a></p>
+</blockquote>
+<p>   报错：primordials is not defined；<br>   写 项目卡到版本不兼容问题真的就巨烦人。<br>   gulp3.x.x需要将node降低到11.x.x</p>
+<p>   使用nvm来切换node版本</p>
+<p>   nvm和n都是node版本管理工具</p>
+<p>   为了解决node各种版本存在不兼容现象</p>
+<p>   nvm是让你在同一台机器上安装和切换不同版本的node的工具</p>
+<p>   <strong>安装：两种方式</strong></p>
+<ul>
+<li><p><code>curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash</code></p>
+</li>
+<li><p><code>wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash</code></p>
+<p>此时nvm就被安装在了/.nvm下啦</p>
+<p><strong>命令:</strong></p>
+<p>nvm ls-remote：列出所有可以安装的node版本号<br>nvm install v10.4.0：安装指定版本号的node<br>nvm use v10.3.0：切换node的版本，这个是全局的<br>nvm current：当前node版本<br>nvm ls：列出所有已经安装的node版本</p>
+</li>
+</ul>
+<blockquote>
+<p>参考文献：<a href="https://blog.csdn.net/qq_42177478/article/details/105003135" target="_blank" rel="noopener">window环境下node版本和gulp版本不兼容降低node版本解决方案</a><br>   <a href="https://www.jianshu.com/p/0ffa636a6fe1" target="_blank" rel="noopener">nvm</a></p>
+</blockquote>
+<p>   使用nvm切换node版本号：</p>
+<p> <img src="/2020/03/27/Gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/9.jpg" alt></p>
+<p>  <strong>再试。。。成功！！！</strong><br> <img src="/2020/03/27/Gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/10.jpg" alt></p>
+<p>该文件将在 /buil/css 下生成，文件目录结构如下所示<br><img src="/2020/03/27/Gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/11.jpg" alt></p>
+<p>然后你就可以对比一下你生成的文件和你最开始写的文件的不同了。会发现他帮你转义了。</p>
+<blockquote>
+<p>参考文献：<a href="https://www.jianshu.com/p/419bb4e40c5a" target="_blank" rel="noopener">Gulp 前端自动化构建工具</a></p>
+</blockquote>
+<hr>
+<h6 id="全局安装和局部安装的区别"><a href="#全局安装和局部安装的区别" class="headerlink" title="全局安装和局部安装的区别"></a>全局安装和局部安装的区别</h6><p> <strong>什么是全局安装？</strong></p>
+<p> 安装位置<br>    全局安装方式是键入命令：<code>npm install webpack -g</code> 或 <code>npm install webpack --global</code>，其中参数-g的含义是代表安装到全局环境里面，包安装在Node安装目录下的<code>node_modules</code>文件夹中，一般在 <code>\Users\用户名\AppData\Roaming\</code> 目录下，可以使用<code>npm root -g</code>查看全局安装目录。</p>
+<p>  <strong>什么是本地安装？</strong><br>安装位置<br>本地安装方式是键入命令：<code>npm install webpack</code> 或 <code>npm install webpack --save-dev</code>等，其中参数<code>--save-dev</code>的含义是代表把你的安装包信息写入<code>package.json</code>文件的<code>devDependencies</code>字段中，包安装在指定项目的<code>node_modules</code>文件夹下。</p>
+<p>调用方式<br>本地安装后可以直接通过<code>require()</code>的方式引入项目中<code>node_modules</code>目录下的模块，如下示例，本地安装后直接在<code>webpack.config.js</code>中<code>require(&#39;gulp&#39;)</code>。<br><img src="/2020/03/27/Gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/2.jpg" alt></p>
+<p><strong>为什么全局安装还要本地安装？</strong><br>仅仅全局安装够吗？<br>1.在js实例代码中，默认下node.js会在NODE_PATH和目前js所在项目下的node_modules文件夹下去寻找模块，因此，如果只是全局安装，不能直接通过require()的方式去引用模块，需要手动解决包路径的配置问题，当然你也可以复制全局安装的node_modules文件夹到项目下，还有办法可以选择将环境变量的NODE_PATH设置为C:\Program Files\nodejs。</p>
+<p>2.对于包的更新不好管理，可能你需要为每个包重新命名，如<a href="mailto:gulp@3.8.1">gulp@3.8.1</a>、gulp@3.9.1…，为了区别不同项目使用指定的包，保证模块之间的相互依赖（这块下面会介绍），区别每个项目正常运行。</p>
+<p>因此，不推荐只全局安装。</p>
+<blockquote>
+<p>参考文献：<a href="https://www.jianshu.com/p/e839326ce30d" target="_blank" rel="noopener">npm 全局安装和局部安装的区别</a></p>
+</blockquote>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/2020/03/27/Gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/" data-id="ck89wyy580001xsvq9lml7g14" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA/" rel="tag">gulp前端自动化构建</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-web前端性能优化" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/23/web%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" class="article-date">
+  <time datetime="2020-03-23T09:27:45.000Z" itemprop="datePublished">2020-03-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%B0%8F%E6%96%B9%E6%B3%95/">小方法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/23/web%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">web前端性能优化</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="web前端性能优化"><a href="#web前端性能优化" class="headerlink" title="web前端性能优化"></a>web前端性能优化</h3><h6 id="压缩与合并"><a href="#压缩与合并" class="headerlink" title="压缩与合并"></a>压缩与合并</h6><p><em>减少http请求和请求得大小</em></p>
+<h6 id="图片优化"><a href="#图片优化" class="headerlink" title="图片优化"></a>图片优化</h6><p><em>减少请求大小、输入、优化请求速度</em></p>
+<ul>
+<li>在保证不失真得情况下，尽量使用体积较小的图片。</li>
+<li>jpg： 压缩率高，大部分不需要透明图片的场景。</li>
+<li>png ： 支持透明，大部分需要透明图片的场景。</li>
+<li>svg矢量图：代码内嵌，相对较小，图片样式简单的场景。</li>
+<li>base64编码：把较小的图片内嵌在文件里，无需请求。</li>
+<li>使用雪碧图： 减少请求数量。</li>
+</ul>
+<h6 id="代码压缩"><a href="#代码压缩" class="headerlink" title="代码压缩"></a>代码压缩</h6><p><em>减少代码量</em></p>
+<ul>
+<li>删除多余空行</li>
+<li>表格类型布局时适当使用table代替div布局</li>
+<li>封装js代码</li>
+</ul>
+<h6 id="减少对dom的操作"><a href="#减少对dom的操作" class="headerlink" title="减少对dom的操作"></a>减少对dom的操作</h6><h6 id="使用json格式来进行数据交换"><a href="#使用json格式来进行数据交换" class="headerlink" title="使用json格式来进行数据交换"></a>使用json格式来进行数据交换</h6><h6 id="注意控制Cookie大小和污染"><a href="#注意控制Cookie大小和污染" class="headerlink" title="注意控制Cookie大小和污染"></a>注意控制Cookie大小和污染</h6>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/2020/03/23/web%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" data-id="ck89wyy4z0000xsvqcaenfvdz" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">前端性能优化</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-在Ubuntu上搭建gitlab服务器" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/03/18/%E5%9C%A8Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="article-date">
@@ -117,6 +305,21 @@
 <blockquote>
 <p>参考文档：<br><a href="https://blog.csdn.net/ldyboy1314/article/details/90417201" target="_blank" rel="noopener">ubuntu安装gitlab</a><br><a href="https://blog.csdn.net/qingchunweiliang/article/details/53869601" target="_blank" rel="noopener">ubuntu搭建gitlab服务器</a><br><a href="https://www.cnblogs.com/wangkevin5626/p/7595070.html" target="_blank" rel="noopener">gitlab本地部署方法（ubuntu16.04+gitlab9.5.5）</a><br><a href="https://www.jianshu.com/p/74a3a181dc36" target="_blank" rel="noopener">Ubuntu18.04 GitLab仓库服务器搭建</a><br><a href="https://www.cnblogs.com/m2ez/p/7063606.html" target="_blank" rel="noopener">Ubuntu 搭建 GitLab 笔记</a></p>
 </blockquote>
+<hr>
+<p>新的一天又开始，打不死的小强又回来了。</p>
+<p><em>抱着侥幸心理的心态，我又从走了一边安装步骤。下载依赖，使用官方命令下载软件包。下载的时候很顺利，可能是我配置过全局清华镜像的缘故，下载速度页很快。很快包下载完了。但是再解归档的时候发生错误。并且还弹了个系统错误的窗。我现在怀疑是我左弄弄右弄弄得是不是给系统文件给整错了。所以我打算重装一遍虚拟机，再来一次。</em></p>
+<p><strong>卸载以安装得虚拟机</strong></p>
+<p><em>卸载三步走超简单</em><br><a href="https://zhidao.baidu.com/question/359210665.html" target="_blank" rel="noopener">虚拟机怎么删除或卸载已安装的虚拟操作系统？</a></p>
+<p><strong>安装</strong><br><em>过程省略，以前得文档有</em></p>
+<blockquote>
+<p>安装完，检查完可以联网后。我想大家也都注意到了一个问题，就是虚拟机的屏幕好小。并且不能和主机间通信。这时候就需要用到他推荐的插件来解决 VMware Tools</p>
+</blockquote>
+<p><a href="https://blog.csdn.net/weixin_42533541/article/details/81879167" target="_blank" rel="noopener">Vmware虚拟机完整创建一个linux（Ubuntu）系统全过程（三）</a></p>
+<p><em>根据上面操作步骤，复制VMware Tools的压缩包后，你需要双击提取一下文件。才能进行后续操作。</em></p>
+<p><em>然后开始安装时，会弹出提示让你做出选择。第一个提示按yes然后一路回车就好啦</em></p>
+<hr>
+<p>ok 配置完成 让我们再来一次。</p>
+<p><em>首先我配置了清华镜像，通过镜像下载，还是会包软件包下载错误，然后我通过官方文档提供的方法下载，终于是安装成功了。出现了喜悦的猫头。</em></p>
 
       
     </div>
@@ -915,168 +1118,6 @@ Git clone &lt;repo&gt; &lt;directory&gt; 克隆项目到指定目录</code></p>
 
 
   
-    <article id="post-搭建模拟机" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/11/%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/" class="article-date">
-  <time datetime="2020-03-11T05:03:17.442Z" itemprop="datePublished">2020-03-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/11/%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/">搭建模拟机</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>###搭建模拟机</p>
-<p><em>继昨天下载完成安装软件以及linux（ubuntu）镜像文件后，按照教程一步步搭建。</em></p>
-<p><img src="/2020/03/11/%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/1583211666.png" alt></p>
-<p><em>联网测试</em><br><img src="/2020/03/11/%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/1583212113(1).png" alt></p>
-<p><em>成功搭建完成。</em></p>
-<p><strong>参考文献</strong><br><a href="https://blog.csdn.net/weixin_42533541/article/details/81877207" target="_blank" rel="noopener">Vmware虚拟机完整创建一个linux（Ubuntu）系统全过程</a></p>
-<p>###安装gitlab</p>
-<p><em>在ubuntu上安装Gitlab基本上都在终端中进行。桌面CTRL+ALT+T就可以调出终端命令行</em></p>
-<blockquote>
-<p>安装依赖 （发送邮件模块）<br><code>sudo apt-get install curl openssh-server ca-certificates postfix</code></p>
-</blockquote>
-<p><em>突然出现错误，如下图</em><br><img src="/2020/03/11/%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/a1.png" alt></p>
-<p><em>别担心，两行命令解决：</em></p>
-<ol>
-<li>sudo rm /var/cache/apt/archives/lock</li>
-<li>sudo rm /var/lib/dpkg/lock</li>
-</ol>
-<p><em>这时在运行sudo apt-get update</em><br><em>sudo apt-get install ….</em></p>
-<p><strong>参考文献</strong><br><a href="https://blog.csdn.net/zizle_lin/article/details/80469142" target="_blank" rel="noopener">Ubuntu安装出现无法锁定管理目录</a></p>
-<p><em>一波平一波起啊，看图</em><br><img src="/2020/03/11/%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/a2.png" alt><br><em>点了取消</em><br><img src="/2020/03/11/%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/a3.png" alt></p>
-<blockquote>
-<p>解决方法：<br><code>sudo dpkg -i --force-overwrite &lt;filename&gt;</code><br>接着运行：<br><code>sudo apt-get -f install</code><br><strong>参考文献</strong><br><a href="https://www.cnblogs.com/darklights/p/10542482.html" target="_blank" rel="noopener">”dpkg: 处理归档 /var/cache/apt/archives/XXXXXX(–unpack)时出错“的解决方法</a></p>
-</blockquote>
-<p><strong>参考文献</strong><br><a href="https://www.jianshu.com/p/2c3f86070dcf" target="_blank" rel="noopener">win10通过ubuntu虚拟机安装Gitlab的过程详解</a></p>
-<p>###查找招聘网站接口信息</p>
-<p><em>如何从第三方招聘网站获取用户的简历信息，储存到自己公司的服务器上</em></p>
-<p><em>我觉得首先你得找到第三方网站提供出来供其他人使用的网络接口。</em></p>
-<p><strong>百度搜索：前程无忧api接口</strong></p>
-<p><img src="/2020/03/11/%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/1583215024(1).png" alt></p>
-<p><em>发现无可用信息</em></p>
-<p><strong>百度搜索：boss直聘api接口</strong></p>
-<p><img src="/2020/03/11/%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/1583215479(1).png" alt></p>
-<p><em>继续搜索一些其它的招聘网站，也都是没有可用的信息。有个别api接口字眼也都是软件测试用的页面，也并没有说明接口信息。</em></p>
-<p><strong>在知乎上搜索前程无忧api接口</strong></p>
-<p><img src="/2020/03/11/%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/1583216050(1).png" alt></p>
-<p><em>没有可用信息</em></p>
-<p><em>咱们是不是可以换一种搜索方式，直接搜需求，看看有没有人实现过。</em></p>
-<p><strong>百度搜索：开发项目中如何导入第三方招聘网站的简历信息</strong><br><em>没有。。。。。。。此处省略图片（都不知道自己翻了多少页了。）</em></p>
-<p><strong>百度搜索：招聘网站有没有接口可以通过输入账户密码直接获取简历信息</strong></p>
-<p><em>还是没有啊</em></p>
-<p><strong>继续搜索。。。。。。</strong><br><em>发现篇搭边的文档</em></p>
-<p><a href="https://www.cnblogs.com/MyZgqblogs/p/10437024.html" target="_blank" rel="noopener">分析智联招聘的API接口，进行数据爬取</a></p>
-<p><em>根据他的说法，进入控制台去趴接口，确实是能趴到一点接口。如图（此为简历信息的页面）</em><br><img src="/2020/03/11/%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/1583219360(1).png" alt></p>
-<p><em>发现了一些接口。包含着简单的信息。但是这些无法直接拿过来用。首先就是跨域问题，别人家的服务器，你没法用。其次就是，你没法获得用户根据手机号和验证码登录后的标识数据。</em></p>
-<p><strong>没辙了。。。。。</strong></p>
-<p><strong>然后我想着网上搜不到，咱问问客服吧。</strong></p>
-<p><img src="/2020/03/11/%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/1.jpg" alt></p>
-<p><img src="/2020/03/11/%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/2(2).jpg" alt></p>
-<img src="/2020/03/11/%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/1.jpg" class>
-
-<p><em>上图为智联招聘和boss直聘的反馈，智联说是没有提供服务，boss直聘并没有直观的回答问题。其它招聘网站没有回复。</em></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://github.com/2020/03/11/%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/" data-id="ck7muzf8f0008esvq6h03726b" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-wx.JSSDK" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/11/wx.JSSDK/" class="article-date">
-  <time datetime="2020-03-11T05:03:17.441Z" itemprop="datePublished">2020-03-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/11/wx.JSSDK/">wx.JSSDK</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>###WX-JSSDK</p>
-<p><strong>概述</strong></p>
-<p>微信JS-SDK是微信公众平台 面向网页开发者提供的基于微信内的网页开发工具包。</p>
-<p>通过使用微信JS-SDK，网页开发者可借助微信高效地使用拍照、选图、语音、位置等手机系统的能力，同时可以直接使用微信分享、扫一扫、卡券、支付等微信特有的能力，为微信用户提供更优质的网页体验。</p>
-<p>此文档面向网页开发者介绍微信JS-SDK如何使用及相关注意事项。</p>
-<p><strong>步骤一：绑定域名</strong></p>
-<p>先登录微信公众平台进入“公众号设置”的“功能设置”里填写“JS接口安全域名”。</p>
-<p>备注：登录后可在“开发者中心”查看对应的接口权限。</p>
-<p><strong>步骤二：引入JS文件</strong></p>
-<p>在需要调用JS接口的页面引入如下JS文件，（支持https）：</p>
-<p><code>http://res.wx.qq.com/open/js/jweixin-1.4.0.js</code></p>
-<p>如需进一步提升服务稳定性，当上述资源不可访问时，可改访问：</p>
-<p><code>http://res2.wx.qq.com/open/js/jweixin-1.4.0.js （支持https）。</code></p>
-<p>备注：支持使用 AMD/CMD 标准模块加载方法加载</p>
-<p><strong>步骤三：通过config接口注入权限验证配置</strong></p>
-<p>所有需要使用JS-SDK的页面必须先注入配置信息，否则将无法调用（同一个url仅需调用一次，对于变化url的SPA的web app可在每次url变化时进行调用,目前Android微信客户端不支持pushState的H5新特性，所以使用pushState来实现web app的页面会导致签名失败，此问题会在Android6.2中修复）。</p>
-<p><code>wx.config({</code><br>  <code>debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，在pc端时才会打印。</code><br>  <code>appId: &#39;&#39;, // 必填，公众号的唯一标识</code><br>  <code>timestamp: , // 必填，生成签名的时间戳</code><br>  <code>nonceStr: &#39;&#39;, // 必填，生成签名的随机串</code><br>  <code>signature: &#39;&#39;,// 必填，签名</code><br>  <code>jsApiList: [] // 必填，需要使用的JS接口列表});</code></p>
-<p>  <strong>步骤四：通过ready接口处理成功验证</strong></p>
-<p>  <code>wx.ready(function(){
-  // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
-});</code></p>
-<p> <strong>步骤五：通过error接口处理失败验证</strong></p>
-<p> <code>wx.error(function(res){
-  // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
-});</code></p>
-<p>####接口调用说明<br>所有接口通过wx对象(也可使用jWeixin对象)来调用，参数是一个对象，除了每个接口本身需要传的参数之外，还有以下通用参数：</p>
-<ol>
-<li>success：接口调用成功时执行的回调函数。</li>
-<li>fail：接口调用失败时执行的回调函数。</li>
-<li>complete：接口调用完成时执行的回调函数，无论成功或失败都会执行。</li>
-<li>cancel：用户点击取消时的回调函数，仅部分有用户取消操作的api才会用到。</li>
-<li>trigger: 监听Menu中的按钮点击时触发的方法，该方法仅支持Menu中的相关接口。</li>
-</ol>
-<p><em>备注：不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回。<br>以上几个函数都带有一个参数，类型为对象，其中除了每个接口本身返回的数据之外，还有一个通用属性errMsg，其值格式如下：<br>调用成功时：”xxx:ok” ，其中xxx为调用的接口名<br>用户取消时：”xxx:cancel”，其中xxx为调用的接口名<br>调用失败时：其值为具体错误信息</em></p>
-<p>####地理位置</p>
-<p>使用微信内置地图查看位置接口</p>
-<p><code>wx.openLocation({</code><br>  <code>latitude: 0, // 纬度，浮点数，范围为90 ~ -90</code><br>  <code>longitude: 0, // 经度，浮点数，范围为180 ~ -180。</code><br>  <code>name: &#39;&#39;, // 位置名</code><br>  <code>address: &#39;&#39;, // 地址详情说明</code><br>  <code>scale: 1, // 地图缩放级别,整形值,范围从1~28。默认为最大</code><br>  <code>infoUrl: &#39;&#39; // 在查看位置界面底部显示的超链接,可点击跳转});</code></p>
-<p>  获取地理位置接口</p>
-<p>  <code>wx.getLocation({</code><br>  <code>type: &#39;wgs84&#39;, // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入&#39;gcj02&#39;</code><br>  <code>success: function (res) {</code><br>    <code>var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90</code><br>   <code>var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。</code><br>  <code>var speed = res.speed; // 速度，以米/每秒计</code><br>   <code>var accuracy = res.accuracy; // 位置精度</code><br>  <code>}});</code></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://github.com/2020/03/11/wx.JSSDK/" data-id="ck7muzf8e0007esvq9axybahh" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1102,7 +1143,7 @@ Git clone &lt;repo&gt; &lt;directory&gt; 克隆项目到指定目录</code></p>
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Axure/" rel="tag">Axure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-html%E8%BD%ACpdf/" rel="tag">vue-html转pdf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vw-vh/" rel="tag">vw,vh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">搭建gitlab服务器</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Axure/" rel="tag">Axure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA/" rel="tag">gulp前端自动化构建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-html%E8%BD%ACpdf/" rel="tag">vue-html转pdf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vw-vh/" rel="tag">vw,vh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">前端性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">搭建gitlab服务器</a></li></ul>
     </div>
   </div>
 
@@ -1112,7 +1153,7 @@ Git clone &lt;repo&gt; &lt;directory&gt; 克隆项目到指定目录</code></p>
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Axure/" style="font-size: 10px;">Axure</a> <a href="/tags/vue-html%E8%BD%ACpdf/" style="font-size: 10px;">vue-html转pdf</a> <a href="/tags/vw-vh/" style="font-size: 10px;">vw,vh</a> <a href="/tags/%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">搭建gitlab服务器</a>
+      <a href="/tags/Axure/" style="font-size: 10px;">Axure</a> <a href="/tags/gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA/" style="font-size: 10px;">gulp前端自动化构建</a> <a href="/tags/vue-html%E8%BD%ACpdf/" style="font-size: 10px;">vue-html转pdf</a> <a href="/tags/vw-vh/" style="font-size: 10px;">vw,vh</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">前端性能优化</a> <a href="/tags/%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">搭建gitlab服务器</a>
     </div>
   </div>
 
@@ -1134,6 +1175,14 @@ Git clone &lt;repo&gt; &lt;directory&gt; 克隆项目到指定目录</code></p>
       <ul>
         
           <li>
+            <a href="/2020/03/27/Gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/">Gulp前端自动化构建工具</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/23/web%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">web前端性能优化</a>
+          </li>
+        
+          <li>
             <a href="/2020/03/18/%E5%9C%A8Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/">在Ubuntu上搭建gitlab服务器</a>
           </li>
         
@@ -1143,14 +1192,6 @@ Git clone &lt;repo&gt; &lt;directory&gt; 克隆项目到指定目录</code></p>
         
           <li>
             <a href="/2020/03/16/html%E7%BD%91%E9%A1%B5%E8%BD%ACpdf%E5%B9%B6%E4%BF%9D%E5%AD%98/">html网页转pdf并保存</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/12/Axure%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">Axure使用方法</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/11/http%E5%8D%8F%E8%AE%AE/">http协议</a>
           </li>
         
       </ul>
