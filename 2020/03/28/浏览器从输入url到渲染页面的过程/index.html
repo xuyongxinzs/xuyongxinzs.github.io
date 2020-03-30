@@ -5,20 +5,21 @@
   
 
   
-  <title>web前端性能优化 | 山有木兮木有枝</title>
+  <title>浏览器从输入url到渲染页面的过程 | 山有木兮木有枝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="web前端性能优化压缩与合并减少http请求和请求得大小 图片优化减少请求大小、输入、优化请求速度  在保证不失真得情况下，尽量使用体积较小的图片。 jpg： 压缩率高，大部分不需要透明图片的场景。 png ： 支持透明，大部分需要透明图片的场景。 svg矢量图：代码内嵌，相对较小，图片样式简单的场景。 base64编码：把较小的图片内嵌在文件里，无需请求。 使用雪碧图： 减少请求数量。  代码压">
+  <meta name="description" content="浏览器从输入url到渲染页面的过程从输入URL到渲染出整个页面的过程包括三个部分： 1、DNS解析URL的过程 2、浏览器发送请求与服务器交互的过程 3、浏览器对接收到的html页面渲染的过程 一、DNS解析URL的过程  DNS解析的过程就是寻找哪个服务器上有请求的资源。因为ip地址不容易记忆，一般会使用URL域名（如www.baidu.com）作为网址。DNS解析就是将域名翻译成IP地址的过程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="web前端性能优化">
-<meta property="og:url" content="https://github.com/2020/03/23/web%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/index.html">
+<meta property="og:title" content="浏览器从输入url到渲染页面的过程">
+<meta property="og:url" content="https://github.com/2020/03/28/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E6%B8%B2%E6%9F%93%E9%A1%B5%E9%9D%A2%E7%9A%84%E8%BF%87%E7%A8%8B/index.html">
 <meta property="og:site_name" content="山有木兮木有枝">
-<meta property="og:description" content="web前端性能优化压缩与合并减少http请求和请求得大小 图片优化减少请求大小、输入、优化请求速度  在保证不失真得情况下，尽量使用体积较小的图片。 jpg： 压缩率高，大部分不需要透明图片的场景。 png ： 支持透明，大部分需要透明图片的场景。 svg矢量图：代码内嵌，相对较小，图片样式简单的场景。 base64编码：把较小的图片内嵌在文件里，无需请求。 使用雪碧图： 减少请求数量。  代码压">
+<meta property="og:description" content="浏览器从输入url到渲染页面的过程从输入URL到渲染出整个页面的过程包括三个部分： 1、DNS解析URL的过程 2、浏览器发送请求与服务器交互的过程 3、浏览器对接收到的html页面渲染的过程 一、DNS解析URL的过程  DNS解析的过程就是寻找哪个服务器上有请求的资源。因为ip地址不容易记忆，一般会使用URL域名（如www.baidu.com）作为网址。DNS解析就是将域名翻译成IP地址的过程">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-23T09:27:45.000Z">
-<meta property="article:modified_time" content="2020-03-24T09:50:19.478Z">
+<meta property="og:image" content="https://github.com/2020/03/28/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E6%B8%B2%E6%9F%93%E9%A1%B5%E9%9D%A2%E7%9A%84%E8%BF%87%E7%A8%8B/1.jpg">
+<meta property="article:published_time" content="2020-03-28T05:48:35.000Z">
+<meta property="article:modified_time" content="2020-03-28T05:55:33.785Z">
 <meta property="article:author" content="许柴柴">
-<meta property="article:tag" content="前端性能优化">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/2020/03/28/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E6%B8%B2%E6%9F%93%E9%A1%B5%E9%9D%A2%E7%9A%84%E8%BF%87%E7%A8%8B/1.jpg">
   
     <link rel="alternate" href="/atom.xml" title="山有木兮木有枝" type="application/atom+xml">
   
@@ -67,10 +68,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-web前端性能优化" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-浏览器从输入url到渲染页面的过程" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/03/23/web%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" class="article-date">
-  <time datetime="2020-03-23T09:27:45.000Z" itemprop="datePublished">2020-03-23</time>
+    <a href="/2020/03/28/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E6%B8%B2%E6%9F%93%E9%A1%B5%E9%9D%A2%E7%9A%84%E8%BF%87%E7%A8%8B/" class="article-date">
+  <time datetime="2020-03-28T05:48:35.000Z" itemprop="datePublished">2020-03-28</time>
 </a>
     
   <div class="article-category">
@@ -85,7 +86,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      web前端性能优化
+      浏览器从输入url到渲染页面的过程
     </h1>
   
 
@@ -93,50 +94,62 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="web前端性能优化"><a href="#web前端性能优化" class="headerlink" title="web前端性能优化"></a>web前端性能优化</h3><h6 id="压缩与合并"><a href="#压缩与合并" class="headerlink" title="压缩与合并"></a>压缩与合并</h6><p><em>减少http请求和请求得大小</em></p>
-<h6 id="图片优化"><a href="#图片优化" class="headerlink" title="图片优化"></a>图片优化</h6><p><em>减少请求大小、输入、优化请求速度</em></p>
-<ul>
-<li>在保证不失真得情况下，尽量使用体积较小的图片。</li>
-<li>jpg： 压缩率高，大部分不需要透明图片的场景。</li>
-<li>png ： 支持透明，大部分需要透明图片的场景。</li>
-<li>svg矢量图：代码内嵌，相对较小，图片样式简单的场景。</li>
-<li>base64编码：把较小的图片内嵌在文件里，无需请求。</li>
-<li>使用雪碧图： 减少请求数量。</li>
-</ul>
-<h6 id="代码压缩"><a href="#代码压缩" class="headerlink" title="代码压缩"></a>代码压缩</h6><p><em>减少代码量</em></p>
-<ul>
-<li>删除多余空行</li>
-<li>表格类型布局时适当使用table代替div布局</li>
-<li>封装js代码</li>
-</ul>
-<h6 id="减少对dom的操作"><a href="#减少对dom的操作" class="headerlink" title="减少对dom的操作"></a>减少对dom的操作</h6><h6 id="使用json格式来进行数据交换"><a href="#使用json格式来进行数据交换" class="headerlink" title="使用json格式来进行数据交换"></a>使用json格式来进行数据交换</h6><h6 id="注意控制Cookie大小和污染"><a href="#注意控制Cookie大小和污染" class="headerlink" title="注意控制Cookie大小和污染"></a>注意控制Cookie大小和污染</h6>
+        <h3 id="浏览器从输入url到渲染页面的过程"><a href="#浏览器从输入url到渲染页面的过程" class="headerlink" title="浏览器从输入url到渲染页面的过程"></a>浏览器从输入url到渲染页面的过程</h3><p><strong>从输入URL到渲染出整个页面的过程包括三个部分：</strong></p>
+<p>1、DNS解析URL的过程</p>
+<p>2、浏览器发送请求与服务器交互的过程</p>
+<p>3、浏览器对接收到的html页面渲染的过程</p>
+<h5 id="一、DNS解析URL的过程"><a href="#一、DNS解析URL的过程" class="headerlink" title="一、DNS解析URL的过程"></a>一、DNS解析URL的过程</h5><p>  DNS解析的过程就是寻找哪个服务器上有请求的资源。因为ip地址不容易记忆，一般会使用URL域名（如<a href="http://www.baidu.com）作为网址。DNS解析就是将域名翻译成IP地址的过程。" target="_blank" rel="noopener">www.baidu.com）作为网址。DNS解析就是将域名翻译成IP地址的过程。</a></p>
+<p>具体过程：</p>
+<p>1）浏览器缓存：浏览器会按照一定的频率 缓存DNS记录</p>
+<p> 　　2）操作系统缓存：如果浏览器缓存中找不到需要的DNS记录，就会取操作系统中找</p>
+<p>　　 3）路由缓存：路由器也有DNS缓存</p>
+<p>　　 4）ISP的DNS服务器：ISP有专门的DNS服务器应对DNS查询请求</p>
+<p>　　 5）根服务器：ISP的DNS服务器找不到之后，就要向根服务器发出请求，进行递归查询</p>
+<h5 id="二、浏览器与服务器交互过程"><a href="#二、浏览器与服务器交互过程" class="headerlink" title="二、浏览器与服务器交互过程"></a>二、浏览器与服务器交互过程</h5><p>1）首先浏览器利用tcp协议通过三次握手与服务器建立连接</p>
+<p>　　http请求包括header和body。header中包括请求的方式（get和post）、请求的协议 （http、https、ftp）、请求的地址ip、缓存cookie。body中有请求的内容。</p>
+<p>　　2）浏览器根据解析到的IP地址和端口号发起http的get请求.</p>
+<p>　　3）服务器接收到http请求之后，开始搜索html页面，并使用http返回响应报文</p>
+<p>　　4）若状态码为200显示响应成功，浏览器接收到返回的html页面之后，开始进行页面的渲染</p>
+<h5 id="三、浏览器页面渲染过程"><a href="#三、浏览器页面渲染过程" class="headerlink" title="三、浏览器页面渲染过程"></a>三、浏览器页面渲染过程</h5><p>　1）浏览器根据深度遍历的方式把html节点遍历成dom 树</p>
+<p>　　2）将css解析成CSS DOM树</p>
+<p>　　3）将dom树和CSS DOM树构造成render树</p>
+<p>　　4）JS根据得到的render树 计算所有节点在屏幕中的位置，进行布局（回流）</p>
+<p>　　5）遍历render树并调用硬件API绘制所有节点（重绘）</p>
+<pre><code>补充： 构造render渲染树的过程</code></pre><p><img src="/2020/03/28/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E6%B8%B2%E6%9F%93%E9%A1%B5%E9%9D%A2%E7%9A%84%E8%BF%87%E7%A8%8B/1.jpg" alt></p>
+<ol>
+<li>从DOM树的根节点开始遍历每个可见的节点。</li>
+<li>对于每个可见的节点，找到CSS树中的对应的规则，并且应用他们。</li>
+<li>根据每个可见的节点及其对应的样式，组合生成渲染树。</li>
+</ol>
+<blockquote>
+<p>参考文章：<a href="https://www.jianshu.com/p/b00db2754cdf" target="_blank" rel="noopener">浏览器的工作原理</a><br><a href="https://www.jianshu.com/p/6b2550bfeaf7" target="_blank" rel="noopener">浏览器1-浏览器的工作原理</a><br><a href="http://www.ruanyifeng.com/blog/2013/04/processes_and_threads.html" target="_blank" rel="noopener">进程与线程的一个简单解释</a><br><a href="https://www.jianshu.com/p/5a52f2492759" target="_blank" rel="noopener">图解浏览器的基本工作原理</a><br><a href="https://www.jianshu.com/p/839f949b4036" target="_blank" rel="noopener">浏览器的解析原理</a><br><a href="https://www.cnblogs.com/qing-5/p/11126524.html" target="_blank" rel="noopener">浏览器从输入URL到渲染完页面的整个过程</a></p>
+</blockquote>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/2020/03/23/web%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" data-id="ck89wyy4z0000xsvqcaenfvdz" class="article-share-link">Share</a>
+      <a data-url="https://github.com/2020/03/28/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E6%B8%B2%E6%9F%93%E9%A1%B5%E9%9D%A2%E7%9A%84%E8%BF%87%E7%A8%8B/" data-id="ck8edaawh0004u8vqak8udkuy" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">前端性能优化</a></li></ul>
-
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2020/03/27/Gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/03/30/%E8%AE%B0%E5%BD%95%E6%88%B4%E5%B0%94%E5%8F%B0%E5%BC%8F%E6%9C%BA%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          Gulp前端自动化构建工具
+          记录戴尔台式机如何设置耳机麦克风
         
       </div>
     </a>
   
   
-    <a href="/2020/03/18/%E5%9C%A8Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/03/28/vue-cl3%E5%9B%9E%E9%80%80%E5%88%B0cl2/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">在Ubuntu上搭建gitlab服务器</div>
+      <div class="article-nav-title">vue cl3回退到cl2</div>
     </a>
   
 </nav>

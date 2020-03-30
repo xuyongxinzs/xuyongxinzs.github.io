@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>HZRecroder.js的使用方法 | 山有木兮木有枝</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="HZRecroder.js的使用方法继上一节成功的在台式机上挂载上耳机上自带的麦克风后，我终于是可以在公司这个台式机上尝试着使用麦克风录音了。 使用HZRecroder.js插件。  官方网址     我参考的是示例页面的源文件。  下面开始整个过程的讲解吧。 1. 引入这个插件到自己的项目 必须引入的录音核心&lt;script src&#x3D;&quot;src&#x2F;recorder-core.js&amp;qu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HZRecroder.js的使用方法">
+<meta property="og:url" content="https://github.com/2020/03/30/HZRecroder-js%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="山有木兮木有枝">
+<meta property="og:description" content="HZRecroder.js的使用方法继上一节成功的在台式机上挂载上耳机上自带的麦克风后，我终于是可以在公司这个台式机上尝试着使用麦克风录音了。 使用HZRecroder.js插件。  官方网址     我参考的是示例页面的源文件。  下面开始整个过程的讲解吧。 1. 引入这个插件到自己的项目 必须引入的录音核心&lt;script src&#x3D;&quot;src&#x2F;recorder-core.js&amp;qu">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/2020/03/30/HZRecroder-js%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/1.jpg">
+<meta property="og:image" content="https://github.com/2020/03/30/HZRecroder-js%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2.jpg">
+<meta property="og:image" content="https://github.com/2020/03/30/HZRecroder-js%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/3.jpg">
+<meta property="article:published_time" content="2020-03-30T09:52:11.000Z">
+<meta property="article:modified_time" content="2020-03-30T11:06:03.576Z">
+<meta property="article:author" content="许柴柴">
+<meta property="article:tag" content="录音">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/2020/03/30/HZRecroder-js%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/1.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="山有木兮木有枝" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">山有木兮木有枝</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://github.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-HZRecroder-js的使用方法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/30/HZRecroder-js%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" class="article-date">
+  <time datetime="2020-03-30T09:52:11.000Z" itemprop="datePublished">2020-03-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%B0%8F%E6%96%B9%E6%B3%95/">小方法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      HZRecroder.js的使用方法
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="HZRecroder-js的使用方法"><a href="#HZRecroder-js的使用方法" class="headerlink" title="HZRecroder.js的使用方法"></a>HZRecroder.js的使用方法</h3><p><em>继上一节成功的在台式机上挂载上耳机上自带的麦克风后，我终于是可以在公司这个台式机上尝试着使用麦克风录音了。</em></p>
+<p>使用HZRecroder.js插件。</p>
+<blockquote>
+<p><a href="https://github.com/xiangyuecn/Recorder">官方网址</a></p>
+</blockquote>
+<p> <img src="/2020/03/30/HZRecroder-js%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/1.jpg" alt></p>
+<blockquote>
+<p>我参考的是<a href="https://xiangyuecn.github.io/Recorder/QuickStart.html" target="_blank" rel="noopener">示例页面</a>的源文件。</p>
+</blockquote>
+<p>下面开始整个过程的讲解吧。</p>
+<h5 id="1-引入这个插件到自己的项目"><a href="#1-引入这个插件到自己的项目" class="headerlink" title="1. 引入这个插件到自己的项目"></a>1. 引入这个插件到自己的项目</h5><p> 必须引入的录音核心<br><code>&lt;script src=&quot;src/recorder-core.js&quot;&gt;&lt;/script&gt;</code><br>相应格式支持文件；如果需要多个格式支持，把这些格式的编码引擎js文件放到后面统统加载进来即可<br><code>&lt;script src=&quot;src/engine/mp3.js&quot;&gt;&lt;/script&gt;</code><br>如果此格式有额外的编码引擎的话，也要加上<br><code>&lt;script src=&quot;src/engine/mp3-engine.js&quot;&gt;&lt;/script&gt;</code> </p>
+<p>示例：<br><img src="/2020/03/30/HZRecroder-js%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2.jpg" alt></p>
+<p>什么是波形效果呢？就是这个：</p>
+<p><img src="/2020/03/30/HZRecroder-js%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/3.jpg" alt></p>
+<h5 id="2-使用方法"><a href="#2-使用方法" class="headerlink" title="2. 使用方法"></a>2. 使用方法</h5><ol>
+<li><p>获取录音权限</p>
+<pre><code>var rec, wave, recBlob;
+/**调用open打开录音请求好录音权限**/
+var recOpen = function () {//一般在显示出录音按钮或相关的录音界面时进行此方法调用，后面用户点击开始录音时就能畅通无阻了
+    //实例对象
+    rec = null;
+    //效果图的方法
+    wave = null;
+    //储存生成的文件信息
+    recBlob = null;
+    var newRec = Recorder({
+        type: &quot;mp3&quot;, sampleRate: 16000, bitRate: 16 //mp3格式，指定采样率hz、比特率kbps，其他参数使用默认配置；注意：是数字的参数必须提供数字，不要用字符串；需要使用的type类型，需提前把格式支持文件加载进来，比如使用wav格式需要提前加载wav.js编码引擎
+        , onProcess: function (buffers, powerLevel, bufferDuration, bufferSampleRate, newBufferIdx, asyncEnd) {
+            // console.log(buffers);
+            //录音实时回调，大约1秒调用12次本回调
+            document.querySelector(&quot;.recpowerx&quot;).style.width = powerLevel + &quot;%&quot;;
+            document.querySelector(&quot;.recpowert&quot;).innerText = bufferDuration + &quot; / &quot; + powerLevel;
+
+            //可视化图形绘制
+            wave.input(buffers[buffers.length - 1], powerLevel, bufferSampleRate);
+        }
+    });
+
+    // createDelayDialog(); //我们可以选择性的弹一个对话框：为了防止移动端浏览器存在第三种情况：用户忽略，并且（或者国产系统UC系）浏览器没有任何回调，此处demo省略了弹窗的代码
+    newRec.open(function () {//打开麦克风授权获得相关资源
+
+        // dialogCancel(); //如果开启了弹框，此处需要取消
+        console.log(&apos;打开麦克风成功&apos;)
+        rec = newRec;
+
+        //此处创建这些音频可视化图形绘制浏览器支持妥妥的
+        wave = Recorder.WaveView({ elem: &quot;.recwave&quot; });
+
+        //reclog(&quot;已打开录音，可以点击录制开始录音了&quot;, 2);
+    }, function (msg, isUserNotAllow) {//用户拒绝未授权或不支持
+        //dialogCancel(); //如果开启了弹框，此处需要取消
+        //reclog((isUserNotAllow ? &quot;UserNotAllow，&quot; : &quot;&quot;) + &quot;打开录音失败：&quot; + msg, 1);
+        console.log(&apos;打开麦克风失败&apos;, msg, isUserNotAllow);
+    });
+
+    window.waitDialogClick = function () {
+        console.log(&apos;window.waitDialogClick&apos;);
+        //dialogCancel();
+        //reclog(&quot;打开失败：权限请求被忽略，&lt;span style=&apos;color:#f00&apos;&gt;用户主动点击的弹窗&lt;/span&gt;&quot;, 1);
+    };
+};</code></pre><ol start="2">
+<li><p>放弃录音功能</p>
+<p>  /<strong>关闭录音，释放资源</strong>/<br> function recClose() {</p>
+<pre><code>if (rec) {
+    rec.close();
+    console.log(&quot;已关闭&quot;);
+} else {
+    console.log(&quot;未打开录音&quot;, 1);
+};</code></pre><p> };</p>
+</li>
+</ol>
+</li>
+</ol>
+<ol start="3">
+<li><p>开始录音</p>
+<pre><code> /**开始录音**/
+  function recStart() {//打开了录音后才能进行start、stop调用
+    // &amp;&amp; Recorder.IsOpen()
+    if (rec) {
+        recBlob = null;
+        rec.start();
+        console.log(&quot;已开始录音...&quot;);
+    } else {
+        console.log(&quot;未打开录音&quot;, 1);
+    };
+};</code></pre></li>
+<li><p>结束录音</p>
+<pre><code>/**结束录音，得到音频文件**/
+function recStop() {
+    //  &amp;&amp; Recorder.IsOpen()
+    if (!(rec)) {
+        console.log(&quot;未打开录音&quot;, 1);
+        return;
+    };
+    rec.stop(function (blob, duration) {
+        console.log(blob, (window.URL || webkitURL).createObjectURL(blob), &quot;时长:&quot; + duration + &quot;ms&quot;);
+
+        recBlob = blob;
+        console.log(&quot;已录制mp3：&quot; + duration + &quot;ms &quot; + blob.size + &quot;字节，可以点击播放、上传了&quot;, 2);
+    }, function (msg) {
+        console.log(&quot;录音失败:&quot; + msg, 1);
+    });
+};</code></pre></li>
+<li><pre><code>/**暂停录音**/
+ function recPause() {
+     if (rec &amp;&amp; Recorder.IsOpen()) {
+         rec.pause();
+     } else {
+         console.log(&quot;未打开录音&quot;, 1);
+     };
+ };
+
+ /**恢复录音**/
+ function recResume() {
+     if (rec &amp;&amp; Recorder.IsOpen()) {
+         rec.resume();
+     } else {
+         console.log(&quot;未打开录音&quot;, 1);
+     };
+ };</code></pre></li>
+<li><p>播放刚才录制的音频</p>
+<pre><code>/**播放**/
+function recPlay() {
+    if (!recBlob) {
+        console.log(&quot;请先录音，然后停止后再播放&quot;, 1);
+        return;
+    };
+    var cls = (&quot;a&quot; + Math.random()).replace(&quot;.&quot;, &quot;&quot;);
+    reclog(&apos;播放中: &lt;span class=&quot;&apos; + cls + &apos;&quot;&gt;&lt;/span&gt;&apos;);
+    var audio = document.createElement(&quot;audio&quot;);
+    audio.controls = true;
+    document.querySelector(&quot;.&quot; + cls).appendChild(audio);
+    //简单利用URL生成播放地址，注意不用了时需要revokeObjectURL，否则霸占内存
+    audio.src = (window.URL || webkitURL).createObjectURL(recBlob);
+    audio.play();
+
+    setTimeout(function () {
+        (window.URL || webkitURL).revokeObjectURL(audio.src);
+    }, 5000);
+};</code></pre></li>
+</ol>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/8ac5bcc2ef4f" target="_blank" rel="noopener">window.URL.createObjectURL</a></p>
+</blockquote>
+<ol start="7">
+<li><p>上传录音</p>
+<pre><code>  /**上传**/
+function recUpload() {
+    var blob = recBlob;
+    if (!blob) {
+        reclog(&quot;请先录音，然后停止后再上传&quot;, 1);
+        return;
+    };
+
+    //本例子假设使用原始XMLHttpRequest请求方式，实际使用中自行调整为自己的请求方式
+    //录音结束时拿到了blob文件对象，可以用FileReader读取出内容，或者用FormData上传
+    var api = &quot;https://xx.xx/test_request&quot;;
+    var onreadystatechange = function (title) {
+        return function () {
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    reclog(title + &quot;上传成功&quot;, 2);
+                } else {
+                    reclog(title + &quot;没有完成上传，演示上传地址无需关注上传结果，只要浏览器控制台内Network面板内看到的请求数据结构是预期的就ok了。&quot;, &quot;#d8c1a0&quot;);
+
+                    console.error(title + &quot;上传失败&quot;, xhr.status, xhr.responseText);
+                };
+            };
+        };
+    };
+    reclog(&quot;开始上传到&quot; + api + &quot;，请求稍后...&quot;);
+
+    /***方式一：将blob文件转成base64纯文本编码，使用普通application/x-www-form-urlencoded表单上传***/
+    var reader = new FileReader();
+    reader.onloadend = function () {
+        var postData = &quot;&quot;;
+        postData += &quot;mime=&quot; + encodeURIComponent(blob.type);//告诉后端，这个录音是什么格式的，可能前后端都固定的mp3可以不用写
+        postData += &quot;&amp;upfile_b64=&quot; + encodeURIComponent((/.+;\s*base64\s*,\s*(.+)$/i.exec(reader.result) || [])[1]) //录音文件内容，后端进行base64解码成二进制
+        //...其他表单参数
+
+        var xhr = new XMLHttpRequest();
+        xhr.open(&quot;POST&quot;, api);
+        xhr.setRequestHeader(&quot;Content-Type&quot;, &quot;application/x-www-form-urlencoded&quot;);
+        xhr.onreadystatechange = onreadystatechange(&quot;上传方式一【Base64】&quot;);
+        xhr.send(postData);
+    };
+    reader.readAsDataURL(blob);
+
+    /***方式二：使用FormData用multipart/form-data表单上传文件***/
+    var form = new FormData();
+    form.append(&quot;upfile&quot;, blob, &quot;recorder.mp3&quot;); //和普通form表单并无二致，后端接收到upfile参数的文件，文件名为recorder.mp3
+    //...其他表单参数
+
+    var xhr = new XMLHttpRequest();
+    xhr.open(&quot;POST&quot;, api);
+    xhr.onreadystatechange = onreadystatechange(&quot;上传方式二【FormData】&quot;);
+    xhr.send(form);
+};</code></pre></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/2020/03/30/HZRecroder-js%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" data-id="ck8edaaw20000u8vqe0ad7it8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BD%95%E9%9F%B3/" rel="tag">录音</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/30/%E8%AE%B0%E5%BD%95%E6%88%B4%E5%B0%94%E5%8F%B0%E5%BC%8F%E6%9C%BA%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">记录戴尔台式机如何设置耳机麦克风</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/css%E6%A0%B7%E5%BC%8F/">css样式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B0%8F%E6%96%B9%E6%B3%95/">小方法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/">软件使用</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Axure/" rel="tag">Axure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA/" rel="tag">gulp前端自动化构建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-html%E8%BD%ACpdf/" rel="tag">vue-html转pdf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vw-vh/" rel="tag">vw,vh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">前端性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%B0%E5%BC%8F%E6%9C%BA%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/" rel="tag">台式机设置耳机麦克风</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BD%95%E9%9F%B3/" rel="tag">录音</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">搭建gitlab服务器</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Axure/" style="font-size: 10px;">Axure</a> <a href="/tags/gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA/" style="font-size: 10px;">gulp前端自动化构建</a> <a href="/tags/vue-html%E8%BD%ACpdf/" style="font-size: 10px;">vue-html转pdf</a> <a href="/tags/vw-vh/" style="font-size: 10px;">vw,vh</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">前端性能优化</a> <a href="/tags/%E5%8F%B0%E5%BC%8F%E6%9C%BA%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/" style="font-size: 10px;">台式机设置耳机麦克风</a> <a href="/tags/%E5%BD%95%E9%9F%B3/" style="font-size: 10px;">录音</a> <a href="/tags/%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">搭建gitlab服务器</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/03/30/HZRecroder-js%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">HZRecroder.js的使用方法</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/30/%E8%AE%B0%E5%BD%95%E6%88%B4%E5%B0%94%E5%8F%B0%E5%BC%8F%E6%9C%BA%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/">记录戴尔台式机如何设置耳机麦克风</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/28/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E6%B8%B2%E6%9F%93%E9%A1%B5%E9%9D%A2%E7%9A%84%E8%BF%87%E7%A8%8B/">浏览器从输入url到渲染页面的过程</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/28/vue-cl3%E5%9B%9E%E9%80%80%E5%88%B0cl2/">vue cl3回退到cl2</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/27/Gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/">Gulp前端自动化构建工具</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 许柴柴<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
