@@ -5,22 +5,25 @@
   
 
   
-  <title>css单位vw和vh | 山有木兮木有枝</title>
+  <title>如何通过js获取腾讯sdk签名信息 | 山有木兮木有枝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="css单位vw和wh响应式布局的实现依靠媒体查询（ Media Queries ）来实现，选取主流设备宽度尺寸作为断点针对性写额外的样式进行适配，但这样做会比较麻烦，只能在选取的几个主流设备尺寸下呈现完美适配。 即使是通过 rem 单位来实现适配，也是需要内嵌一段脚本去动态计算根元素大小。 认识视口单位（ Viewport units )首先，我们要了解什么是视口。 在业界，极为推崇的一种理论是">
+  <meta name="description" content="如何通过js获取腾讯sdk签名信息上一节完成录音文件分段，就想着能不能调用第三方接口来实现实时语音转文字，，通过百度搜素后发现好像腾讯体验免费，具体免不免费在那也不知道，咱也不敢问，毕竟注册的时候还让绑定了银行卡号。。。。  注册   官方文档     首先根据新手指引，完成应用的创建，得到appid和key来用来获取签名。  下面是创建成功的样子：    获取签名  参考文献：javascrip">
 <meta property="og:type" content="article">
-<meta property="og:title" content="css单位vw和vh">
-<meta property="og:url" content="https://github.com/2020/03/17/css%E5%8D%95%E4%BD%8Dvw%E5%92%8Cvh/index.html">
+<meta property="og:title" content="如何通过js获取腾讯sdk签名信息">
+<meta property="og:url" content="https://github.com/2020/03/31/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87js%E8%8E%B7%E5%8F%96%E8%85%BE%E8%AE%AFsdk%E7%AD%BE%E5%90%8D%E4%BF%A1%E6%81%AF/index.html">
 <meta property="og:site_name" content="山有木兮木有枝">
-<meta property="og:description" content="css单位vw和wh响应式布局的实现依靠媒体查询（ Media Queries ）来实现，选取主流设备宽度尺寸作为断点针对性写额外的样式进行适配，但这样做会比较麻烦，只能在选取的几个主流设备尺寸下呈现完美适配。 即使是通过 rem 单位来实现适配，也是需要内嵌一段脚本去动态计算根元素大小。 认识视口单位（ Viewport units )首先，我们要了解什么是视口。 在业界，极为推崇的一种理论是">
+<meta property="og:description" content="如何通过js获取腾讯sdk签名信息上一节完成录音文件分段，就想着能不能调用第三方接口来实现实时语音转文字，，通过百度搜素后发现好像腾讯体验免费，具体免不免费在那也不知道，咱也不敢问，毕竟注册的时候还让绑定了银行卡号。。。。  注册   官方文档     首先根据新手指引，完成应用的创建，得到appid和key来用来获取签名。  下面是创建成功的样子：    获取签名  参考文献：javascrip">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://github.com/2020/03/17/css%E5%8D%95%E4%BD%8Dvw%E5%92%8Cvh/1.jpg">
-<meta property="article:published_time" content="2020-03-17T01:42:04.000Z">
-<meta property="article:modified_time" content="2020-03-17T02:31:33.863Z">
+<meta property="og:image" content="https://github.com/2020/03/31/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87js%E8%8E%B7%E5%8F%96%E8%85%BE%E8%AE%AFsdk%E7%AD%BE%E5%90%8D%E4%BF%A1%E6%81%AF/1.jpg">
+<meta property="og:image" content="https://github.com/2020/03/31/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87js%E8%8E%B7%E5%8F%96%E8%85%BE%E8%AE%AFsdk%E7%AD%BE%E5%90%8D%E4%BF%A1%E6%81%AF/2.png">
+<meta property="og:image" content="https://github.com/2020/03/31/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87js%E8%8E%B7%E5%8F%96%E8%85%BE%E8%AE%AFsdk%E7%AD%BE%E5%90%8D%E4%BF%A1%E6%81%AF/3.jpg">
+<meta property="article:published_time" content="2020-03-31T11:29:55.000Z">
+<meta property="article:modified_time" content="2020-03-31T11:55:39.070Z">
 <meta property="article:author" content="许柴柴">
-<meta property="article:tag" content="vw,vh">
+<meta property="article:tag" content="录音">
+<meta property="article:tag" content="sdk签名">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://github.com/2020/03/17/css%E5%8D%95%E4%BD%8Dvw%E5%92%8Cvh/1.jpg">
+<meta name="twitter:image" content="https://github.com/2020/03/31/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87js%E8%8E%B7%E5%8F%96%E8%85%BE%E8%AE%AFsdk%E7%AD%BE%E5%90%8D%E4%BF%A1%E6%81%AF/1.jpg">
   
     <link rel="alternate" href="/atom.xml" title="山有木兮木有枝" type="application/atom+xml">
   
@@ -69,14 +72,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-css单位vw和vh" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-如何通过js获取腾讯sdk签名信息" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/03/17/css%E5%8D%95%E4%BD%8Dvw%E5%92%8Cvh/" class="article-date">
-  <time datetime="2020-03-17T01:42:04.000Z" itemprop="datePublished">2020-03-17</time>
+    <a href="/2020/03/31/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87js%E8%8E%B7%E5%8F%96%E8%85%BE%E8%AE%AFsdk%E7%AD%BE%E5%90%8D%E4%BF%A1%E6%81%AF/" class="article-date">
+  <time datetime="2020-03-31T11:29:55.000Z" itemprop="datePublished">2020-03-31</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/css%E6%A0%B7%E5%BC%8F/">css样式</a>
+    <a class="article-category-link" href="/categories/%E5%B0%8F%E6%96%B9%E6%B3%95/">小方法</a>
   </div>
 
   </div>
@@ -87,7 +90,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      css单位vw和vh
+      如何通过js获取腾讯sdk签名信息
     </h1>
   
 
@@ -95,37 +98,116 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="css单位vw和wh"><a href="#css单位vw和wh" class="headerlink" title="css单位vw和wh"></a>css单位vw和wh</h3><p>响应式布局的实现依靠媒体查询（ Media Queries ）来实现，选取主流设备宽度尺寸作为断点针对性写额外的样式进行适配，但这样做会比较麻烦，只能在选取的几个主流设备尺寸下呈现完美适配。</p>
-<p>即使是通过 rem 单位来实现适配，也是需要内嵌一段脚本去动态计算根元素大小。</p>
-<h5 id="认识视口单位（-Viewport-units"><a href="#认识视口单位（-Viewport-units" class="headerlink" title="认识视口单位（ Viewport units )"></a>认识视口单位（ Viewport units )</h5><p>首先，我们要了解什么是视口。</p>
-<p>在业界，极为推崇的一种理论是 Peter-Paul Koch (江湖人称“PPK大神”)提出的关于视口的解释——在桌面端，视口指的是在桌面端，指的是浏览器的可视区域；而在移动端较为复杂，它涉及到三个视口：分别是 Layout Viewport（布局视口）、 Visual Viewport（视觉视口）、Ideal Viewport。</p>
-<p>而视口单位中的“视口”，在桌面端，毫无疑问指的就是浏览器的可视区域；但是在移动端，它指的则是三个 Viewport 中的 Layout Viewport 。</p>
-<p><img src="/2020/03/17/css%E5%8D%95%E4%BD%8Dvw%E5%92%8Cvh/1.jpg" alt></p>
-<p>根据CSS3规范，视口单位主要包括以下4个：</p>
-<ul>
-<li>vw : 1vw 等于视口宽度的1%</li>
-<li>vh : 1vh 等于视口高度的1%</li>
-<li>vmin : 选取 vw 和 vh 中最小的那个</li>
-<li>vmax : 选取 vw 和 vh 中最大的那个</li>
-</ul>
-<p>视口单位区别于%单位，视口单位是依赖于视口的尺寸，根据视口尺寸的百分比来定义的；而%单位则是依赖于元素的祖先元素。</p>
-<h4 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h4><p>（1）桌面 PC<br>Chrome：自 26 版起就完美支持（2013年2月）<br>Firefox：自 19 版起就完美支持（2013年1月）<br>Safari：自 6.1 版起就完美支持（2013年10月）<br>Opera：自 15 版起就完美支持（2013年7月）<br>IE：自 IE10 起（包括 Edge）到现在还只是部分支持（不支持 vmax，同时 vm 代替 vmin）</p>
-<p>（2）移动设备<br>Android：自 4.4 版起就完美支持（2013年12月）<br>iOS：自 iOS8 版起就完美支持（2014年9月）<br>并且在微信 x5 内核中也得到完美的全面支持。</p>
-<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><ol>
-<li>可以使用完全使用vw和wh进行布局，字体也可以使用。</li>
-<li>使用vw和rem结合，可以设置屏幕得最大最小宽度，提升用户体验</li>
+        <h3 id="如何通过js获取腾讯sdk签名信息"><a href="#如何通过js获取腾讯sdk签名信息" class="headerlink" title="如何通过js获取腾讯sdk签名信息"></a>如何通过js获取腾讯sdk签名信息</h3><p><em>上一节完成录音文件分段，就想着能不能调用第三方接口来实现实时语音转文字，，通过百度搜素后发现好像腾讯体验免费，具体免不免费在那也不知道，咱也不敢问，毕竟注册的时候还让绑定了银行卡号。。。。</em></p>
+<ol>
+<li>注册</li>
 </ol>
 <blockquote>
-<p>参考文章<br><a href="http://caibaojian.com/vw-vh.html" target="_blank" rel="noopener">纯CSS3使用vw和vh视口单位实现自适应</a><br><a href="https://blog.csdn.net/ZNYSYS520/article/details/76053961" target="_blank" rel="noopener">css3新单位vw、vh、vmin、vmax的使用详解</a></p>
+<p><a href="https://ai.qq.com/doc/index.shtml" target="_blank" rel="noopener">官方文档</a></p>
 </blockquote>
+<p> <img src="/2020/03/31/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87js%E8%8E%B7%E5%8F%96%E8%85%BE%E8%AE%AFsdk%E7%AD%BE%E5%90%8D%E4%BF%A1%E6%81%AF/1.jpg" alt></p>
+<p> <em>首先根据新手指引，完成应用的创建，得到appid和key来用来获取签名。</em></p>
+<p> 下面是创建成功的样子：</p>
+<p> <img src="/2020/03/31/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87js%E8%8E%B7%E5%8F%96%E8%85%BE%E8%AE%AFsdk%E7%AD%BE%E5%90%8D%E4%BF%A1%E6%81%AF/2.png" alt></p>
+<ol start="2">
+<li><p>获取签名</p>
+<blockquote>
+<p>参考文献：<a href="https://segmentfault.com/a/1190000018956100?utm_source=tag-newest" target="_blank" rel="noopener">javascript实现腾讯AI开放平台，调用API时的接口鉴权，生成sign合法签名</a><br><a href="https://github.com/blueimp/JavaScript-MD5">JavaScript-MD5</a><br><a href="https://segmentfault.com/a/1190000018955617" target="_blank" rel="noopener">javascript实现PHP字典排序ksort</a></p>
+</blockquote>
+<p>通过以上途径获取到MD5，PHP_ksort，以及自己即将要书写的文件ret_sign，把他们放在了一个文件夹里，方便以后的复制粘贴，哈哈哈</p>
+</li>
+</ol>
+<p><img src="/2020/03/31/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87js%E8%8E%B7%E5%8F%96%E8%85%BE%E8%AE%AFsdk%E7%AD%BE%E5%90%8D%E4%BF%A1%E6%81%AF/3.jpg" alt></p>
+<ol start="3">
+<li>代码实现：</li>
+</ol>
+<pre><code>     const MD = require(&quot;./jsMD5/md5.js&quot;);
+   const ksort = require(&quot;./PHP_ksort.js&quot;);
 
+     //module.exports=
+      (function createSign(vm, data) {
+     let time_str = randomString();
+    console.log(time_str);
+    let newData = {
+    &apos;appid_id&apos;: &apos;2131664075&apos;,
+    &apos;time_stamp&apos;: time_str.timestamp,
+    &apos;nonce_str&apos;: time_str.randomStr,
+    &apos;key1&apos;: &apos;腾讯AI开放平台&apos;,
+    &apos;key2&apos;: &apos;实例仅供参考&apos;
+    }
+
+    // return new Promise((resolve)=&gt;{
+    //字典排序
+    let aa = ksort(vm, newData)
+    console.log(aa);
+
+    let bb = &apos;&apos;
+
+    // 拼按URL键值对
+    Object.keys(aa).forEach((key, i) =&gt; {
+       if (aa[key] !== &apos;&apos;) {
+        bb += key + &apos;=&apos; + encodeURIComponent(aa[key]) + &apos;&amp;&apos;
+        }
+     });
+    console.log(bb);
+
+    // 拼接app_key 
+    //`string` 是模板字符串，ES2015新增的符号。
+    // ${}里边 依旧是js，外边也是js
+   let cc = `${bb}app_key=${&quot;goaC95gnVNBtCNCv&quot;}`
+    console.log(cc)
+
+
+    //MD5运算
+    let dd = MD(cc);
+
+    console.log(dd);
+
+    // 转换大写
+    let ee = dd.toUpperCase()
+    console.log(ee);
+
+    //添加sign到newdata中
+    newData[&apos;sign&apos;] = ee
+
+    console.log(newData);
+    //})
+
+
+
+
+    })(this, null);
+
+
+
+
+
+    //生成当前时间戳和随机字符串的函数
+     function randomString(len) {
+    len = len || 32;
+    let timestamp = new Date().getTime();
+    /****默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1****/
+    let $chars = &apos;ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678&apos;;
+    let maxPos = $chars.length;
+    let randomStr = &apos;&apos;;
+   for (let i = 0; i &lt; len; i++) {
+     randomStr += $chars.charAt(Math.floor(Math.random() * maxPos));
+   }
+    let obj = {
+    timestamp,
+    randomStr
+    }
+    return obj;
+    }
+
+目前没有完成封装的操作。记得把export注释开。</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/2020/03/17/css%E5%8D%95%E4%BD%8Dvw%E5%92%8Cvh/" data-id="ck7va6qb00000gcvq9al9bgy1" class="article-share-link">Share</a>
+      <a data-url="https://github.com/2020/03/31/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87js%E8%8E%B7%E5%8F%96%E8%85%BE%E8%AE%AFsdk%E7%AD%BE%E5%90%8D%E4%BF%A1%E6%81%AF/" data-id="ck8fuhr860000e4vqhmdgfkxp" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vw-vh/" rel="tag">vw,vh</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sdk%E7%AD%BE%E5%90%8D/" rel="tag">sdk签名</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BD%95%E9%9F%B3/" rel="tag">录音</a></li></ul>
 
     </footer>
   </div>
@@ -133,19 +215,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2020/03/18/%E5%9C%A8Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          在Ubuntu上搭建gitlab服务器
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/03/16/html%E7%BD%91%E9%A1%B5%E8%BD%ACpdf%E5%B9%B6%E4%BF%9D%E5%AD%98/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/03/31/%E5%BD%95%E9%9F%B3%E6%96%87%E4%BB%B6%E5%88%86%E6%AE%B5%E4%B8%8A%E4%BC%A0/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">html网页转pdf并保存</div>
+      <div class="article-nav-title">录音文件分段上传</div>
     </a>
   
 </nav>

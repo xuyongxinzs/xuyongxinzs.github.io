@@ -64,6 +64,334 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-如何通过js获取腾讯sdk签名信息" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/31/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87js%E8%8E%B7%E5%8F%96%E8%85%BE%E8%AE%AFsdk%E7%AD%BE%E5%90%8D%E4%BF%A1%E6%81%AF/" class="article-date">
+  <time datetime="2020-03-31T11:29:55.000Z" itemprop="datePublished">2020-03-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%B0%8F%E6%96%B9%E6%B3%95/">小方法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/31/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87js%E8%8E%B7%E5%8F%96%E8%85%BE%E8%AE%AFsdk%E7%AD%BE%E5%90%8D%E4%BF%A1%E6%81%AF/">如何通过js获取腾讯sdk签名信息</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="如何通过js获取腾讯sdk签名信息"><a href="#如何通过js获取腾讯sdk签名信息" class="headerlink" title="如何通过js获取腾讯sdk签名信息"></a>如何通过js获取腾讯sdk签名信息</h3><p><em>上一节完成录音文件分段，就想着能不能调用第三方接口来实现实时语音转文字，，通过百度搜素后发现好像腾讯体验免费，具体免不免费在那也不知道，咱也不敢问，毕竟注册的时候还让绑定了银行卡号。。。。</em></p>
+<ol>
+<li>注册</li>
+</ol>
+<blockquote>
+<p><a href="https://ai.qq.com/doc/index.shtml" target="_blank" rel="noopener">官方文档</a></p>
+</blockquote>
+<p> <img src="/2020/03/31/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87js%E8%8E%B7%E5%8F%96%E8%85%BE%E8%AE%AFsdk%E7%AD%BE%E5%90%8D%E4%BF%A1%E6%81%AF/1.jpg" alt></p>
+<p> <em>首先根据新手指引，完成应用的创建，得到appid和key来用来获取签名。</em></p>
+<p> 下面是创建成功的样子：</p>
+<p> <img src="/2020/03/31/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87js%E8%8E%B7%E5%8F%96%E8%85%BE%E8%AE%AFsdk%E7%AD%BE%E5%90%8D%E4%BF%A1%E6%81%AF/2.png" alt></p>
+<ol start="2">
+<li><p>获取签名</p>
+<blockquote>
+<p>参考文献：<a href="https://segmentfault.com/a/1190000018956100?utm_source=tag-newest" target="_blank" rel="noopener">javascript实现腾讯AI开放平台，调用API时的接口鉴权，生成sign合法签名</a><br><a href="https://github.com/blueimp/JavaScript-MD5">JavaScript-MD5</a><br><a href="https://segmentfault.com/a/1190000018955617" target="_blank" rel="noopener">javascript实现PHP字典排序ksort</a></p>
+</blockquote>
+<p>通过以上途径获取到MD5，PHP_ksort，以及自己即将要书写的文件ret_sign，把他们放在了一个文件夹里，方便以后的复制粘贴，哈哈哈</p>
+</li>
+</ol>
+<p><img src="/2020/03/31/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87js%E8%8E%B7%E5%8F%96%E8%85%BE%E8%AE%AFsdk%E7%AD%BE%E5%90%8D%E4%BF%A1%E6%81%AF/3.jpg" alt></p>
+<ol start="3">
+<li>代码实现：</li>
+</ol>
+<pre><code>     const MD = require(&quot;./jsMD5/md5.js&quot;);
+   const ksort = require(&quot;./PHP_ksort.js&quot;);
+
+     //module.exports=
+      (function createSign(vm, data) {
+     let time_str = randomString();
+    console.log(time_str);
+    let newData = {
+    &apos;appid_id&apos;: &apos;2131664075&apos;,
+    &apos;time_stamp&apos;: time_str.timestamp,
+    &apos;nonce_str&apos;: time_str.randomStr,
+    &apos;key1&apos;: &apos;腾讯AI开放平台&apos;,
+    &apos;key2&apos;: &apos;实例仅供参考&apos;
+    }
+
+    // return new Promise((resolve)=&gt;{
+    //字典排序
+    let aa = ksort(vm, newData)
+    console.log(aa);
+
+    let bb = &apos;&apos;
+
+    // 拼按URL键值对
+    Object.keys(aa).forEach((key, i) =&gt; {
+       if (aa[key] !== &apos;&apos;) {
+        bb += key + &apos;=&apos; + encodeURIComponent(aa[key]) + &apos;&amp;&apos;
+        }
+     });
+    console.log(bb);
+
+    // 拼接app_key 
+    //`string` 是模板字符串，ES2015新增的符号。
+    // ${}里边 依旧是js，外边也是js
+   let cc = `${bb}app_key=${&quot;goaC95gnVNBtCNCv&quot;}`
+    console.log(cc)
+
+
+    //MD5运算
+    let dd = MD(cc);
+
+    console.log(dd);
+
+    // 转换大写
+    let ee = dd.toUpperCase()
+    console.log(ee);
+
+    //添加sign到newdata中
+    newData[&apos;sign&apos;] = ee
+
+    console.log(newData);
+    //})
+
+
+
+
+    })(this, null);
+
+
+
+
+
+    //生成当前时间戳和随机字符串的函数
+     function randomString(len) {
+    len = len || 32;
+    let timestamp = new Date().getTime();
+    /****默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1****/
+    let $chars = &apos;ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678&apos;;
+    let maxPos = $chars.length;
+    let randomStr = &apos;&apos;;
+   for (let i = 0; i &lt; len; i++) {
+     randomStr += $chars.charAt(Math.floor(Math.random() * maxPos));
+   }
+    let obj = {
+    timestamp,
+    randomStr
+    }
+    return obj;
+    }
+
+目前没有完成封装的操作。记得把export注释开。</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/2020/03/31/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87js%E8%8E%B7%E5%8F%96%E8%85%BE%E8%AE%AFsdk%E7%AD%BE%E5%90%8D%E4%BF%A1%E6%81%AF/" data-id="ck8fuhr860000e4vqhmdgfkxp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sdk%E7%AD%BE%E5%90%8D/" rel="tag">sdk签名</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BD%95%E9%9F%B3/" rel="tag">录音</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-录音文件分段上传" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/31/%E5%BD%95%E9%9F%B3%E6%96%87%E4%BB%B6%E5%88%86%E6%AE%B5%E4%B8%8A%E4%BC%A0/" class="article-date">
+  <time datetime="2020-03-31T10:39:12.000Z" itemprop="datePublished">2020-03-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%B0%8F%E6%96%B9%E6%B3%95/">小方法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/31/%E5%BD%95%E9%9F%B3%E6%96%87%E4%BB%B6%E5%88%86%E6%AE%B5%E4%B8%8A%E4%BC%A0/">录音文件分段上传</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="录音文件分段上传"><a href="#录音文件分段上传" class="headerlink" title="录音文件分段上传"></a>录音文件分段上传</h4><p>继上一篇文档成功使用HZRecroder插件成功实现谷歌浏览器的录音功能，想了解请看上一篇<a href>HZRecroder-js的使用方法</a>。</p>
+<p>在这里我为什么突然说是实现谷歌浏览器呢？</p>
+<p>虽然HZRecroder兼容性很强，详见：<br><img src="/2020/03/31/%E5%BD%95%E9%9F%B3%E6%96%87%E4%BB%B6%E5%88%86%E6%AE%B5%E4%B8%8A%E4%BC%A0/1.jpg" alt></p>
+<blockquote>
+<p><a href="https://github.com/xiangyuecn/Recorder">官方文档</a></p>
+</blockquote>
+<p>但是浏览器对录音产生的文件格式却是不尽相同：</p>
+<p><img src="/2020/03/31/%E5%BD%95%E9%9F%B3%E6%96%87%E4%BB%B6%E5%88%86%E6%AE%B5%E4%B8%8A%E4%BC%A0/2.jpg" alt></p>
+<blockquote>
+<p>参考文献（内有兼容浏览器的方法）<a href="https://www.jb51.net/html5/382922.html" target="_blank" rel="noopener">简单介绍HTML5中audio标签的使用</a></p>
+</blockquote>
+<p><em>为什么突然说道了这个文件格式的问题，应为在明天调用第三方api时会对文件格式有所限制。</em></p>
+<h5 id="回归正题：实现录音文件的分段上传。"><a href="#回归正题：实现录音文件的分段上传。" class="headerlink" title="回归正题：实现录音文件的分段上传。"></a>回归正题：实现录音文件的分段上传。</h5><blockquote>
+<p>参考文献：<a href="https://xiangyuecn.github.io/Recorder/assets/%E5%B7%A5%E5%85%B7-%E4%BB%A3%E7%A0%81%E8%BF%90%E8%A1%8C%E5%92%8C%E9%9D%99%E6%80%81%E5%88%86%E5%8F%91Runtime.html?jsname=teach.realtime.encode_transfer" target="_blank" rel="noopener">Recorder代码运行和静态分发工具</a></p>
+</blockquote>
+<p>通过onProcess回调可实现录音的实时处理；mp3和wav格式拥有极速转码特性，能做到边录音边转码；涉及Recorder两个核心方法：mock、SampleData。</p>
+<p>如果不需要获得最终结果，可实时清理缓冲数据，避免占用过多内存，想录多久就录多久。</p>
+<p>小技巧：测试结束后，可执行mp3、wav合并的demo代码，把所有片段拼接到一个文件</p>
+<h6 id="1-核心处理方法"><a href="#1-核心处理方法" class="headerlink" title="1.核心处理方法"></a>1.核心处理方法</h6><pre><code>    var testOutputWavLog = false;//本测试如果是输出mp3，就顺带打一份wav的log，方便对比数据
+var testSampleRate = 16000;
+var testBitRate = 16;
+var SendInterval = 2000;//两秒得时间间隔
+
+var realTimeSendTryType = &quot;mp3&quot;;
+var realTimeSendTryEncBusy;
+var realTimeSendTryTime = 0;
+var realTimeSendTryNumber;
+var transferUploadNumberMax;
+var realTimeSendTryChunk;
+
+//=====实时处理核心函数==========
+var RealTimeSendTry = function (rec, isClose) {
+    var t1 = Date.now(), endT = 0, recImpl = Recorder.prototype;
+    if (realTimeSendTryTime == 0) {
+        //第一次为0时进入，赋值上一次函数调用的时间戳，下次就不进这个if判断了
+        realTimeSendTryTime = t1;
+        realTimeSendTryEncBusy = 0;
+        realTimeSendTryNumber = 0;
+        transferUploadNumberMax = 0;
+        realTimeSendTryChunk = null;
+    };
+    //如果录音没有关闭并且两次的调用函数的时间间隔小于50ms，就继续录音。
+    if (!isClose &amp;&amp; t1 - realTimeSendTryTime &lt; SendInterval) {
+        return;
+    };
+
+    //大于50了可以分开了。分割线等于当前时间戳。
+    realTimeSendTryTime = t1;
+    var number = ++realTimeSendTryNumber;//1
+
+    //借用SampleData函数进行数据的连续处理，采样率转换是顺带的
+    var chunk = Recorder.SampleData(rec.buffers, rec.srcSampleRate, testSampleRate, realTimeSendTryChunk, { frameType: isClose ? &quot;&quot; : realTimeSendTryType });
+
+    //清理已处理完的缓冲数据，释放内存以支持长时间录音，最后完成录音时不能调用stop，因为数据已经被清掉了
+    for (var i = realTimeSendTryChunk ? realTimeSendTryChunk.index : 0; i &lt; chunk.index; i++) {
+        rec.buffers[i] = null;
+    };
+    realTimeSendTryChunk = chunk;
+
+    //没有新数据，或结束时的数据量太小，不能进行mock转码
+    if (chunk.data.length == 0 || isClose &amp;&amp; chunk.data.length &lt; 2000) {
+        TransferUpload(number, null, 0, null, isClose);
+        return;
+    };
+
+    //实时编码队列阻塞处理
+    if (!isClose) {
+        if (realTimeSendTryEncBusy &gt;= 2) {
+            reclog(&quot;编码队列阻塞，已丢弃一帧&quot;, 1);
+            return;
+        };
+    };
+    realTimeSendTryEncBusy++;//2
+
+    //通过mock方法实时转码成mp3、wav
+    var encStartTime = Date.now();
+    var recMock = Recorder({
+        type: realTimeSendTryType
+        , sampleRate: testSampleRate //采样率
+        , bitRate: testBitRate //比特率
+    });
+    recMock.mock(chunk.data, chunk.sampleRate);
+    recMock.stop(function (blob, duration) {
+        //realTimeSendTryEncBusy为true，realTimeSendTryEncBusy--
+        realTimeSendTryEncBusy &amp;&amp; (realTimeSendTryEncBusy--);
+        blob.encTime = Date.now() - encStartTime;
+
+        //转码好就推入传输
+        TransferUpload(number, blob, duration, recMock, isClose);
+    }, function (msg) {
+        realTimeSendTryEncBusy &amp;&amp; (realTimeSendTryEncBusy--);
+    });
+
+};</code></pre><h6 id="2-上传"><a href="#2-上传" class="headerlink" title="2.上传"></a>2.上传</h6><pre><code> //=====数据传输函数==========
+var TransferUpload = function (number, blobOrNull, duration, blobRec, isClose) {
+    transferUploadNumberMax = Math.max(transferUploadNumberMax, number);
+    if (blobOrNull) {
+        var blob = blobOrNull;
+        var encTime = blob.encTime;
+
+        //*********Read As Base64***************
+        var reader = new FileReader();
+        reader.onloadend = function () {
+
+            var base64 = (/.+;\s*base64\s*,\s*(.+)$/i.exec(reader.result) || [])[1];
+            console.log(reader.result)
+            //console.log(base64);
+            //可以实现
+            //WebSocket send(base64) ...
+            //WebRTC send(base64) ...
+            //XMLHttpRequest send(base64) ...
+
+
+            var cls = (&quot;a&quot; + Math.random()).replace(&quot;.&quot;, &quot;&quot;);
+            reclog(&apos;播放中: &lt;span class=&quot;&apos; + cls + &apos;&quot;&gt;&lt;/span&gt;&apos;);
+            var audio = document.createElement(&quot;audio&quot;);
+            audio.controls = true;
+            document.querySelector(&quot;.&quot; + cls).appendChild(audio);
+            //简单利用URL生成播放地址，注意不用了时需要revokeObjectURL，否则霸占内存(window.URL || webkitURL).createObjectURL()
+            audio.src = &quot;data:audio/wav;base64,&quot; + base64;
+            //audio.play();
+        };
+        //readAsDataURL方法会使用base-64进行编码，编码的资料由data字串开始，后面跟随的是MIME type，然后再加上base64字串，逗号之后就是编码过的图像文件的内容。
+        reader.readAsDataURL(blob);
+    };
+
+    if (isClose) {
+        reclog(&quot;No.&quot; + (number &lt; 100 ? (&quot;000&quot; + number).substr(-3) : number) + &quot;:已停止传输&quot;, 1);
+    };
+};</code></pre><blockquote>
+<p>其他方法参考文献：<a href="http://blog.okbase.net/jquery2000/archive/1296.html" target="_blank" rel="noopener">使用FileReader对象的readAsDataURL方法来读取图像文件</a><br><a href="https://blog.csdn.net/sinat_31057219/article/details/70242265" target="_blank" rel="noopener">使用FileReader对象的readAsDataURL方法来读取图像文件</a><br><a href="https://www.cnblogs.com/pengyawn/p/4692088.html" target="_blank" rel="noopener">JS:var 变量=变量 &amp;&amp; 变量</a></p>
+</blockquote>
+<h6 id="3-调用"><a href="#3-调用" class="headerlink" title="3.调用"></a>3.调用</h6><ol>
+<li>在录音中的实例方法中调用，本方法1秒调用12次<br><img src="/2020/03/31/%E5%BD%95%E9%9F%B3%E6%96%87%E4%BB%B6%E5%88%86%E6%AE%B5%E4%B8%8A%E4%BC%A0/3.png" alt></li>
+</ol>
+<ol start="2">
+<li><p>在结束时调用，获取最后的片段。<br><img src="/2020/03/31/%E5%BD%95%E9%9F%B3%E6%96%87%E4%BB%B6%E5%88%86%E6%AE%B5%E4%B8%8A%E4%BC%A0/4.png" alt></p>
+<blockquote>
+<p>想实现实时语音转换，调用第三方api，本人使用腾讯开发平台，语音识别。下节介绍<a href>如何通过js获取腾讯sdk签名信息</a></p>
+</blockquote>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/2020/03/31/%E5%BD%95%E9%9F%B3%E6%96%87%E4%BB%B6%E5%88%86%E6%AE%B5%E4%B8%8A%E4%BC%A0/" data-id="ck8fuhr8c0001e4vq2oiwbhgo" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BD%95%E9%9F%B3/" rel="tag">录音</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-HZRecroder-js的使用方法" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/03/30/HZRecroder-js%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" class="article-date">
@@ -289,6 +617,9 @@ function recUpload() {
     xhr.send(form);
 };</code></pre></li>
 </ol>
+<blockquote>
+<p>想继续看的可转至下一章<a href>录音文件分段上传</a></p>
+</blockquote>
 
       
     </div>
@@ -841,182 +1172,11 @@ function recUpload() {
 
 
   
-    <article id="post-html网页转pdf并保存" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/16/html%E7%BD%91%E9%A1%B5%E8%BD%ACpdf%E5%B9%B6%E4%BF%9D%E5%AD%98/" class="article-date">
-  <time datetime="2020-03-16T09:03:08.000Z" itemprop="datePublished">2020-03-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%B0%8F%E6%96%B9%E6%B3%95/">小方法</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/16/html%E7%BD%91%E9%A1%B5%E8%BD%ACpdf%E5%B9%B6%E4%BF%9D%E5%AD%98/">html网页转pdf并保存</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="html网页转pdf并保存"><a href="#html网页转pdf并保存" class="headerlink" title="html网页转pdf并保存"></a>html网页转pdf并保存</h3><ol>
-<li>安装插件</li>
-</ol>
-<p><code>// 第一个.将页面html转换成图片</code><br><code>npm install --save html2canvas</code><br><code>// 第二个.将图片生成pdf</code><br><code>npm install jspdf --save</code></p>
-<ol start="2">
-<li>创建方法（在组件中使用）</li>
-</ol>
-<blockquote>
-<p>引入<br><img src="/2020/03/16/html%E7%BD%91%E9%A1%B5%E8%BD%ACpdf%E5%B9%B6%E4%BF%9D%E5%AD%98/1.jpg" alt></p>
-</blockquote>
-<blockquote>
-<p>在div中设置id属性选中你想要转换的区域<br><img src="/2020/03/16/html%E7%BD%91%E9%A1%B5%E8%BD%ACpdf%E5%B9%B6%E4%BF%9D%E5%AD%98/2.jpg" alt></p>
-</blockquote>
-<blockquote>
-<p>方法<br><img src="/2020/03/16/html%E7%BD%91%E9%A1%B5%E8%BD%ACpdf%E5%B9%B6%E4%BF%9D%E5%AD%98/3.jpg" alt></p>
-</blockquote>
-<ol start="3">
-<li>使用事件触发这个方法你就得到你想要的啦</li>
-</ol>
-<p><em>有时在a4纸上的尺寸不太对，你可以根据实际情况更改。得到你想要的尺寸。</em></p>
-<blockquote>
-<p>参考文档：<br><a href="https://blog.csdn.net/csl125/article/details/94172038" target="_blank" rel="noopener">vue项目中 页面生成pdf并下载，vue 中页面转PDF</a></p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://github.com/2020/03/16/html%E7%BD%91%E9%A1%B5%E8%BD%ACpdf%E5%B9%B6%E4%BF%9D%E5%AD%98/" data-id="ck7va6qb60001gcvq6ovk6th8" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue-html%E8%BD%ACpdf/" rel="tag">vue-html转pdf</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Axure使用方法" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/12/Axure%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" class="article-date">
-  <time datetime="2020-03-12T00:47:21.000Z" itemprop="datePublished">2020-03-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/">软件使用</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/12/Axure%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">Axure使用方法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Axure使用方法"><a href="#Axure使用方法" class="headerlink" title="Axure使用方法"></a>Axure使用方法</h2><p><em>xure RP是一款快速原型设计工具，它不需要任何编程或写代码基础，就可以设计出交互效果良好的产品原型，常用于互联网产品设计、网页设计、UI设计等领域。<br>　　作为一款热门的原型设计工具，它可以完成很多纸和笔画不出来的事情，特别是高交互的页面，用动画效果展现让人瞬间清楚你要表达的内容。</em></p>
-<ol>
-<li>添加元件到画布</li>
-</ol>
-<p>在左侧元件库中选择要使用的元件，按住鼠标左键不放，拖动到画布适合的位置上松开。<br><img src="/2020/03/12/Axure%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/1.jpg" alt></p>
-<ol start="2">
-<li>添加元件名称</li>
-</ol>
-<p>文本框属性中输入元件的自定义名称，建议采用英文命名。</p>
-<p>建议格式：PasswordInput01或Password01</p>
-<p>名称含义：序号01的密码输入框</p>
-<p>格式说明：“Password”表示主要用途；“Input”表示元件类型，一般情况下可省略，当有不同类型的同名元件需要区分或名称不能明确表达用途的时候使用；“01”表示出现多个同名元件时的编号；单词首字母大写的书写格式便于阅读。</p>
-<p><img src="/2020/03/12/Axure%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2.jpg" alt></p>
-<ol start="3">
-<li>设置元件位置/尺寸</li>
-</ol>
-<p>元件的位置与尺寸可以通过鼠标拖拽调整，也可以在快捷功能或元件样式中进行输入调整。</p>
-<p>x：指元件在画布中的x轴坐标值。</p>
-<p>y：指元件在画布中的y轴坐标值。</p>
-<p><img src="/2020/03/12/Axure%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/3.jpg" alt></p>
-<p>w：指元件的宽度值。</p>
-<p>h：指元件的高度值。</p>
-<p>在输入数值调整元件尺寸时，可以在样式中设置，让元件【保持宽高比例】。</p>
-<p><img src="/2020/03/12/Axure%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/4.jpg" alt></p>
-<ol start="4">
-<li>设置元件默认角度</li>
-</ol>
-<p>方式一：选择需要改变角度的元件，按住键的同时，用鼠标拖动元件的节点到合适的角度。</p>
-<p>方式二：在元件样式中进行角度的设置，元件的角度与元件文字的角度可以分开设置。</p>
-<ol start="5">
-<li>设置元件颜色与透明</li>
-</ol>
-<p>选择要改变颜色的元件，点击快捷功能区中的背景颜色设置按钮，选取相应的颜色，或者在元件样式中进行设置。</p>
-<p><img src="/2020/03/12/Axure%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/5.jpg" alt></p>
-<ol start="6">
-<li>设置形状或图片圆角</li>
-</ol>
-<p>可以通过拖动元件左上方的圆点图标进行调整，也可以在元件样式中设置圆角半径来实现。</p>
-<p><img src="/2020/03/12/Axure%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/6.jpg" alt></p>
-<ol start="7">
-<li>设置矩形仅显示部分边框</li>
-</ol>
-<p>在Axure RP 8的版本中，矩形的边框可以在样式中设置显示全部或部分。</p>
-<p><img src="/2020/03/12/Axure%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/7.jpg" alt></p>
-<ol start="8">
-<li>设置线段/箭头/边框样式</li>
-</ol>
-<p>线段、箭头和元件边框的样式可以在快捷功能或者元件样式中进行设置。</p>
-<p><img src="/2020/03/12/Axure%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/8.jpg" alt></p>
-<ol start="9">
-<li>设置元件文字边距/行距</li>
-</ol>
-<p>在元件样式中可以设置元件文字的【行间距】与【填充】。（图1-10）</p>
-<p>行间距：是指文字段落行与行之间的空隙。</p>
-<p>填充：是指文字与形状边缘之间填充的空隙。<br><img src="/2020/03/12/Axure%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/9.jpg" alt></p>
-<ol start="10">
-<li>设置元件默认隐藏</li>
-</ol>
-<p>选择要隐藏的元件，在快捷功能或者元件样式中勾选【隐藏】选项。</p>
-<p><img src="/2020/03/12/Axure%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/10.jpg" alt></p>
-<p><em>以上就是Axure的基础操作方法。其他以后再补充。</em></p>
-<blockquote>
-<p>参考地址：<br><a href="https://www.sohu.com/a/333948553_120288909" target="_blank" rel="noopener">Axure RP 9入门教程-基础功能介绍(一) </a><br><a href="https://www.axure.com.cn/axure/course/" target="_blank" rel="noopener">基础教程</a></p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://github.com/2020/03/12/Axure%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" data-id="ck7oagrr4000104vqb87d7o3l" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Axure/" rel="tag">Axure</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
   </nav>
 
 </section>
@@ -1037,7 +1197,7 @@ function recUpload() {
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Axure/" rel="tag">Axure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA/" rel="tag">gulp前端自动化构建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-html%E8%BD%ACpdf/" rel="tag">vue-html转pdf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vw-vh/" rel="tag">vw,vh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">前端性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%B0%E5%BC%8F%E6%9C%BA%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/" rel="tag">台式机设置耳机麦克风</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BD%95%E9%9F%B3/" rel="tag">录音</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">搭建gitlab服务器</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Axure/" rel="tag">Axure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA/" rel="tag">gulp前端自动化构建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sdk%E7%AD%BE%E5%90%8D/" rel="tag">sdk签名</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-html%E8%BD%ACpdf/" rel="tag">vue-html转pdf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vw-vh/" rel="tag">vw,vh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">前端性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%B0%E5%BC%8F%E6%9C%BA%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/" rel="tag">台式机设置耳机麦克风</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BD%95%E9%9F%B3/" rel="tag">录音</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">搭建gitlab服务器</a></li></ul>
     </div>
   </div>
 
@@ -1047,7 +1207,7 @@ function recUpload() {
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Axure/" style="font-size: 10px;">Axure</a> <a href="/tags/gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA/" style="font-size: 10px;">gulp前端自动化构建</a> <a href="/tags/vue-html%E8%BD%ACpdf/" style="font-size: 10px;">vue-html转pdf</a> <a href="/tags/vw-vh/" style="font-size: 10px;">vw,vh</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">前端性能优化</a> <a href="/tags/%E5%8F%B0%E5%BC%8F%E6%9C%BA%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/" style="font-size: 10px;">台式机设置耳机麦克风</a> <a href="/tags/%E5%BD%95%E9%9F%B3/" style="font-size: 10px;">录音</a> <a href="/tags/%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">搭建gitlab服务器</a>
+      <a href="/tags/Axure/" style="font-size: 10px;">Axure</a> <a href="/tags/gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA/" style="font-size: 10px;">gulp前端自动化构建</a> <a href="/tags/sdk%E7%AD%BE%E5%90%8D/" style="font-size: 10px;">sdk签名</a> <a href="/tags/vue-html%E8%BD%ACpdf/" style="font-size: 10px;">vue-html转pdf</a> <a href="/tags/vw-vh/" style="font-size: 10px;">vw,vh</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">前端性能优化</a> <a href="/tags/%E5%8F%B0%E5%BC%8F%E6%9C%BA%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/" style="font-size: 10px;">台式机设置耳机麦克风</a> <a href="/tags/%E5%BD%95%E9%9F%B3/" style="font-size: 20px;">录音</a> <a href="/tags/%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">搭建gitlab服务器</a>
     </div>
   </div>
 
@@ -1069,6 +1229,14 @@ function recUpload() {
       <ul>
         
           <li>
+            <a href="/2020/03/31/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87js%E8%8E%B7%E5%8F%96%E8%85%BE%E8%AE%AFsdk%E7%AD%BE%E5%90%8D%E4%BF%A1%E6%81%AF/">如何通过js获取腾讯sdk签名信息</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/31/%E5%BD%95%E9%9F%B3%E6%96%87%E4%BB%B6%E5%88%86%E6%AE%B5%E4%B8%8A%E4%BC%A0/">录音文件分段上传</a>
+          </li>
+        
+          <li>
             <a href="/2020/03/30/HZRecroder-js%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">HZRecroder.js的使用方法</a>
           </li>
         
@@ -1078,14 +1246,6 @@ function recUpload() {
         
           <li>
             <a href="/2020/03/28/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E6%B8%B2%E6%9F%93%E9%A1%B5%E9%9D%A2%E7%9A%84%E8%BF%87%E7%A8%8B/">浏览器从输入url到渲染页面的过程</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/28/vue-cl3%E5%9B%9E%E9%80%80%E5%88%B0cl2/">vue cl3回退到cl2</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/27/Gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/">Gulp前端自动化构建工具</a>
           </li>
         
       </ul>
