@@ -64,6 +64,283 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-搭建模拟机" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/11/%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/" class="article-date">
+  <time datetime="2020-03-11T05:03:17.442Z" itemprop="datePublished">2020-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/11/%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/">搭建模拟机</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###搭建模拟机</p>
+<p><em>继昨天下载完成安装软件以及linux（ubuntu）镜像文件后，按照教程一步步搭建。</em></p>
+<p><img src="/2020/03/11/%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/1583211666.png" alt></p>
+<p><em>联网测试</em><br><img src="/2020/03/11/%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/1583212113(1).png" alt></p>
+<p><em>成功搭建完成。</em></p>
+<p><strong>参考文献</strong><br><a href="https://blog.csdn.net/weixin_42533541/article/details/81877207" target="_blank" rel="noopener">Vmware虚拟机完整创建一个linux（Ubuntu）系统全过程</a></p>
+<p>###安装gitlab</p>
+<p><em>在ubuntu上安装Gitlab基本上都在终端中进行。桌面CTRL+ALT+T就可以调出终端命令行</em></p>
+<blockquote>
+<p>安装依赖 （发送邮件模块）<br><code>sudo apt-get install curl openssh-server ca-certificates postfix</code></p>
+</blockquote>
+<p><em>突然出现错误，如下图</em><br><img src="/2020/03/11/%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/a1.png" alt></p>
+<p><em>别担心，两行命令解决：</em></p>
+<ol>
+<li>sudo rm /var/cache/apt/archives/lock</li>
+<li>sudo rm /var/lib/dpkg/lock</li>
+</ol>
+<p><em>这时在运行sudo apt-get update</em><br><em>sudo apt-get install ….</em></p>
+<p><strong>参考文献</strong><br><a href="https://blog.csdn.net/zizle_lin/article/details/80469142" target="_blank" rel="noopener">Ubuntu安装出现无法锁定管理目录</a></p>
+<p><em>一波平一波起啊，看图</em><br><img src="/2020/03/11/%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/a2.png" alt><br><em>点了取消</em><br><img src="/2020/03/11/%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/a3.png" alt></p>
+<blockquote>
+<p>解决方法：<br><code>sudo dpkg -i --force-overwrite &lt;filename&gt;</code><br>接着运行：<br><code>sudo apt-get -f install</code><br><strong>参考文献</strong><br><a href="https://www.cnblogs.com/darklights/p/10542482.html" target="_blank" rel="noopener">”dpkg: 处理归档 /var/cache/apt/archives/XXXXXX(–unpack)时出错“的解决方法</a></p>
+</blockquote>
+<p><strong>参考文献</strong><br><a href="https://www.jianshu.com/p/2c3f86070dcf" target="_blank" rel="noopener">win10通过ubuntu虚拟机安装Gitlab的过程详解</a></p>
+<p>###查找招聘网站接口信息</p>
+<p><em>如何从第三方招聘网站获取用户的简历信息，储存到自己公司的服务器上</em></p>
+<p><em>我觉得首先你得找到第三方网站提供出来供其他人使用的网络接口。</em></p>
+<p><strong>百度搜索：前程无忧api接口</strong></p>
+<p><img src="/2020/03/11/%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/1583215024(1).png" alt></p>
+<p><em>发现无可用信息</em></p>
+<p><strong>百度搜索：boss直聘api接口</strong></p>
+<p><img src="/2020/03/11/%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/1583215479(1).png" alt></p>
+<p><em>继续搜索一些其它的招聘网站，也都是没有可用的信息。有个别api接口字眼也都是软件测试用的页面，也并没有说明接口信息。</em></p>
+<p><strong>在知乎上搜索前程无忧api接口</strong></p>
+<p><img src="/2020/03/11/%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/1583216050(1).png" alt></p>
+<p><em>没有可用信息</em></p>
+<p><em>咱们是不是可以换一种搜索方式，直接搜需求，看看有没有人实现过。</em></p>
+<p><strong>百度搜索：开发项目中如何导入第三方招聘网站的简历信息</strong><br><em>没有。。。。。。。此处省略图片（都不知道自己翻了多少页了。）</em></p>
+<p><strong>百度搜索：招聘网站有没有接口可以通过输入账户密码直接获取简历信息</strong></p>
+<p><em>还是没有啊</em></p>
+<p><strong>继续搜索。。。。。。</strong><br><em>发现篇搭边的文档</em></p>
+<p><a href="https://www.cnblogs.com/MyZgqblogs/p/10437024.html" target="_blank" rel="noopener">分析智联招聘的API接口，进行数据爬取</a></p>
+<p><em>根据他的说法，进入控制台去趴接口，确实是能趴到一点接口。如图（此为简历信息的页面）</em><br><img src="/2020/03/11/%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/1583219360(1).png" alt></p>
+<p><em>发现了一些接口。包含着简单的信息。但是这些无法直接拿过来用。首先就是跨域问题，别人家的服务器，你没法用。其次就是，你没法获得用户根据手机号和验证码登录后的标识数据。</em></p>
+<p><strong>没辙了。。。。。</strong></p>
+<p><strong>然后我想着网上搜不到，咱问问客服吧。</strong></p>
+<p><img src="/2020/03/11/%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/1.jpg" alt></p>
+<p><img src="/2020/03/11/%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/2(2).jpg" alt></p>
+<img src="/2020/03/11/%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/1.jpg" class>
+
+<p><em>上图为智联招聘和boss直聘的反馈，智联说是没有提供服务，boss直聘并没有直观的回答问题。其它招聘网站没有回复。</em></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/2020/03/11/%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/" data-id="ck7muzf8f0008esvq6h03726b" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-wx.JSSDK" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/11/wx.JSSDK/" class="article-date">
+  <time datetime="2020-03-11T05:03:17.441Z" itemprop="datePublished">2020-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/11/wx.JSSDK/">wx.JSSDK</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###WX-JSSDK</p>
+<p><strong>概述</strong></p>
+<p>微信JS-SDK是微信公众平台 面向网页开发者提供的基于微信内的网页开发工具包。</p>
+<p>通过使用微信JS-SDK，网页开发者可借助微信高效地使用拍照、选图、语音、位置等手机系统的能力，同时可以直接使用微信分享、扫一扫、卡券、支付等微信特有的能力，为微信用户提供更优质的网页体验。</p>
+<p>此文档面向网页开发者介绍微信JS-SDK如何使用及相关注意事项。</p>
+<p><strong>步骤一：绑定域名</strong></p>
+<p>先登录微信公众平台进入“公众号设置”的“功能设置”里填写“JS接口安全域名”。</p>
+<p>备注：登录后可在“开发者中心”查看对应的接口权限。</p>
+<p><strong>步骤二：引入JS文件</strong></p>
+<p>在需要调用JS接口的页面引入如下JS文件，（支持https）：</p>
+<p><code>http://res.wx.qq.com/open/js/jweixin-1.4.0.js</code></p>
+<p>如需进一步提升服务稳定性，当上述资源不可访问时，可改访问：</p>
+<p><code>http://res2.wx.qq.com/open/js/jweixin-1.4.0.js （支持https）。</code></p>
+<p>备注：支持使用 AMD/CMD 标准模块加载方法加载</p>
+<p><strong>步骤三：通过config接口注入权限验证配置</strong></p>
+<p>所有需要使用JS-SDK的页面必须先注入配置信息，否则将无法调用（同一个url仅需调用一次，对于变化url的SPA的web app可在每次url变化时进行调用,目前Android微信客户端不支持pushState的H5新特性，所以使用pushState来实现web app的页面会导致签名失败，此问题会在Android6.2中修复）。</p>
+<p><code>wx.config({</code><br>  <code>debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，在pc端时才会打印。</code><br>  <code>appId: &#39;&#39;, // 必填，公众号的唯一标识</code><br>  <code>timestamp: , // 必填，生成签名的时间戳</code><br>  <code>nonceStr: &#39;&#39;, // 必填，生成签名的随机串</code><br>  <code>signature: &#39;&#39;,// 必填，签名</code><br>  <code>jsApiList: [] // 必填，需要使用的JS接口列表});</code></p>
+<p>  <strong>步骤四：通过ready接口处理成功验证</strong></p>
+<p>  <code>wx.ready(function(){
+  // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+});</code></p>
+<p> <strong>步骤五：通过error接口处理失败验证</strong></p>
+<p> <code>wx.error(function(res){
+  // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+});</code></p>
+<p>####接口调用说明<br>所有接口通过wx对象(也可使用jWeixin对象)来调用，参数是一个对象，除了每个接口本身需要传的参数之外，还有以下通用参数：</p>
+<ol>
+<li>success：接口调用成功时执行的回调函数。</li>
+<li>fail：接口调用失败时执行的回调函数。</li>
+<li>complete：接口调用完成时执行的回调函数，无论成功或失败都会执行。</li>
+<li>cancel：用户点击取消时的回调函数，仅部分有用户取消操作的api才会用到。</li>
+<li>trigger: 监听Menu中的按钮点击时触发的方法，该方法仅支持Menu中的相关接口。</li>
+</ol>
+<p><em>备注：不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回。<br>以上几个函数都带有一个参数，类型为对象，其中除了每个接口本身返回的数据之外，还有一个通用属性errMsg，其值格式如下：<br>调用成功时：”xxx:ok” ，其中xxx为调用的接口名<br>用户取消时：”xxx:cancel”，其中xxx为调用的接口名<br>调用失败时：其值为具体错误信息</em></p>
+<p>####地理位置</p>
+<p>使用微信内置地图查看位置接口</p>
+<p><code>wx.openLocation({</code><br>  <code>latitude: 0, // 纬度，浮点数，范围为90 ~ -90</code><br>  <code>longitude: 0, // 经度，浮点数，范围为180 ~ -180。</code><br>  <code>name: &#39;&#39;, // 位置名</code><br>  <code>address: &#39;&#39;, // 地址详情说明</code><br>  <code>scale: 1, // 地图缩放级别,整形值,范围从1~28。默认为最大</code><br>  <code>infoUrl: &#39;&#39; // 在查看位置界面底部显示的超链接,可点击跳转});</code></p>
+<p>  获取地理位置接口</p>
+<p>  <code>wx.getLocation({</code><br>  <code>type: &#39;wgs84&#39;, // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入&#39;gcj02&#39;</code><br>  <code>success: function (res) {</code><br>    <code>var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90</code><br>   <code>var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。</code><br>  <code>var speed = res.speed; // 速度，以米/每秒计</code><br>   <code>var accuracy = res.accuracy; // 位置精度</code><br>  <code>}});</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/2020/03/11/wx.JSSDK/" data-id="ck7muzf8e0007esvq9axybahh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-webSocket" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/11/webSocket/" class="article-date">
+  <time datetime="2020-03-11T05:03:17.440Z" itemprop="datePublished">2020-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/11/webSocket/">webSocket</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###webSocket</p>
+<p><strong>1.在node.js中使用ws创建WebSokcet服务器</strong></p>
+<blockquote>
+<p>下载命令：npm i ws</p>
+</blockquote>
+<p><em>下面为本汪自己写的简单的js代码。</em></p>
+<ol>
+<li>首先引入ws.Server构造函数。</li>
+<li>new这个构造函数创建一个实例，输入本地端口号。</li>
+<li>设置连接监听，监听前端连接。</li>
+<li>设置消息监听，监听前端是否传递数据。</li>
+<li>.send方法向前台传递数据。</li>
+</ol>
+<p><img src="/2020/03/11/webSocket/1583200171(1).jpg" alt></p>
+<p><strong>Html代码</strong><br>方法如下：</p>
+<ol>
+<li>调用websocket的构造函数构造一个实例对象。<blockquote>
+<p>这个实例对象拥有两个方法</p>
+<blockquote>
+<p>.send()向服务器发送数据<br>.close()关闭链接</p>
+</blockquote>
+</blockquote>
+</li>
+<li>监听函数<blockquote>
+<p>onpen 当网络连接建立时触发该事件<br>onerror 当网络发生错误时触发该事件<br>onclose 当关闭链接时触发该事件<br>onmessage 当接收到服务器发来的消息的时候触发。数据在函数的参数里res.data<br><img src="/2020/03/11/webSocket/1583201120(1).jpg" alt></p>
+</blockquote>
+</li>
+</ol>
+<p><em>websocket有一个缺点就是ie不兼容，那怎么办呢，还有一个办法就是socket.io.js，它看起来非常像客户端API,建立客户端Socket.IO.</em></p>
+<blockquote>
+<p>Socket.IO可以从GitHub下载，可以把socket.io.js文件包含到页面中：<br><code>&lt;script src=&quot;js/socket.io.js&quot;&gt;&lt;/script&gt;</code><br><em>关于Socket.IO的使用方法其实和websocket差不多</em><br>区别：<br>   1.在创建实例对象的时候<br> var socket = new io.Socke(bollmskn);//bollmskn代表的是请求地址，类似ajax的url<br>　　socket.connect();</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/2020/03/11/webSocket/" data-id="ck7muzf8d0006esvq2c024ll8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-vue聊天信息至底" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/11/vue%E8%81%8A%E5%A4%A9%E4%BF%A1%E6%81%AF%E8%87%B3%E5%BA%95/" class="article-date">
+  <time datetime="2020-03-11T05:03:17.438Z" itemprop="datePublished">2020-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/11/vue%E8%81%8A%E5%A4%A9%E4%BF%A1%E6%81%AF%E8%87%B3%E5%BA%95/">vue聊天信息至底</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###vue聊天信息至底</p>
+<ol>
+<li>聊天信息要始终在底部显示问题</li>
+</ol>
+<p><img src="/2020/03/11/vue%E8%81%8A%E5%A4%A9%E4%BF%A1%E6%81%AF%E8%87%B3%E5%BA%95/1.jpg" alt><br>使滚动条距离顶部的高度等于视图框的高度</p>
+<ol start="2">
+<li>聊天的视图框始终铺满除标题还有输入区域的高度</li>
+</ol>
+<p><em>使用绝对定位  留出上下位置</em></p>
+<p>父级获取屏幕的高度</p>
+<p><img src="/2020/03/11/vue%E8%81%8A%E5%A4%A9%E4%BF%A1%E6%81%AF%E8%87%B3%E5%BA%95/2.jpg" alt></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/2020/03/11/vue%E8%81%8A%E5%A4%A9%E4%BF%A1%E6%81%AF%E8%87%B3%E5%BA%95/" data-id="ck7muzf8c0005esvq5s8h3wak" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-SetUpBlog_github" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/03/11/SetUpBlog_github/" class="article-date">
@@ -221,7 +498,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Axure/" rel="tag">Axure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA/" rel="tag">gulp前端自动化构建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sdk%E7%AD%BE%E5%90%8D/" rel="tag">sdk签名</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-html%E8%BD%ACpdf/" rel="tag">vue-html转pdf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vw-vh/" rel="tag">vw,vh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">前端性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%B0%E5%BC%8F%E6%9C%BA%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/" rel="tag">台式机设置耳机麦克风</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BD%95%E9%9F%B3/" rel="tag">录音</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">搭建gitlab服务器</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Axure/" rel="tag">Axure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitlab/" rel="tag">gitlab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA/" rel="tag">gulp前端自动化构建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sdk%E7%AD%BE%E5%90%8D/" rel="tag">sdk签名</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-html%E8%BD%ACpdf/" rel="tag">vue-html转pdf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vw-vh/" rel="tag">vw,vh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">前端性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%B0%E5%BC%8F%E6%9C%BA%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/" rel="tag">台式机设置耳机麦克风</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BD%95%E9%9F%B3/" rel="tag">录音</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">搭建gitlab服务器</a></li></ul>
     </div>
   </div>
 
@@ -231,7 +508,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Axure/" style="font-size: 10px;">Axure</a> <a href="/tags/gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA/" style="font-size: 10px;">gulp前端自动化构建</a> <a href="/tags/sdk%E7%AD%BE%E5%90%8D/" style="font-size: 10px;">sdk签名</a> <a href="/tags/vue-html%E8%BD%ACpdf/" style="font-size: 10px;">vue-html转pdf</a> <a href="/tags/vw-vh/" style="font-size: 10px;">vw,vh</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">前端性能优化</a> <a href="/tags/%E5%8F%B0%E5%BC%8F%E6%9C%BA%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/" style="font-size: 10px;">台式机设置耳机麦克风</a> <a href="/tags/%E5%BD%95%E9%9F%B3/" style="font-size: 20px;">录音</a> <a href="/tags/%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">搭建gitlab服务器</a>
+      <a href="/tags/Axure/" style="font-size: 10px;">Axure</a> <a href="/tags/gitlab/" style="font-size: 10px;">gitlab</a> <a href="/tags/gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA/" style="font-size: 10px;">gulp前端自动化构建</a> <a href="/tags/sdk%E7%AD%BE%E5%90%8D/" style="font-size: 10px;">sdk签名</a> <a href="/tags/vue-html%E8%BD%ACpdf/" style="font-size: 10px;">vue-html转pdf</a> <a href="/tags/vw-vh/" style="font-size: 10px;">vw,vh</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">前端性能优化</a> <a href="/tags/%E5%8F%B0%E5%BC%8F%E6%9C%BA%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/" style="font-size: 10px;">台式机设置耳机麦克风</a> <a href="/tags/%E5%BD%95%E9%9F%B3/" style="font-size: 20px;">录音</a> <a href="/tags/%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">搭建gitlab服务器</a>
     </div>
   </div>
 
@@ -240,7 +517,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
     </div>
   </div>
 
@@ -253,23 +530,23 @@
       <ul>
         
           <li>
+            <a href="/2020/04/26/vue%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%A6%81%E7%94%A8%E6%89%8B%E6%9C%BA%E7%89%A9%E7%90%86%E8%BF%94%E5%9B%9E%E6%8C%89%E9%94%AE/">vue移动端禁用手机物理返回按键</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/21/vue%E4%B8%AD%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8canvas%E5%8F%8A%E5%B0%8F%E6%96%B9%E6%B3%95/">vue中如何使用canvas及小方法</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/03/gitlab%E6%90%AD%E5%BB%BA%E6%80%BB%E7%BB%93/">gitlab搭建总结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/01/commonJS%E8%A7%84%E8%8C%83/">commonJS规范</a>
+          </li>
+        
+          <li>
             <a href="/2020/03/31/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87js%E8%8E%B7%E5%8F%96%E8%85%BE%E8%AE%AFsdk%E7%AD%BE%E5%90%8D%E4%BF%A1%E6%81%AF/">如何通过js获取腾讯sdk签名信息</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/31/%E5%BD%95%E9%9F%B3%E6%96%87%E4%BB%B6%E5%88%86%E6%AE%B5%E4%B8%8A%E4%BC%A0/">录音文件分段上传</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/30/HZRecroder-js%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">HZRecroder.js的使用方法</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/30/%E8%AE%B0%E5%BD%95%E6%88%B4%E5%B0%94%E5%8F%B0%E5%BC%8F%E6%9C%BA%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/">记录戴尔台式机如何设置耳机麦克风</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/28/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E6%B8%B2%E6%9F%93%E9%A1%B5%E9%9D%A2%E7%9A%84%E8%BF%87%E7%A8%8B/">浏览器从输入url到渲染页面的过程</a>
           </li>
         
       </ul>

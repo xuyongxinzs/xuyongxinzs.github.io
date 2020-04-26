@@ -64,6 +64,300 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-vue移动端禁用手机物理返回按键" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/26/vue%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%A6%81%E7%94%A8%E6%89%8B%E6%9C%BA%E7%89%A9%E7%90%86%E8%BF%94%E5%9B%9E%E6%8C%89%E9%94%AE/" class="article-date">
+  <time datetime="2020-04-26T05:23:09.555Z" itemprop="datePublished">2020-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/26/vue%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%A6%81%E7%94%A8%E6%89%8B%E6%9C%BA%E7%89%A9%E7%90%86%E8%BF%94%E5%9B%9E%E6%8C%89%E9%94%AE/">vue移动端禁用手机物理返回按键</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>-–</p>
+<p>title: vue移动端禁用手机物理返回按键</p>
+<p>date: 2020-04-26 </p>
+<p>categories: </p>
+<p>- 小方法</p>
+<p>tags:</p>
+<p>- vue移动端禁用手机物理返回按键</p>
+<p>-–</p>
+<h6 id="vue移动端禁用手机物理返回按键"><a href="#vue移动端禁用手机物理返回按键" class="headerlink" title="vue移动端禁用手机物理返回按键"></a>vue移动端禁用手机物理返回按键</h6><ol>
+<li><p>创建监听</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;生命周期 - 挂载完成（可以访问DOM元素）</span><br><span class="line"> mounted() &#123;</span><br><span class="line">   document.getElementsByTagName(&quot;body&quot;)[0].style.backgroundColor &#x3D; &quot;#FFFFFF&quot;;</span><br><span class="line">   document.getElementsByTagName(&quot;html&quot;)[0].style.backgroundColor &#x3D; &quot;#FFFFFF&quot;;</span><br><span class="line">   &#x2F;&#x2F;禁用物理返回按键</span><br><span class="line">   if (window.history &amp;&amp; window.history.pushState) &#123;</span><br><span class="line">     history.pushState(null, null, document.URL);</span><br><span class="line">     window.addEventListener(&quot;popstate&quot;, this.goBack, false); &#x2F;&#x2F;false阻止默认事件    this.fun是指返回按建实际要执行的方法</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>定义监听后需要执行的方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;在浏览器再插入一条和现在的url相同的记录</span><br><span class="line">goBack()&#123;</span><br><span class="line">        history.pushState(null, null, document.URL);</span><br><span class="line">      &#125;,</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>再页面销毁时取消监听</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;生命周期 - 销毁之前</span><br><span class="line">  beforeDestroy() &#123;</span><br><span class="line">    document.querySelector(&quot;body&quot;).removeAttribute(&quot;style&quot;);</span><br><span class="line">    document.querySelector(&quot;html&quot;).removeAttribute(&quot;style&quot;);</span><br><span class="line">    window.removeEventListener(&quot;popstate&quot;,()&#x3D;&gt;&#123;&#125;, false); &#x2F;&#x2F;false阻止默认事件</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/2020/04/26/vue%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%A6%81%E7%94%A8%E6%89%8B%E6%9C%BA%E7%89%A9%E7%90%86%E8%BF%94%E5%9B%9E%E6%8C%89%E9%94%AE/" data-id="ck9gmjj5j00029gvqf8eghyzt" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-vue中如何使用canvas及小方法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/21/vue%E4%B8%AD%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8canvas%E5%8F%8A%E5%B0%8F%E6%96%B9%E6%B3%95/" class="article-date">
+  <time datetime="2020-04-21T11:32:27.924Z" itemprop="datePublished">2020-04-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/21/vue%E4%B8%AD%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8canvas%E5%8F%8A%E5%B0%8F%E6%96%B9%E6%B3%95/">vue中如何使用canvas及小方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>-–</p>
+<p>title: vue组件中如何修改body背景色</p>
+<p>date: 2020-04-26 </p>
+<p>categories: </p>
+<p>- 小方法</p>
+<p>tags:</p>
+<p>- vue组件中如何修改body背景色</p>
+<p>-–</p>
+<h6 id="vue组件中如何修改body背景色"><a href="#vue组件中如何修改body背景色" class="headerlink" title="vue组件中如何修改body背景色"></a>vue组件中如何修改body背景色</h6><ol>
+<li><p>在页面挂载后生命周期中，通过原生js获取body标签，设置其style属性:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mounted() &#123;</span><br><span class="line">  document.querySelector(&#39;body&#39;).setAttribute(&#39;style&#39;, &#39;background-color:#f7f7f7&#39;)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在页面销毁前生命周期中，删除其绑定在body上的行间样式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">beforeDestroy() &#123;</span><br><span class="line">  document.querySelector(&#39;body&#39;).removeAttribute(&#39;style&#39;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>也可在全局路由钩子中添加</em></p>
+<blockquote>
+<p>参考文献：<a href="https://www.jianshu.com/p/b81bc8d8e595" target="_blank" rel="noopener">vue设置body背景色</a></p>
+</blockquote>
+</li>
+</ol>
+<h6 id="JavaScript-Array-every-方法"><a href="#JavaScript-Array-every-方法" class="headerlink" title="JavaScript Array every() 方法"></a>JavaScript Array every() 方法</h6><p><em>可快速判断一个数组对象中每个对象中的某个或多个值是否符合条件</em>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var ages &#x3D; [32, 33, 16, 40];</span><br><span class="line"></span><br><span class="line">function checkAdult(age) &#123;</span><br><span class="line">    return age &gt;&#x3D; 18;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function myFunction() &#123;</span><br><span class="line">    document.getElementById(&quot;demo&quot;).innerHTML &#x3D; ages.every(checkAdult);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>结合es6的简便写法</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const search &#x3D; [ </span><br><span class="line">    &#123; name: &#39;B&#39;, isExistence: false &#125;,</span><br><span class="line">    &#123; name: &#39;C&#39;, isExistence: false &#125;</span><br><span class="line">];</span><br><span class="line">search.every( item &#x3D;&gt; item.isExistence &#x3D;&#x3D;&#x3D; true);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>参考文献：<a href="https://www.runoob.com/jsref/jsref-every.html" target="_blank" rel="noopener">JavaScript Array every() 方法</a></p>
+<p><a href="https://blog.csdn.net/weixin_30653023/article/details/96670846" target="_blank" rel="noopener">快速判断数组中每个对象同一属性值是否相同</a></p>
+</blockquote>
+<h6 id="vue中使用canvas"><a href="#vue中使用canvas" class="headerlink" title="vue中使用canvas"></a>vue中使用canvas</h6><ol>
+<li><p>html中使用canvas</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--      签名--&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;qianming&quot;&gt;</span><br><span class="line">     &lt;p class&#x3D;&quot;p1&quot;&gt;本人签名：&lt;&#x2F;p&gt;</span><br><span class="line">      &lt;div class&#x3D;&quot;div1&quot; ref&#x3D;&quot;boardBox&quot;&gt;</span><br><span class="line">        &lt;canvas ref&#x3D;&quot;board&quot;</span><br><span class="line">                @touchstart&#x3D;&quot;mStart&quot;</span><br><span class="line">                @touchmove&#x3D;&quot;mMove&quot;</span><br><span class="line">                @touchend&#x3D;&quot;mEnd&quot;</span><br><span class="line">        &gt;您的浏览器暂不支持canvas&lt;&#x2F;canvas&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在创建时获取父级宽高为canvas宽高</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mounted() &#123;</span><br><span class="line">     let board &#x3D; this.$refs.board;  &#x2F;&#x2F; 获取DOM</span><br><span class="line">     board.width &#x3D; this.$refs.boardBox.offsetWidth; &#x2F;&#x2F; 设置画布宽</span><br><span class="line">     board.height &#x3D; this.$refs.boardBox.offsetHeight;  &#x2F;&#x2F; 设置画布高</span><br><span class="line">     </span><br><span class="line">     this.ctx.fillStyle &#x3D; &quot;#fff&quot;;&#x2F;&#x2F;先填充背景色为白色</span><br><span class="line">     this.ctx.fillRect(0, 0, board.width, board.height);</span><br><span class="line">     this.ctx &#x3D; board.getContext(&#39;2d&#39;);  &#x2F;&#x2F; 二维绘图</span><br><span class="line">     this.ctx.strokeStyle &#x3D; &#39;#000&#39;;  &#x2F;&#x2F; 颜色</span><br><span class="line">     this.ctx.lineWidth &#x3D; 3; &#x2F;&#x2F; 线条宽度</span><br><span class="line">   &#125;,</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>把创建的画笔对象报讯在data全局数据中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">data()&#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        ctx:null,</span><br><span class="line">        point: &#123;</span><br><span class="line">          x: 0,</span><br><span class="line">          y: 0</span><br><span class="line">        &#125;,</span><br><span class="line">        moving: false,  &#x2F;&#x2F; 是否正在绘制中且移动</span><br><span class="line">        imgBase64:&#39;&#39;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>调用方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">     &#x2F;&#x2F; 触摸(开始)</span><br><span class="line">     mStart(e) &#123;</span><br><span class="line">       console.log(e);</span><br><span class="line">       let x &#x3D; e.touches[0].clientX - e.target.offsetLeft,</span><br><span class="line">         y &#x3D; e.touches[0].clientY - e.target.offsetTop;  &#x2F;&#x2F; 获取触摸点在画板（canvas）的坐标</span><br><span class="line">       this.point.x &#x3D; x;</span><br><span class="line">       this.point.y &#x3D; y;</span><br><span class="line">       this.ctx.beginPath();</span><br><span class="line">       this.moving &#x3D; true;</span><br><span class="line">     &#125;,</span><br><span class="line">     &#x2F;&#x2F; 滑动中...</span><br><span class="line">     mMove(e) &#123;</span><br><span class="line">       if (this.moving) &#123;</span><br><span class="line">         let x &#x3D; e.touches[0].clientX - e.target.offsetLeft,</span><br><span class="line">           y &#x3D; e.touches[0].clientY - e.target.offsetTop;  &#x2F;&#x2F; 获取触摸点在画板（canvas）的坐标</span><br><span class="line">         this.ctx.moveTo(this.point.x, this.point.y);  &#x2F;&#x2F; 把路径移动到画布中的指定点，不创建线条(起始点)</span><br><span class="line">         this.ctx.lineTo(x, y); &#x2F;&#x2F; 添加一个新点，然后创建从该点到画布中最后指定点的线条，不创建线条</span><br><span class="line">         this.ctx.stroke(); &#x2F;&#x2F; 绘制</span><br><span class="line">         this.point.x &#x3D; x, this.point.y &#x3D; y;  &#x2F;&#x2F; 重置点坐标为上一个坐标</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;,</span><br><span class="line">     &#x2F;&#x2F; 滑动结束</span><br><span class="line">     mEnd() &#123;</span><br><span class="line">       if (this.moving) &#123;</span><br><span class="line">         this.ctx.closePath();  &#x2F;&#x2F; 停止绘制</span><br><span class="line">         this.moving &#x3D; false;  &#x2F;&#x2F; 关闭绘制开关</span><br><span class="line">         &#x2F;&#x2F; this.imgBase64 &#x3D; this.$refs.board.toDataURL(&#39;image&#x2F;png&#39;);</span><br><span class="line">         &#x2F;&#x2F; console.log(this.imgBase64);</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;,</span><br><span class="line">     &#x2F;&#x2F;保存图片信息</span><br><span class="line">     saveimg()&#123;</span><br><span class="line">       &#x2F;&#x2F;此处toBlob方法支持填入第二个参数，type。可选择文件类型。例如：‘image&#x2F;jpeg’</span><br><span class="line">       this.$refs.board.toBlob((blobobj)&#x3D;&gt;&#123;</span><br><span class="line">         console.log(blobobj);</span><br><span class="line">         let imgSrc &#x3D; window.URL.createObjectURL(blobobj);</span><br><span class="line">         console.log(imgSrc)</span><br><span class="line">         let aLink &#x3D; document.createElement(&#39;a&#39;)</span><br><span class="line">         aLink.download &#x3D; &#39;fileName.jpeg&#39; &#x2F;&#x2F; 文件名后缀需要和dataurl表示的相同，否则可能乱码</span><br><span class="line">         aLink.href &#x3D; imgSrc</span><br><span class="line">         aLink.click()</span><br><span class="line">       &#125;,&#39;image&#x2F;jpeg&#39;)</span><br><span class="line">     &#125;,</span><br><span class="line">     &#x2F;&#x2F;清除画布</span><br><span class="line">     clearcanvas()&#123;</span><br><span class="line">       let board &#x3D; this.$refs.board;</span><br><span class="line">       this.ctx.clearRect(0,0,board.width,board.height);</span><br><span class="line">     &#125;,</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<p>其中可将canvas所绘制的图片信息改为base64或者Blob对象</p>
+<p><code>this.imgBase64 = this.$refs.board.toDataURL(&#39;image/png&#39;);</code></p>
+<p><code>this.$refs.board.toBlob((blobobj)=&gt;{})</code></p>
+<p>附上blob对象转变为file对象的方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let files &#x3D; new window.File([this.blob], file.name, &#123;type: file.type&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>解决默认图片背景色为黑色问题，首先填充</p>
+<p>详情看参考文献。</p>
+<blockquote>
+<p>参考文献：<a href="https://www.cnblogs.com/xkloveme/p/10967852.html" target="_blank" rel="noopener">前端图片canvas，file，blob，DataURL等格式转换</a></p>
+<p><a href="http://www.360doc.com/content/16/0101/20/597197_524678500.shtml" target="_blank" rel="noopener">将canvas元素中的图像转换为jpg等格式的Blob对象</a></p>
+<p><a href="https://www.jianshu.com/p/5b44c41adfe2" target="_blank" rel="noopener">HTML5 file对象和blob对象的互相转换</a></p>
+<p><a href="https://blog.csdn.net/sinat_17775997/article/details/58708042" target="_blank" rel="noopener">canvas转base64/jpeg时，透明区域变成黑色背景的解决方案</a></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/2020/04/21/vue%E4%B8%AD%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8canvas%E5%8F%8A%E5%B0%8F%E6%96%B9%E6%B3%95/" data-id="ck9gmjj5w00049gvq8fyiboy9" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-gitlab搭建总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/03/gitlab%E6%90%AD%E5%BB%BA%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2020-04-03T06:46:43.000Z" itemprop="datePublished">2020-04-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%B0%8F%E6%96%B9%E6%B3%95/">小方法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/03/gitlab%E6%90%AD%E5%BB%BA%E6%80%BB%E7%BB%93/">gitlab搭建总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="gitlab搭建总结"><a href="#gitlab搭建总结" class="headerlink" title="gitlab搭建总结"></a>gitlab搭建总结</h3><p><em>继上两次搭建之后，终于终于是让我搭建成功了。其实早就应该成功了。但是却败给了我的无知。</em></p>
+<p>之前的我一直纠结在哪里呢？<br>明明我都成功运行了，为什么就是访问不了。<br>根本原因在于我的ip地址没有设置正确。</p>
+<p><img src="/2020/04/03/gitlab%E6%90%AD%E5%BB%BA%E6%80%BB%E7%BB%93/1.png" alt></p>
+<p>对，没错。就是这个ip，就是所有教程以及官网都告诉我安装成功后只需要该变这个ip为本机ip在重新初始化一下gitlab就可以了的地方。我硬生生的给写成了个网络ip（就是那个你百度一下ip就出来的网络ip）。</p>
+<blockquote>
+<p>附上gitlab的一些常用命令：<br>sudo gitlab-ctl stop停止<br>sudo gitlab-ctl start开启<br>sudo gitlab-ctl restart重启<br>sudo gitlab-ctl status查看状态<br>sudo gitlab-ctl reconfigure确认配置（修改配置后，必须执行）<br>sudo gitlab-ctl tail 查看日志<br><strong>卸载</strong><br>执行如下四步：<br>sudo gitlab-ctl uninstall<br>sudo dpkg -r gitlab-ce<br>sudo rpm -e gitlab-ce<br>reboot（重启）</p>
+</blockquote>
+<blockquote>
+<p>参考文献：<a href="https://blog.csdn.net/qq_36467463/article/details/78283874" target="_blank" rel="noopener">在ubuntu16上搭建gitlab（实测可用）</a><br><a href="https://www.jianshu.com/p/eaf24569ad2d" target="_blank" rel="noopener">在Ubuntu上搭建Gitlab服务</a></p>
+</blockquote>
+<h4 id="本地ip和网络ip的区别"><a href="#本地ip和网络ip的区别" class="headerlink" title="本地ip和网络ip的区别"></a>本地ip和网络ip的区别</h4><p>本地ip就是你自己电脑私有的ip，可以自己随意修改。<br>网络ip是指本地网络（局域网）接入互联网由ISP服务商分配的固定IP或动态IP。</p>
+<blockquote>
+<p>参考文献：<a href="https://zhidao.baidu.com/question/75965872.html" target="_blank" rel="noopener">本地ip和网络ip</a><br><a href="https://jingyan.baidu.com/article/3c343ff7ed36800d377963af.html" target="_blank" rel="noopener">本地内网IP和外网IP的区别 网络IP地址图文介绍</a></p>
+</blockquote>
+<h4 id="修改gitlab管理员密码"><a href="#修改gitlab管理员密码" class="headerlink" title="修改gitlab管理员密码"></a>修改gitlab管理员密码</h4><p> 进入终端管理员模式</p>
+<ol>
+<li>gitlab-rails console -e production<ol start="2">
+<li>user = User.where(id: 1).first或者user = User.find_by(email: ‘admin@example.com’)</li>
+<li>user.password = ‘secret_pass’</li>
+<li>user.password_confirmation = ‘secret_pass’</li>
+<li>user.save!（切记）</li>
+<li>quit</li>
+</ol>
+</li>
+</ol>
+<p>注意：密码没有使用引号，奇怪的是使用单引号或双引号，密码就无效，估计是包含了这个字符，不包含，就没有问题。</p>
+<blockquote>
+<p>参考文献：<a href="https://blog.csdn.net/yin138/article/details/51394868" target="_blank" rel="noopener">GitLab修改root用户密码</a><br><a href="https://docs.gitlab.com/ce/security/reset_root_password.html" target="_blank" rel="noopener">官方文档</a></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/2020/04/03/gitlab%E6%90%AD%E5%BB%BA%E6%80%BB%E7%BB%93/" data-id="ck9gmjj5i00019gvqb71c4xpl" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gitlab/" rel="tag">gitlab</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-commonJS规范" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/01/commonJS%E8%A7%84%E8%8C%83/" class="article-date">
+  <time datetime="2020-04-01T09:33:29.000Z" itemprop="datePublished">2020-04-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%B0%8F%E6%96%B9%E6%B3%95/">小方法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/01/commonJS%E8%A7%84%E8%8C%83/">commonJS规范</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="commonJS规范"><a href="#commonJS规范" class="headerlink" title="commonJS规范"></a>commonJS规范</h3><ol>
+<li><p>什么是commonjs？？<br>   模块的加载机制被称为commonjs规范，每个js文件就是一个模块，他们内部各自使用的变量名和函数名都互不冲突</p>
+<p><code>var x = 5;</code><br><code>var addX = function (value) {</code><br><code>return value + x;</code><br><code>}</code></p>
+<p>这就是一个模块，上面代码中，变量x和函数addX，是当前文件example.js私有的，其他文件不可见。<br>如果想在多个文件分享变量，必须定义为global对象的属性。</p>
+<p><code>global.warning = true;</code><br>上面代码的warning变量，可以被所有文件读取。当然，这样写法是不推荐的。</p>
+<p>所以。。CommonJS规范规定，每个模块内部，module变量代表当前模块。这个变量是一个对象，它的exports属性（即module.exports）是对外的接口。加载某个模块，其实是加载该模块的module.exports属性。</p>
+</li>
+</ol>
+<pre><code> var x = 5;
+ var addX = function (value) {
+return value + x;
+};
+module.exports.x = x;
+module.exports.addX = addX;</code></pre><p>这是通过module.exports把这个模块里的变量和方法给传递出去<br>     var example = require(‘./example.js’);</p>
+<pre><code>console.log(example.x); 
+console.log(example.addX(1));</code></pre><p>在另一个模块中就可以通过require加载模块，也就是加载模块中同过module.exports传递出来的东西</p>
+<p>commonjs模块的特点如下：<br>      1.所有代码都运行在模块的作用域下，不会污染全局作用域<br>       2.模块可以多次加载，但是只会在第一次加载时运行一次，然后运行结果就被缓存了。想要再次运行，就必须清除缓存<br>      3.模块加载的顺序，按照在代码中出现的顺序</p>
+<p>3.module对象<br>     node中的module构造函数，每个模块都是module的实例</p>
+<pre><code>每个模块内部，都有一个module对象，代表当前模块。它有以下属性。</code></pre><p>module.id 模块的识别符，通常是带有绝对路径的模块文件名。<br>module.filename 模块的文件名，带有绝对路径。<br>module.loaded 返回一个布尔值，表示模块是否已经完成加载。<br>module.parent 返回一个对象，表示调用该模块的模块。<br>module.children 返回一个数组，表示该模块要用到的其他模块。<br>module.exports 表示模块对外输出的值。</p>
+<p>我们可以在一个实例中直接打印这个module对象</p>
+<p>可以同过module。parent这个属性来判断当前这个文件有没有调用其他模块</p>
+<p>在a。js中写<br>    // if (!module.parent){<br>// console.log(“我是爹”)<br>// }else{<br>// console.log(“我是儿子”)<br>// }<br>在b.js中引入之后运行</p>
+<p>4.exports变量<br>为了方便，node将每一个模块提供一个exports变量，指向module.exprots<br>就等于在每个文件的第一行写  var exports = module.exports<br>exports.area = function (r) {<br>  return Math.PI * r * r;<br>};</p>
+<p>不能直接 exports = function(x) {console.log(x)};</p>
+<p>这样写法无效，因为exports不在指向module.exports</p>
+<p>exports和module.exprots的区别<br>1.exports是对module.exports的引用<br>2.外界在require时，真正引入的是module.exports而不是exports</p>
+<p>5.requuire命令，<br>require命令的基本功能是，读入并执行一个JavaScript文件，然后返回该模块的exports对象。如果没有发现指定模块，会报错。</p>
+<p>也可调用自身，在引入是如果是自己封装的模块加./</p>
+<p>6.模块 的加载机制<br>CommonJS模块的加载机制是，输入的是被输出的值的拷贝。也就是说，一旦输出一个值，模块内部的变化就影响不到这个值。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/2020/04/01/commonJS%E8%A7%84%E8%8C%83/" data-id="ck9gmjj5c00009gvqgxaehap1" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-如何通过js获取腾讯sdk签名信息" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/03/31/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87js%E8%8E%B7%E5%8F%96%E8%85%BE%E8%AE%AFsdk%E7%AD%BE%E5%90%8D%E4%BF%A1%E6%81%AF/" class="article-date">
@@ -835,343 +1129,6 @@ function recUpload() {
 
 
   
-    <article id="post-Gulp前端自动化构建工具" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/27/Gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/" class="article-date">
-  <time datetime="2020-03-27T05:08:25.000Z" itemprop="datePublished">2020-03-27</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%B0%8F%E6%96%B9%E6%B3%95/">小方法</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/27/Gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/">Gulp前端自动化构建工具</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Gulp前端自动化构建工具"><a href="#Gulp前端自动化构建工具" class="headerlink" title="Gulp前端自动化构建工具"></a>Gulp前端自动化构建工具</h3><p> <em>Gulp 是基于 NodeJS 的前端自动化构建工具，在项目开发过程中自动化地完成 html / css / js / image / sass / less 等文件的编译、合并、压缩、语法检查、浏览器自动刷新等重复性任务，在操作上使用了 NodeJS 中的 stream (流)，通过 pipe() 方法导入到指定的地方，将前一级的输出，作为后一级的输入，不再需要进行频繁的 IO 操作，但需要注意的是，这里的流内容，并非原始的文件流，而是一个虚拟的文件对象流 (Vinyl Files)，存储着原始文件的路径、文件名、内容等信息</em></p>
-<blockquote>
-<p>Gulp 是基于 NodeJS，所以需要安装 Node 和 npm 包管理工具，可根据自己的操作系统环境来下载相应的版本 <a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">Node | Downloads</a></p>
-</blockquote>
-<h4 id="npm介绍"><a href="#npm介绍" class="headerlink" title="npm介绍"></a>npm介绍</h4><p>  npm (Node Package Manager) 是随同 NodeJS 一起安装的包管理工具，用于 node 插件管理，包括插件的安装、卸载、管理依赖等</p>
-<p>  在命令行中执行 <code>npm install &lt;name&gt; [-g] [--save-dev]</code> 命令即可使用 npm 安装插件</p>
-<ul>
-<li><p><code>&lt;name&gt;</code> 为 node 插件名</p>
-</li>
-<li><p><code>-g</code> 为全局安装，全局安装可以通过命令行在任何地方调用该插件，而非全局安装只会安装在当前定位目录的 <code>node_modules</code> 文件夹下，通过 <code>require()</code> 方法进行调用</p>
-</li>
-<li><p><code>--save</code> 将配置信息保存到 <code>NodeJS</code> 项目配置文件 <code>package.json</code> 中</p>
-</li>
-<li><p><code>-dev</code> 将配置信息保存至 <code>package.json</code> 文件下的 <code>devDependencies</code> 节点</p>
-<p>有了 <code>package.json</code> 的配置信息之后，我们就可以通过 <code>npm install</code> 命令，一键下载 <code>package.json</code> 配置信息里的所有插件包</p>
-<p>如果需要删除插件包，可执行 <code>npm uninstall &lt;name&gt; [-g] [--save-dev]</code> 命令，而不要直接删除本地插件包，借助 <code>rimraf</code> 可以删除所有的插件包，通过命令 <code>npm install rimraf -g</code> 安装 <code>rimraf</code>之后，执行 <code>rimraf node_modules</code> 命令</p>
-</li>
-</ul>
-<p>  npm 安装插件是从国外服务器下载，受网络影响大，对不能翻墙的同学不太友好，而淘宝团队提供了一个 <code>npmjs.org</code> 镜像，同步频率目前为 10 分钟一次，以保证尽量与官方服务同步，安装方式也很简单，执行命令 <code>npm install cnpm -g --registry=https://registry.npm.taobao.org</code>，同样的，安装完成之后，执行 <code>cnpm -v</code> 命令来查看是否成功安装，而 <code>cnpm</code> 跟 <code>npm</code> 的用法完全一样，只是在执行命令的时候，将 <code>npm</code> 换为 <code>cnpm</code> 即可</p>
-<h4 id="gulp安装"><a href="#gulp安装" class="headerlink" title="gulp安装"></a>gulp安装</h4><p> 执行命令 <code>npm install gulp -g</code> 全局安装 gulp</p>
-<p> 然后我们创建一个 gulp 目录，在该目录下运行 npm init 新建 package.json 文件，以保存项目相关信息，该文件也可以手动新建，具体信息如下所示，需要注意的是，json 文件里不能写注释，在复制完之后记得把注释删除</p>
-<p>   <img src="/2020/03/27/Gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/1.jpg" alt></p>
-<p>   安装 <code>gulp</code> 依赖包到项目本地 <code>npm install gulp --save-dev</code>，并安装项目其他依赖包，在这里以 <code>gulp-less</code> 为例，<code>npm install gulp-less --save-dev</code>，同样的，Mac 用户要是提示权限错误，加上 <code>sudo</code> 指令即可</p>
-<p>   接下来我们新建一个 <code>gulpfile.js</code> 文件，具体代码如下所示</p>
-<p>   <img src="/2020/03/27/Gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/3.jpg" alt></p>
-<p>   我们在上面的代码里，先是通过 <code>require()</code> 方法引入了 <code>gulp</code> 和 <code>gulp-less</code> 两个组件，当然引入的前提是你已经将该组件下载到本地了，随后我们使用了 <code>gulp.task</code> 定义了一个 <code>less</code> 任务，该任务将 <code>/src/less</code> 文件下的 <code>test.less</code> 文件，转换为 <code>test.css</code> 文件，该文件将在 <code>/buil/css</code> 下生成.</p>
-<p><em>通过终端输入gulp来执行此任务。正常的话是这样的：</em></p>
-<p><img src="/2020/03/27/Gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/4.jpg" alt></p>
-<p> <em>可是我的确实这样的：</em></p>
-<p> <img src="/2020/03/27/Gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/5.jpg" alt></p>
-<p> <em>这是什么问题，难道是我的操作方法不对？？？</em></p>
-<p>  查阅资料时知道：原来和其他的工具一样，gulp.js也是有自己的配置文件的：<code>gulpfile.js</code></p>
-<blockquote>
-<p>参考文献：<a href="https://jingyan.baidu.com/article/636f38bb6879dcd6b84610f0.html" target="_blank" rel="noopener">怎么在本地启动利用gulp编译文件的文件</a></p>
-</blockquote>
-<p>  继续查找文档，说是gulp全局版本号和项目中版本号不一致导致的。</p>
-<p> 通过<code>gulp -v</code>查看版本号发现。真的不一样。</p>
-<p> <img src="/2020/03/27/Gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/6.png" alt></p>
-<p> 使用<code>cnpm i gulp@3.9.1 -g</code>全局安装<br> 使用<code>cnpm i gulp@3.9.1 --save -dev</code>本地安装后</p>
-<p>  <img src="/2020/03/27/Gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/7.jpg" alt></p>
-<blockquote>
-<p>参考文章：<a href="https://blog.csdn.net/qq_42855947/article/details/91345342" target="_blank" rel="noopener">gulp运行报错</a></p>
-</blockquote>
-<p>  <strong>版本号一致了</strong></p>
-<p>  <em>继续运行gulp</em><br>  <img src="/2020/03/27/Gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/8.jpg" alt></p>
-<p>  搜索发现是安装gulp版本与node版本不兼容的问题, 我的项目gulp版本是3.9.1 本地node版本是12.13.1</p>
-<p>  解决方法是回退node版本或升级gulp版本:</p>
-<blockquote>
-<p>参考文章：<a href="https://www.cnblogs.com/phen/p/12092800.html" target="_blank" rel="noopener">ReferenceError: primordials is not defined</a><br> <a href="https://blog.csdn.net/yym836659673/article/details/104847572/" target="_blank" rel="noopener">ReferenceError: primordials is not defined</a></p>
-</blockquote>
-<p>   报错：primordials is not defined；<br>   写 项目卡到版本不兼容问题真的就巨烦人。<br>   gulp3.x.x需要将node降低到11.x.x</p>
-<p>   使用nvm来切换node版本</p>
-<p>   nvm和n都是node版本管理工具</p>
-<p>   为了解决node各种版本存在不兼容现象</p>
-<p>   nvm是让你在同一台机器上安装和切换不同版本的node的工具</p>
-<p>   <strong>安装：两种方式</strong></p>
-<ul>
-<li><p><code>curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash</code></p>
-</li>
-<li><p><code>wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash</code></p>
-<p>此时nvm就被安装在了/.nvm下啦</p>
-<p><strong>命令:</strong></p>
-<p>nvm ls-remote：列出所有可以安装的node版本号<br>nvm install v10.4.0：安装指定版本号的node<br>nvm use v10.3.0：切换node的版本，这个是全局的<br>nvm current：当前node版本<br>nvm ls：列出所有已经安装的node版本</p>
-</li>
-</ul>
-<blockquote>
-<p>参考文献：<a href="https://blog.csdn.net/qq_42177478/article/details/105003135" target="_blank" rel="noopener">window环境下node版本和gulp版本不兼容降低node版本解决方案</a><br>   <a href="https://www.jianshu.com/p/0ffa636a6fe1" target="_blank" rel="noopener">nvm</a></p>
-</blockquote>
-<p>   使用nvm切换node版本号：</p>
-<p> <img src="/2020/03/27/Gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/9.jpg" alt></p>
-<p>  <strong>再试。。。成功！！！</strong><br> <img src="/2020/03/27/Gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/10.jpg" alt></p>
-<p>该文件将在 /buil/css 下生成，文件目录结构如下所示<br><img src="/2020/03/27/Gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/11.jpg" alt></p>
-<p>然后你就可以对比一下你生成的文件和你最开始写的文件的不同了。会发现他帮你转义了。</p>
-<blockquote>
-<p>参考文献：<a href="https://www.jianshu.com/p/419bb4e40c5a" target="_blank" rel="noopener">Gulp 前端自动化构建工具</a></p>
-</blockquote>
-<hr>
-<h6 id="全局安装和局部安装的区别"><a href="#全局安装和局部安装的区别" class="headerlink" title="全局安装和局部安装的区别"></a>全局安装和局部安装的区别</h6><p> <strong>什么是全局安装？</strong></p>
-<p> 安装位置<br>    全局安装方式是键入命令：<code>npm install webpack -g</code> 或 <code>npm install webpack --global</code>，其中参数-g的含义是代表安装到全局环境里面，包安装在Node安装目录下的<code>node_modules</code>文件夹中，一般在 <code>\Users\用户名\AppData\Roaming\</code> 目录下，可以使用<code>npm root -g</code>查看全局安装目录。</p>
-<p>  <strong>什么是本地安装？</strong><br>安装位置<br>本地安装方式是键入命令：<code>npm install webpack</code> 或 <code>npm install webpack --save-dev</code>等，其中参数<code>--save-dev</code>的含义是代表把你的安装包信息写入<code>package.json</code>文件的<code>devDependencies</code>字段中，包安装在指定项目的<code>node_modules</code>文件夹下。</p>
-<p>调用方式<br>本地安装后可以直接通过<code>require()</code>的方式引入项目中<code>node_modules</code>目录下的模块，如下示例，本地安装后直接在<code>webpack.config.js</code>中<code>require(&#39;gulp&#39;)</code>。<br><img src="/2020/03/27/Gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/2.jpg" alt></p>
-<p><strong>为什么全局安装还要本地安装？</strong><br>仅仅全局安装够吗？<br>1.在js实例代码中，默认下node.js会在NODE_PATH和目前js所在项目下的node_modules文件夹下去寻找模块，因此，如果只是全局安装，不能直接通过require()的方式去引用模块，需要手动解决包路径的配置问题，当然你也可以复制全局安装的node_modules文件夹到项目下，还有办法可以选择将环境变量的NODE_PATH设置为C:\Program Files\nodejs。</p>
-<p>2.对于包的更新不好管理，可能你需要为每个包重新命名，如<a href="mailto:gulp@3.8.1">gulp@3.8.1</a>、gulp@3.9.1…，为了区别不同项目使用指定的包，保证模块之间的相互依赖（这块下面会介绍），区别每个项目正常运行。</p>
-<p>因此，不推荐只全局安装。</p>
-<blockquote>
-<p>参考文献：<a href="https://www.jianshu.com/p/e839326ce30d" target="_blank" rel="noopener">npm 全局安装和局部安装的区别</a></p>
-</blockquote>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://github.com/2020/03/27/Gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/" data-id="ck89wyy580001xsvq9lml7g14" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA/" rel="tag">gulp前端自动化构建</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-web前端性能优化" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/23/web%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" class="article-date">
-  <time datetime="2020-03-23T09:27:45.000Z" itemprop="datePublished">2020-03-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%B0%8F%E6%96%B9%E6%B3%95/">小方法</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/23/web%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">web前端性能优化</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="web前端性能优化"><a href="#web前端性能优化" class="headerlink" title="web前端性能优化"></a>web前端性能优化</h3><h6 id="压缩与合并"><a href="#压缩与合并" class="headerlink" title="压缩与合并"></a>压缩与合并</h6><p><em>减少http请求和请求得大小</em></p>
-<h6 id="图片优化"><a href="#图片优化" class="headerlink" title="图片优化"></a>图片优化</h6><p><em>减少请求大小、输入、优化请求速度</em></p>
-<ul>
-<li>在保证不失真得情况下，尽量使用体积较小的图片。</li>
-<li>jpg： 压缩率高，大部分不需要透明图片的场景。</li>
-<li>png ： 支持透明，大部分需要透明图片的场景。</li>
-<li>svg矢量图：代码内嵌，相对较小，图片样式简单的场景。</li>
-<li>base64编码：把较小的图片内嵌在文件里，无需请求。</li>
-<li>使用雪碧图： 减少请求数量。</li>
-</ul>
-<h6 id="代码压缩"><a href="#代码压缩" class="headerlink" title="代码压缩"></a>代码压缩</h6><p><em>减少代码量</em></p>
-<ul>
-<li>删除多余空行</li>
-<li>表格类型布局时适当使用table代替div布局</li>
-<li>封装js代码</li>
-</ul>
-<h6 id="减少对dom的操作"><a href="#减少对dom的操作" class="headerlink" title="减少对dom的操作"></a>减少对dom的操作</h6><h6 id="使用json格式来进行数据交换"><a href="#使用json格式来进行数据交换" class="headerlink" title="使用json格式来进行数据交换"></a>使用json格式来进行数据交换</h6><h6 id="注意控制Cookie大小和污染"><a href="#注意控制Cookie大小和污染" class="headerlink" title="注意控制Cookie大小和污染"></a>注意控制Cookie大小和污染</h6>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://github.com/2020/03/23/web%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" data-id="ck89wyy4z0000xsvqcaenfvdz" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">前端性能优化</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-在Ubuntu上搭建gitlab服务器" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/18/%E5%9C%A8Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="article-date">
-  <time datetime="2020-03-18T05:14:48.000Z" itemprop="datePublished">2020-03-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%B0%8F%E6%96%B9%E6%B3%95/">小方法</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/18/%E5%9C%A8Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/">在Ubuntu上搭建gitlab服务器</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="在Ubuntu上搭建gitlab服务器"><a href="#在Ubuntu上搭建gitlab服务器" class="headerlink" title="在Ubuntu上搭建gitlab服务器"></a>在Ubuntu上搭建gitlab服务器</h3><p><strong>首先安装必须的一些服务</strong></p>
-<p><code>sudo apt-get update</code><br><code>sudo apt-get install -y curl openssh-server</code> <code>ca-certificates</code><br><code>sudo apt-get install -y postfix</code></p>
-<p><em>这里要使用左右键和回车键选择确定、取消，弹出列表选项的时候，选择 Internet Site。我当初不知道还以为是卡了呢。</em></p>
-<p><strong>接着信任 GitLab 的 GPG 公钥:</strong></p>
-<p><code>curl https://packages.gitlab.com/gpg.key 2&gt; /dev/null | sudo apt-key add - &amp;&gt;/dev/null</code></p>
-<p><strong>配置镜像路径</strong></p>
-<p><em>由于国外的下载速度过慢，所以配置清华大学镜像的路径。</em></p>
-<p><code>vi /etc/apt/sources.list.d/gitlab-ce.list</code></p>
-<p><strong>写入</strong><br>根据你的版本，选择对于的内容写入<code>/etc/apt/sources.list.d/gitlab-ce.list</code>，详见<a href="https://mirror.tuna.tsinghua.edu.cn/help/gitlab-ce/" target="_blank" rel="noopener">Gitlab Community Edition 镜像使用帮助</a></p>
-<p><code>deb https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/ubuntu xenial main</code></p>
-<hr>
-<p>在这里我出现了问题。<br><em>我按照<code>vi /etc/apt/sources.list.d/gitlab-ce.list</code>这个代码想修改配置源文件时，出现了我无法操作的页面。如图：</em><br><img src="/2020/03/18/%E5%9C%A8Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/2.png" alt></p>
-<p><em>现在有一行命令是后来有人指点才加上去的。本来是什么都没有的。并且怎么按页没反应。后来才知道<code>vi</code>是打开文本编译器的指令，在这个框里编辑文本也得也要固定的指令。<a href="https://blog.csdn.net/w88193363/article/details/80593389" target="_blank" rel="noopener">Ubuntu vi 命令大全</a></em></p>
-<p><em>当然你也可以直接打开文件在文件中直接复制粘贴进去，不用指令输入。按照指定路径，比如上面这个<code>vi /etc/apt/sources.list.d/gitlab-ce.list</code></em><br><em>加完之后：</em><br><img src="/2020/03/18/%E5%9C%A8Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/3.png" alt></p>
-<p><em>在gitlab-ce.list这个文档里粘贴上想配置的镜像路径。就好了</em><br><img src="/2020/03/18/%E5%9C%A8Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/4.png" alt></p>
-<p><em>当然你会发现这个文档无法编辑，为只读状态。这时候你就百度一下如何以管理员的身份打开文件夹。就可以啊。</em></p>
-<hr>
-<p><em>解决的上面的问题。我们继续向下</em></p>
-<p><strong>安装 gitlab-ce</strong><br><code>sudo apt-get update</code><br>没问题</p>
-<p><code>sudo apt-get install gitlab-ce</code><br><img src="/2020/03/18/%E5%9C%A8Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/1.png" alt></p>
-<p><em>我心态蹦了啊，有没有。本来看这下载速度搜搜的，还以为我就要成功了呢。唉////////</em></p>
-<p><em>然后再大牛的指导下手动下载安装包，然后再安装。然后就。。</em><br><img src="/2020/03/18/%E5%9C%A8Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/6.png" alt></p>
-<p><em>那我想这样都不行，那我就按官方文档的四部走好了呗。然后。。</em><br><img src="/2020/03/18/%E5%9C%A8Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/7.png" alt></p>
-<p>我真是<strong>*****</strong></p>
-<blockquote>
-<p>参考文档：<br><a href="https://blog.csdn.net/ldyboy1314/article/details/90417201" target="_blank" rel="noopener">ubuntu安装gitlab</a><br><a href="https://blog.csdn.net/qingchunweiliang/article/details/53869601" target="_blank" rel="noopener">ubuntu搭建gitlab服务器</a><br><a href="https://www.cnblogs.com/wangkevin5626/p/7595070.html" target="_blank" rel="noopener">gitlab本地部署方法（ubuntu16.04+gitlab9.5.5）</a><br><a href="https://www.jianshu.com/p/74a3a181dc36" target="_blank" rel="noopener">Ubuntu18.04 GitLab仓库服务器搭建</a><br><a href="https://www.cnblogs.com/m2ez/p/7063606.html" target="_blank" rel="noopener">Ubuntu 搭建 GitLab 笔记</a></p>
-</blockquote>
-<hr>
-<p>新的一天又开始，打不死的小强又回来了。</p>
-<p><em>抱着侥幸心理的心态，我又从走了一边安装步骤。下载依赖，使用官方命令下载软件包。下载的时候很顺利，可能是我配置过全局清华镜像的缘故，下载速度页很快。很快包下载完了。但是再解归档的时候发生错误。并且还弹了个系统错误的窗。我现在怀疑是我左弄弄右弄弄得是不是给系统文件给整错了。所以我打算重装一遍虚拟机，再来一次。</em></p>
-<p><strong>卸载以安装得虚拟机</strong></p>
-<p><em>卸载三步走超简单</em><br><a href="https://zhidao.baidu.com/question/359210665.html" target="_blank" rel="noopener">虚拟机怎么删除或卸载已安装的虚拟操作系统？</a></p>
-<p><strong>安装</strong><br><em>过程省略，以前得文档有</em></p>
-<blockquote>
-<p>安装完，检查完可以联网后。我想大家也都注意到了一个问题，就是虚拟机的屏幕好小。并且不能和主机间通信。这时候就需要用到他推荐的插件来解决 VMware Tools</p>
-</blockquote>
-<p><a href="https://blog.csdn.net/weixin_42533541/article/details/81879167" target="_blank" rel="noopener">Vmware虚拟机完整创建一个linux（Ubuntu）系统全过程（三）</a></p>
-<p><em>根据上面操作步骤，复制VMware Tools的压缩包后，你需要双击提取一下文件。才能进行后续操作。</em></p>
-<p><em>然后开始安装时，会弹出提示让你做出选择。第一个提示按yes然后一路回车就好啦</em></p>
-<hr>
-<p>ok 配置完成 让我们再来一次。</p>
-<p><em>首先我配置了清华镜像，通过镜像下载，还是会包软件包下载错误，然后我通过官方文档提供的方法下载，终于是安装成功了。出现了喜悦的猫头。</em></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://github.com/2020/03/18/%E5%9C%A8Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="ck7x7qwql0000hkvqaya48498" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">搭建gitlab服务器</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-css单位vw和vh" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/17/css%E5%8D%95%E4%BD%8Dvw%E5%92%8Cvh/" class="article-date">
-  <time datetime="2020-03-17T01:42:04.000Z" itemprop="datePublished">2020-03-17</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/css%E6%A0%B7%E5%BC%8F/">css样式</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/17/css%E5%8D%95%E4%BD%8Dvw%E5%92%8Cvh/">css单位vw和vh</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="css单位vw和wh"><a href="#css单位vw和wh" class="headerlink" title="css单位vw和wh"></a>css单位vw和wh</h3><p>响应式布局的实现依靠媒体查询（ Media Queries ）来实现，选取主流设备宽度尺寸作为断点针对性写额外的样式进行适配，但这样做会比较麻烦，只能在选取的几个主流设备尺寸下呈现完美适配。</p>
-<p>即使是通过 rem 单位来实现适配，也是需要内嵌一段脚本去动态计算根元素大小。</p>
-<h5 id="认识视口单位（-Viewport-units"><a href="#认识视口单位（-Viewport-units" class="headerlink" title="认识视口单位（ Viewport units )"></a>认识视口单位（ Viewport units )</h5><p>首先，我们要了解什么是视口。</p>
-<p>在业界，极为推崇的一种理论是 Peter-Paul Koch (江湖人称“PPK大神”)提出的关于视口的解释——在桌面端，视口指的是在桌面端，指的是浏览器的可视区域；而在移动端较为复杂，它涉及到三个视口：分别是 Layout Viewport（布局视口）、 Visual Viewport（视觉视口）、Ideal Viewport。</p>
-<p>而视口单位中的“视口”，在桌面端，毫无疑问指的就是浏览器的可视区域；但是在移动端，它指的则是三个 Viewport 中的 Layout Viewport 。</p>
-<p><img src="/2020/03/17/css%E5%8D%95%E4%BD%8Dvw%E5%92%8Cvh/1.jpg" alt></p>
-<p>根据CSS3规范，视口单位主要包括以下4个：</p>
-<ul>
-<li>vw : 1vw 等于视口宽度的1%</li>
-<li>vh : 1vh 等于视口高度的1%</li>
-<li>vmin : 选取 vw 和 vh 中最小的那个</li>
-<li>vmax : 选取 vw 和 vh 中最大的那个</li>
-</ul>
-<p>视口单位区别于%单位，视口单位是依赖于视口的尺寸，根据视口尺寸的百分比来定义的；而%单位则是依赖于元素的祖先元素。</p>
-<h4 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h4><p>（1）桌面 PC<br>Chrome：自 26 版起就完美支持（2013年2月）<br>Firefox：自 19 版起就完美支持（2013年1月）<br>Safari：自 6.1 版起就完美支持（2013年10月）<br>Opera：自 15 版起就完美支持（2013年7月）<br>IE：自 IE10 起（包括 Edge）到现在还只是部分支持（不支持 vmax，同时 vm 代替 vmin）</p>
-<p>（2）移动设备<br>Android：自 4.4 版起就完美支持（2013年12月）<br>iOS：自 iOS8 版起就完美支持（2014年9月）<br>并且在微信 x5 内核中也得到完美的全面支持。</p>
-<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><ol>
-<li>可以使用完全使用vw和wh进行布局，字体也可以使用。</li>
-<li>使用vw和rem结合，可以设置屏幕得最大最小宽度，提升用户体验</li>
-</ol>
-<blockquote>
-<p>参考文章<br><a href="http://caibaojian.com/vw-vh.html" target="_blank" rel="noopener">纯CSS3使用vw和vh视口单位实现自适应</a><br><a href="https://blog.csdn.net/ZNYSYS520/article/details/76053961" target="_blank" rel="noopener">css3新单位vw、vh、vmin、vmax的使用详解</a></p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://github.com/2020/03/17/css%E5%8D%95%E4%BD%8Dvw%E5%92%8Cvh/" data-id="ck7va6qb00000gcvq9al9bgy1" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vw-vh/" rel="tag">vw,vh</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1197,7 +1154,7 @@ function recUpload() {
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Axure/" rel="tag">Axure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA/" rel="tag">gulp前端自动化构建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sdk%E7%AD%BE%E5%90%8D/" rel="tag">sdk签名</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-html%E8%BD%ACpdf/" rel="tag">vue-html转pdf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vw-vh/" rel="tag">vw,vh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">前端性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%B0%E5%BC%8F%E6%9C%BA%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/" rel="tag">台式机设置耳机麦克风</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BD%95%E9%9F%B3/" rel="tag">录音</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">搭建gitlab服务器</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Axure/" rel="tag">Axure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitlab/" rel="tag">gitlab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA/" rel="tag">gulp前端自动化构建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sdk%E7%AD%BE%E5%90%8D/" rel="tag">sdk签名</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-html%E8%BD%ACpdf/" rel="tag">vue-html转pdf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vw-vh/" rel="tag">vw,vh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">前端性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%B0%E5%BC%8F%E6%9C%BA%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/" rel="tag">台式机设置耳机麦克风</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BD%95%E9%9F%B3/" rel="tag">录音</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">搭建gitlab服务器</a></li></ul>
     </div>
   </div>
 
@@ -1207,7 +1164,7 @@ function recUpload() {
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Axure/" style="font-size: 10px;">Axure</a> <a href="/tags/gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA/" style="font-size: 10px;">gulp前端自动化构建</a> <a href="/tags/sdk%E7%AD%BE%E5%90%8D/" style="font-size: 10px;">sdk签名</a> <a href="/tags/vue-html%E8%BD%ACpdf/" style="font-size: 10px;">vue-html转pdf</a> <a href="/tags/vw-vh/" style="font-size: 10px;">vw,vh</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">前端性能优化</a> <a href="/tags/%E5%8F%B0%E5%BC%8F%E6%9C%BA%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/" style="font-size: 10px;">台式机设置耳机麦克风</a> <a href="/tags/%E5%BD%95%E9%9F%B3/" style="font-size: 20px;">录音</a> <a href="/tags/%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">搭建gitlab服务器</a>
+      <a href="/tags/Axure/" style="font-size: 10px;">Axure</a> <a href="/tags/gitlab/" style="font-size: 10px;">gitlab</a> <a href="/tags/gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA/" style="font-size: 10px;">gulp前端自动化构建</a> <a href="/tags/sdk%E7%AD%BE%E5%90%8D/" style="font-size: 10px;">sdk签名</a> <a href="/tags/vue-html%E8%BD%ACpdf/" style="font-size: 10px;">vue-html转pdf</a> <a href="/tags/vw-vh/" style="font-size: 10px;">vw,vh</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">前端性能优化</a> <a href="/tags/%E5%8F%B0%E5%BC%8F%E6%9C%BA%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/" style="font-size: 10px;">台式机设置耳机麦克风</a> <a href="/tags/%E5%BD%95%E9%9F%B3/" style="font-size: 20px;">录音</a> <a href="/tags/%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">搭建gitlab服务器</a>
     </div>
   </div>
 
@@ -1216,7 +1173,7 @@ function recUpload() {
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
     </div>
   </div>
 
@@ -1229,23 +1186,23 @@ function recUpload() {
       <ul>
         
           <li>
+            <a href="/2020/04/26/vue%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%A6%81%E7%94%A8%E6%89%8B%E6%9C%BA%E7%89%A9%E7%90%86%E8%BF%94%E5%9B%9E%E6%8C%89%E9%94%AE/">vue移动端禁用手机物理返回按键</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/21/vue%E4%B8%AD%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8canvas%E5%8F%8A%E5%B0%8F%E6%96%B9%E6%B3%95/">vue中如何使用canvas及小方法</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/03/gitlab%E6%90%AD%E5%BB%BA%E6%80%BB%E7%BB%93/">gitlab搭建总结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/01/commonJS%E8%A7%84%E8%8C%83/">commonJS规范</a>
+          </li>
+        
+          <li>
             <a href="/2020/03/31/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87js%E8%8E%B7%E5%8F%96%E8%85%BE%E8%AE%AFsdk%E7%AD%BE%E5%90%8D%E4%BF%A1%E6%81%AF/">如何通过js获取腾讯sdk签名信息</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/31/%E5%BD%95%E9%9F%B3%E6%96%87%E4%BB%B6%E5%88%86%E6%AE%B5%E4%B8%8A%E4%BC%A0/">录音文件分段上传</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/30/HZRecroder-js%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">HZRecroder.js的使用方法</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/30/%E8%AE%B0%E5%BD%95%E6%88%B4%E5%B0%94%E5%8F%B0%E5%BC%8F%E6%9C%BA%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/">记录戴尔台式机如何设置耳机麦克风</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/28/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E6%B8%B2%E6%9F%93%E9%A1%B5%E9%9D%A2%E7%9A%84%E8%BF%87%E7%A8%8B/">浏览器从输入url到渲染页面的过程</a>
           </li>
         
       </ul>

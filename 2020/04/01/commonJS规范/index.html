@@ -5,13 +5,17 @@
   
 
   
-  <title>Tag: 搭建gitlab服务器 | 山有木兮木有枝</title>
+  <title>commonJS规范 | 山有木兮木有枝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="山有木兮木有枝">
-<meta property="og:url" content="https://github.com/tags/%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/index.html">
+  <meta name="description" content="commonJS规范 什么是commonjs？？   模块的加载机制被称为commonjs规范，每个js文件就是一个模块，他们内部各自使用的变量名和函数名都互不冲突 var x &#x3D; 5;var addX &#x3D; function (value) {return value + x;} 这就是一个模块，上面代码中，变量x和函数addX，是当前文件example.js私有的，其他文件不可见。如果想在多个文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="commonJS规范">
+<meta property="og:url" content="https://github.com/2020/04/01/commonJS%E8%A7%84%E8%8C%83/index.html">
 <meta property="og:site_name" content="山有木兮木有枝">
+<meta property="og:description" content="commonJS规范 什么是commonjs？？   模块的加载机制被称为commonjs规范，每个js文件就是一个模块，他们内部各自使用的变量名和函数名都互不冲突 var x &#x3D; 5;var addX &#x3D; function (value) {return value + x;} 这就是一个模块，上面代码中，变量x和函数addX，是当前文件example.js私有的，其他文件不可见。如果想在多个文">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-01T09:33:29.000Z">
+<meta property="article:modified_time" content="2020-04-01T09:37:09.076Z">
 <meta property="article:author" content="许柴柴">
 <meta name="twitter:card" content="summary">
   
@@ -62,40 +66,93 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/03/18/%E5%9C%A8Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="archive-article-date">
-  <time datetime="2020-03-18T05:14:48.000Z" itemprop="datePublished">Mar 18</time>
+        <section id="main"><article id="post-commonJS规范" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/01/commonJS%E8%A7%84%E8%8C%83/" class="article-date">
+  <time datetime="2020-04-01T09:33:29.000Z" itemprop="datePublished">2020-04-01</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%B0%8F%E6%96%B9%E6%B3%95/">小方法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/18/%E5%9C%A8Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/">在Ubuntu上搭建gitlab服务器</a>
+    <h1 class="article-title" itemprop="name">
+      commonJS规范
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="commonJS规范"><a href="#commonJS规范" class="headerlink" title="commonJS规范"></a>commonJS规范</h3><ol>
+<li><p>什么是commonjs？？<br>   模块的加载机制被称为commonjs规范，每个js文件就是一个模块，他们内部各自使用的变量名和函数名都互不冲突</p>
+<p><code>var x = 5;</code><br><code>var addX = function (value) {</code><br><code>return value + x;</code><br><code>}</code></p>
+<p>这就是一个模块，上面代码中，变量x和函数addX，是当前文件example.js私有的，其他文件不可见。<br>如果想在多个文件分享变量，必须定义为global对象的属性。</p>
+<p><code>global.warning = true;</code><br>上面代码的warning变量，可以被所有文件读取。当然，这样写法是不推荐的。</p>
+<p>所以。。CommonJS规范规定，每个模块内部，module变量代表当前模块。这个变量是一个对象，它的exports属性（即module.exports）是对外的接口。加载某个模块，其实是加载该模块的module.exports属性。</p>
+</li>
+</ol>
+<pre><code> var x = 5;
+ var addX = function (value) {
+return value + x;
+};
+module.exports.x = x;
+module.exports.addX = addX;</code></pre><p>这是通过module.exports把这个模块里的变量和方法给传递出去<br>     var example = require(‘./example.js’);</p>
+<pre><code>console.log(example.x); 
+console.log(example.addX(1));</code></pre><p>在另一个模块中就可以通过require加载模块，也就是加载模块中同过module.exports传递出来的东西</p>
+<p>commonjs模块的特点如下：<br>      1.所有代码都运行在模块的作用域下，不会污染全局作用域<br>       2.模块可以多次加载，但是只会在第一次加载时运行一次，然后运行结果就被缓存了。想要再次运行，就必须清除缓存<br>      3.模块加载的顺序，按照在代码中出现的顺序</p>
+<p>3.module对象<br>     node中的module构造函数，每个模块都是module的实例</p>
+<pre><code>每个模块内部，都有一个module对象，代表当前模块。它有以下属性。</code></pre><p>module.id 模块的识别符，通常是带有绝对路径的模块文件名。<br>module.filename 模块的文件名，带有绝对路径。<br>module.loaded 返回一个布尔值，表示模块是否已经完成加载。<br>module.parent 返回一个对象，表示调用该模块的模块。<br>module.children 返回一个数组，表示该模块要用到的其他模块。<br>module.exports 表示模块对外输出的值。</p>
+<p>我们可以在一个实例中直接打印这个module对象</p>
+<p>可以同过module。parent这个属性来判断当前这个文件有没有调用其他模块</p>
+<p>在a。js中写<br>    // if (!module.parent){<br>// console.log(“我是爹”)<br>// }else{<br>// console.log(“我是儿子”)<br>// }<br>在b.js中引入之后运行</p>
+<p>4.exports变量<br>为了方便，node将每一个模块提供一个exports变量，指向module.exprots<br>就等于在每个文件的第一行写  var exports = module.exports<br>exports.area = function (r) {<br>  return Math.PI * r * r;<br>};</p>
+<p>不能直接 exports = function(x) {console.log(x)};</p>
+<p>这样写法无效，因为exports不在指向module.exports</p>
+<p>exports和module.exprots的区别<br>1.exports是对module.exports的引用<br>2.外界在require时，真正引入的是module.exports而不是exports</p>
+<p>5.requuire命令，<br>require命令的基本功能是，读入并执行一个JavaScript文件，然后返回该模块的exports对象。如果没有发现指定模块，会报错。</p>
+<p>也可调用自身，在引入是如果是自己封装的模块加./</p>
+<p>6.模块 的加载机制<br>CommonJS模块的加载机制是，输入的是被输出的值的拷贝。也就是说，一旦输出一个值，模块内部的变化就影响不到这个值。</p>
 
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/2020/04/01/commonJS%E8%A7%84%E8%8C%83/" data-id="ck9gmjj5c00009gvqgxaehap1" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/04/03/gitlab%E6%90%AD%E5%BB%BA%E6%80%BB%E7%BB%93/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          gitlab搭建总结
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/03/31/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87js%E8%8E%B7%E5%8F%96%E8%85%BE%E8%AE%AFsdk%E7%AD%BE%E5%90%8D%E4%BF%A1%E6%81%AF/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">如何通过js获取腾讯sdk签名信息</div>
+    </a>
+  
+</nav>
+
+  
+</article>
 
 </section>
         
