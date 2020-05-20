@@ -64,6 +64,275 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-记录vue动态添加路由" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/20/%E8%AE%B0%E5%BD%95vue%E5%8A%A8%E6%80%81%E6%B7%BB%E5%8A%A0%E8%B7%AF%E7%94%B1/" class="article-date">
+  <time datetime="2020-05-20T08:16:34.000Z" itemprop="datePublished">2020-05-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/vue%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/">vue相关知识</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/20/%E8%AE%B0%E5%BD%95vue%E5%8A%A8%E6%80%81%E6%B7%BB%E5%8A%A0%E8%B7%AF%E7%94%B1/">记录vue动态添加路由</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="记录vue动态添加路由"><a href="#记录vue动态添加路由" class="headerlink" title="记录vue动态添加路由"></a>记录vue动态添加路由</h1><p><em>根据权限进行动态的路由添加。</em></p>
+<p>1.首先默认路由为空。router/index.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &#39;vue&#39;</span><br><span class="line">import Router from &#39;vue-router&#39;</span><br><span class="line">import Home from &#39;..&#x2F;components&#x2F;Home&#39;</span><br><span class="line">import Resume from &#39;..&#x2F;components&#x2F;Resume&#39;</span><br><span class="line">import Post_editing from &#39;..&#x2F;components&#x2F;Post_editing&#39;</span><br><span class="line">import Yichuhistory from &#39;..&#x2F;components&#x2F;Yichuhistory&#39;</span><br><span class="line"></span><br><span class="line">Vue.use(Router)</span><br><span class="line"></span><br><span class="line">export default new Router(&#123;</span><br><span class="line">  routes: []</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>2.新建addrouter.js文件 (跟mine.js同级)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">import router from &#39;.&#x2F;router&#39;</span><br><span class="line">&#x2F;&#x2F;引入请求方式和地址</span><br><span class="line">import myhttp from &#39;.&#x2F;http&#39;</span><br><span class="line">import Url from &#39;.&#x2F;Http_url&#39;</span><br><span class="line">var getRouter &#x2F;&#x2F;用来获取后台拿到的路由</span><br><span class="line">var nowRouterlist &#x3D; &#123;</span><br><span class="line">    &#39;求职简历&#39;:&#123; path: &#39;Resume&#39;, name: &#39;Resume&#39;, component: ()&#x3D;&gt;import(&#39;.&#x2F;components&#x2F;Resume&#39;)&#125;,</span><br><span class="line">    &#39;编辑职位&#39;:&#123; path: &#39;Post_editing&#39;, name: &#39;Post_editing&#39;, component: ()&#x3D;&gt;import(&#39;.&#x2F;components&#x2F;Post_editing&#39;) &#125;,</span><br><span class="line">    &#39;移除历史&#39;:&#123; path: &#39;Yichuhistory&#39;, name: &#39;Yichuhistory&#39;, component: ()&#x3D;&gt;import(&#39;.&#x2F;components&#x2F;Yichuhistory&#39;) &#125;,</span><br><span class="line">    &#39;人员面试&#39;:&#123; path: &#39;Mianshihome&#39;, name: &#39;Mianshihome&#39;, component: ()&#x3D;&gt;import(&#39;.&#x2F;components&#x2F;Mianshihome&#39;) &#125;,</span><br><span class="line">    &#39;题库插入&#39;: &#123;</span><br><span class="line">        path: &#39;Bianjitiku&#39;,redirect:&#39;Xuanzetiku&#39;, children: [</span><br><span class="line">          &#123; path: &#39;Xuanzetiku&#39;, name: &#39;Xuanzetiku&#39;, component: () &#x3D;&gt; import(&#39;.&#x2F;components&#x2F;Xuanzetiku&#39;) &#125;,</span><br><span class="line">          &#123; path: &#39;Tikucharu&#39;, name: &#39;Tikucharu&#39;, component: () &#x3D;&gt; import(&#39;.&#x2F;components&#x2F;Tikucharu&#39;) &#125;</span><br><span class="line">        ], component: () &#x3D;&gt; import(&#39;.&#x2F;components&#x2F;Bianjitiku&#39;)</span><br><span class="line">      &#125;,</span><br><span class="line">    &#39;日报管理&#39;:&#123; path: &#39;daily&#39;, name: &#39;daily&#39;, component: ()&#x3D;&gt;import(&#39;.&#x2F;page&#x2F;daily&#39;) &#125;,</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br><span class="line">router.beforeEach((to,from,next)&#x3D;&gt;&#123;</span><br><span class="line">&#x2F;&#x2F;  console.log(getRouter);</span><br><span class="line"> if(!getRouter)&#123;&#x2F;&#x2F;不加这个判断会进入死循环</span><br><span class="line">    if(!getObjArr(&#39;router&#39;))&#123;</span><br><span class="line">        myhttp.ajax_yiban(Url.getMenu,null,&#39;GET&#39;,res&#x3D;&gt;&#123;</span><br><span class="line">            &#x2F;&#x2F; console.log(res);</span><br><span class="line">            if(res.status &#x3D;&#x3D; 200)&#123;</span><br><span class="line">                getRouter &#x3D; res.data;</span><br><span class="line">                saveObjArr(&#39;router&#39;,res.data);&#x2F;&#x2F;存localstorage</span><br><span class="line">                routerGo(to, next);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        getRouter &#x3D; getObjArr(&#39;router&#39;);</span><br><span class="line">        routerGo(to, next);</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line"> &#125;else&#123;</span><br><span class="line">     next();</span><br><span class="line"> &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;添加路由</span><br><span class="line">function routerGo(to, next) &#123;</span><br><span class="line">  router.addRoutes(dispose(getRouter));</span><br><span class="line">  next(&#123;...to,replace:true&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;将要添加的路由处理函数</span><br><span class="line">function dispose(data)&#123;</span><br><span class="line">  let childrenrouterlist &#x3D;[];</span><br><span class="line">  for(let v of data)&#123;</span><br><span class="line">      childrenrouterlist.push(nowRouterlist[v.menu]);</span><br><span class="line">  &#125;</span><br><span class="line"> &#x2F;&#x2F;  console.log(childrenrouterlist);</span><br><span class="line">  return [&#123;path: &#39;&#39;, component: ()&#x3D;&gt;import(&#39;.&#x2F;components&#x2F;Home&#39;),redirect:&#39;Resume&#39;,children:childrenrouterlist&#125;]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function saveObjArr(name, data) &#123; &#x2F;&#x2F;localStorage 存储数组对象的方法</span><br><span class="line">    localStorage.setItem(name, JSON.stringify(data))</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">function getObjArr(name) &#123; &#x2F;&#x2F;localStorage 获取数组对象的方法</span><br><span class="line">    return JSON.parse(window.localStorage.getItem(name));</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3.在mine.js中引入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &#39;vue&#39;</span><br><span class="line">import App from &#39;.&#x2F;App&#39;</span><br><span class="line">import router from &#39;.&#x2F;router&#39;</span><br><span class="line">import &#39;.&#x2F;addrouter&#39; &#x2F;&#x2F;动态添加路由</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><p>在路由跳转页根据权限，动态展示添砖按钮</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;kuang&quot;&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;daohang&quot;&gt;</span><br><span class="line">      &lt;el-menu</span><br><span class="line">        :default-active&#x3D;&quot;$route.path&quot;</span><br><span class="line">        class&#x3D;&quot;el-menu-vertical-demo&quot;</span><br><span class="line">        @open&#x3D;&quot;handleOpen&quot;</span><br><span class="line">        @close&#x3D;&quot;handleClose&quot;</span><br><span class="line">        background-color&#x3D;&quot;#545c64&quot;</span><br><span class="line">        text-color&#x3D;&quot;#fff&quot;</span><br><span class="line">        active-text-color&#x3D;&quot;#ffd04b&quot;</span><br><span class="line">        @select&#x3D;&quot;jihuo&quot;</span><br><span class="line">        :router&#x3D;&quot;true&quot;</span><br><span class="line">      &gt;</span><br><span class="line">        &lt;div style&#x3D;&quot;height: 40px&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">        &lt;el-menu-item v-for&#x3D;&quot;v in talbershowlist&quot; :key&#x3D;&quot;v.title&quot; :index&#x3D;&quot;v.path&quot;&gt;</span><br><span class="line">          &lt;i class&#x3D;&quot;el-icon-menu&quot;&gt;&lt;&#x2F;i&gt;</span><br><span class="line">          &lt;span slot&#x3D;&quot;title&quot;&gt;&#123;&#123;v.title&#125;&#125;&lt;&#x2F;span&gt;</span><br><span class="line">        &lt;&#x2F;el-menu-item&gt;</span><br><span class="line">      &lt;&#x2F;el-menu&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;div class&#x3D;&quot;page&quot;&gt;</span><br><span class="line">      &lt;div style&#x3D;&quot;height: 40px&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">      &lt;router-view &#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &quot;Home&quot;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      inittablist:&#123;</span><br><span class="line">        &#39;求职简历&#39;:&#123;path:&#39;&#x2F;Resume&#39;,title:&#39;求职简历&#39;&#125;,</span><br><span class="line">        &#39;编辑职位&#39;:&#123;path:&#39;&#x2F;Post_editing&#39;,title:&#39;编辑职位&#39;&#125;,</span><br><span class="line">        &#39;移除历史&#39;:&#123;path:&#39;&#x2F;Yichuhistory&#39;,title:&#39;移除历史&#39;&#125;,</span><br><span class="line">        &#39;题库插入&#39;:&#123;path:&#39;&#x2F;Bianjitiku&#x2F;Xuanzetiku&#39;,title:&#39;题库插入&#39;&#125;,</span><br><span class="line">        &#39;人员面试&#39;:&#123;path:&#39;&#x2F;Mianshihome&#39;,title:&#39;人员面试&#39;&#125;,</span><br><span class="line">        &#39;日报管理&#39;:&#123;path:&#39;&#x2F;daily&#39;,title:&#39;日报管理&#39;&#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      talbershowlist:[],</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  created() &#123;</span><br><span class="line">    &#x2F;&#x2F;根据权限展示侧边栏</span><br><span class="line">    this.gettabar();</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  methods: &#123;</span><br><span class="line">    handleOpen(key, keyPath) &#123;</span><br><span class="line">      console.log(key, keyPath);</span><br><span class="line">    &#125;,</span><br><span class="line">    handleClose(key, keyPath) &#123;</span><br><span class="line">      console.log(key, keyPath);</span><br><span class="line">    &#125;,</span><br><span class="line">    jihuo(key, keyPath) &#123;</span><br><span class="line">      console.log(key, keyPath);</span><br><span class="line">    &#125;,</span><br><span class="line">    getObjArr(name) &#123;</span><br><span class="line">      &#x2F;&#x2F;localStorage 获取数组对象的方法</span><br><span class="line">      return JSON.parse(window.localStorage.getItem(name));</span><br><span class="line">    &#125;,</span><br><span class="line">    &#x2F;&#x2F;根据权限动态展示标签</span><br><span class="line">    gettabar()&#123;</span><br><span class="line">      if(this.talbershowlist.length&#x3D;&#x3D;0)&#123;</span><br><span class="line">        let arr &#x3D; [];</span><br><span class="line">        for(let v of this.getObjArr(&#39;router&#39;))&#123;</span><br><span class="line">          arr.push(this.inittablist[v.menu])</span><br><span class="line">        &#125;</span><br><span class="line">        this.talbershowlist &#x3D; arr;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped lang&#x3D;&quot;less&quot;&gt;</span><br><span class="line">.kuang &#123;</span><br><span class="line">  width: 100%;</span><br><span class="line">  min-height: 100vh;</span><br><span class="line">  display: flex;</span><br><span class="line">  flex-direction: row;</span><br><span class="line">&#125;</span><br><span class="line">.daohang &#123;</span><br><span class="line">  width: 200px;</span><br><span class="line">  &#x2F;deep&#x2F; .el-menu &#123;</span><br><span class="line">    min-height: 100vh;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">.page &#123;</span><br><span class="line">  width: 100%;</span><br><span class="line">  height: 100vh;</span><br><span class="line">  overflow: auto;</span><br><span class="line">  box-sizing: border-box;</span><br><span class="line">  &#x2F;&#x2F; padding-right: 20px;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<blockquote>
+<p>参考文献：<a href="https://segmentfault.com/a/1190000015419713" target="_blank" rel="noopener">[Vue 动态路由的实现(后台传递路由，前端拿到并生成侧边栏)]</a></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/2020/05/20/%E8%AE%B0%E5%BD%95vue%E5%8A%A8%E6%80%81%E6%B7%BB%E5%8A%A0%E8%B7%AF%E7%94%B1/" data-id="ckaf361hv0004mwvq8yc4c87f" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue%E5%8A%A8%E6%80%81%E6%B7%BB%E5%8A%A0%E8%B7%AF%E7%94%B1-router-addRouters/" rel="tag">vue动态添加路由 router.addRouters</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-js使用方法总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/08/js%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2020-05-08T04:58:23.000Z" itemprop="datePublished">2020-05-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/js%E6%96%B9%E6%B3%95/">js方法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/08/js%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/">js使用方法总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>注：该文档为日常学习积累，持续更新。取名为菜鸟手册。</p>
+<h2 id="DOM事件中target和currentTarget的区别"><a href="#DOM事件中target和currentTarget的区别" class="headerlink" title="DOM事件中target和currentTarget的区别"></a>DOM事件中target和currentTarget的区别</h2><ul>
+<li><code>target</code>是事件触发的真实元素</li>
+<li><code>currentTarget</code>是事件绑定的元素</li>
+<li>事件处理函数中的<code>this</code>指向是中为<code>currentTarget</code></li>
+<li><code>currentTarget</code>和<code>target</code>，有时候是同一个元素，有时候不是同一个元素 （因为事件冒泡）<ul>
+<li>当事件是子元素触发时，<code>currentTarget</code>为绑定事件的元素，<code>target</code>为子元素</li>
+<li>当事件是元素自身触发时，<code>currentTarget</code>和<code>target</code>为同一个元素。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">   &lt;ul id&#x3D;&quot;box&quot;&gt;</span><br><span class="line">       &lt;Li id&#x3D;&quot;apple&quot;&gt;苹果&lt;&#x2F;Li&gt;</span><br><span class="line">       &lt;li&gt;香蕉&lt;&#x2F;li&gt;</span><br><span class="line">       &lt;li&gt;桃子&lt;&#x2F;li&gt;</span><br><span class="line">   &lt;&#x2F;ul&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;</span><br><span class="line">   var box &#x3D; document.getElementById(&#39;box&#39;);</span><br><span class="line">   var apple &#x3D; document.getElementById(&#39;apple&#39;);</span><br><span class="line"></span><br><span class="line">   &#x2F;&#x2F;直接绑定在目标元素apple上</span><br><span class="line">   apple.onclick &#x3D; function (e)&#123;  </span><br><span class="line">       console.log(e.target);          &#x2F;&#x2F;&lt;li id&#x3D;&quot;apple&quot;&gt;苹果&lt;&#x2F;li&gt;</span><br><span class="line">       console.log(e.currentTarget);    &#x2F;&#x2F;&lt;li id&#x3D;&quot;apple&quot;&gt;苹果&lt;&#x2F;li&gt;</span><br><span class="line">       console.log(this);               &#x2F;&#x2F;&lt;li id&#x3D;&quot;apple&quot;&gt;苹果&lt;&#x2F;li&gt;</span><br><span class="line">       console.log(e.target &#x3D;&#x3D;&#x3D; e.currentTarget);      &#x2F;&#x2F;true</span><br><span class="line">       console.log(e.target &#x3D;&#x3D;&#x3D; this);           &#x2F;&#x2F;true</span><br><span class="line">   &#125; </span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F;绑定在父元素box上（如果点击apple这个li时）</span><br><span class="line">   box.onclick &#x3D; function (e)&#123;</span><br><span class="line">       console.log(e.target);           &#x2F;&#x2F; &lt;li id&#x3D;&quot;apple&quot;&gt;苹果&lt;&#x2F;li&gt;</span><br><span class="line">       console.log(e.currentTarget);       &#x2F;&#x2F;&lt;ul id&#x3D;&quot;box&quot;&gt;...&lt;&#x2F;ul&gt;</span><br><span class="line">       console.log(this);                  &#x2F;&#x2F;&lt;ul id&#x3D;&quot;box&quot;&gt;...&lt;&#x2F;ul&gt;</span><br><span class="line">       console.log(e.currentTarget&#x3D;&#x3D;&#x3D;this);      &#x2F;&#x2F;true</span><br><span class="line">       console.log(e.target &#x3D;&#x3D;&#x3D; e.currentTarget);        &#x2F;&#x2F;false</span><br><span class="line">       console.log(e.target &#x3D;&#x3D;&#x3D; this);           &#x2F;&#x2F;false</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>参考：<a href="https://www.cnblogs.com/guojbing/p/12213332.html" target="_blank" rel="noopener">DOM事件中target和currentTarget的区别</a></p>
+</blockquote>
+<h2 id="javascript的宏任务和微任务"><a href="#javascript的宏任务和微任务" class="headerlink" title="javascript的宏任务和微任务"></a>javascript的宏任务和微任务</h2><p><em>js异步有一个机制，就是遇到宏任务，先执行宏任务，将宏任务放入eventqueue（队列中），然后在执行微任务，将微任务放入eventqueue最骚的是，这两个queue不是一个queue。当你往外拿的时候先从微任务里拿这个回掉函数，然后再从宏任务的queue上拿宏任务的回掉函数。</em></p>
+<p><img src="/2020/05/08/js%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/D:%5Cxyx%5Chexo%5Csource_posts%5Cjs%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93%5C1.jpg" alt="1"></p>
+<p>而宏任务一般是：包括整体代码script，setTimeout，setInterval。</p>
+<p>微任务：Promise，process.nextTick。</p>
+<p>  <strong>根据下题来具体理解一下：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">function funa() &#123;</span><br><span class="line">            setTimeout(function () &#123;</span><br><span class="line">                console.log(&#39;1&#39;)</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">            new Promise(function (resolve) &#123;</span><br><span class="line"></span><br><span class="line">                console.log(&#39;2&#39;);</span><br><span class="line">                resolve()</span><br><span class="line">            &#125;).then(function () &#123;</span><br><span class="line"></span><br><span class="line">                console.log(&#39;3&#39;)</span><br><span class="line"></span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">            console.log(&#39;4&#39;);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        funa();</span><br></pre></td></tr></table></figure>
+
+<p> 因为settimeout是宏任务，虽然先执行的他，但是他被放到了宏任务的eventqueue里面，然后代码继续往下检查看有没有微任务，检测到Promise的then函数把他放入了微任务序列。等到主线进程的所有代码执行结束后。先从微任务queue里拿回掉函数，然后微任务queue空了后再从宏任务的queue拿函数。</p>
+<p>所以正确的执行结果当然是：2，4，3，1。</p>
+<blockquote>
+<p>参考：<a href="https://www.jianshu.com/p/d08e235e17af" target="_blank" rel="noopener">javascript的宏任务和微任务</a></p>
+</blockquote>
+<h2 id="js继承"><a href="#js继承" class="headerlink" title="js继承"></a>js继承</h2><ol>
+<li><p>借用构造函数继承，使用call或apply方法，将父对象的构造函数绑定在子对象上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;js继承</span><br><span class="line">      function Father()&#123;</span><br><span class="line">          this.fatherProp &#x3D; &#39;我是父级的属性&#39;;</span><br><span class="line">          this.showFatherProp &#x3D; function ()&#123;</span><br><span class="line">          console.log(this.fatherProp);</span><br><span class="line">      &#125;</span><br><span class="line">      &#125;;</span><br><span class="line">      </span><br><span class="line">      function Sun()&#123;</span><br><span class="line">          Father.call(this);</span><br><span class="line">          this.sunProp &#x3D; &#39;我是子级的属性&#39;</span><br><span class="line">      &#125;</span><br><span class="line">      Sun.prototype.showSunProp &#x3D; function ()&#123;</span><br><span class="line">          console.log(this.sunProp);</span><br><span class="line">      &#125;</span><br><span class="line">       </span><br><span class="line">       console.log(new Sun);</span><br><span class="line">       let objSun &#x3D; new Sun;</span><br><span class="line">       objSun.showFatherProp();</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="2">
+<li>原型继承，将子对象的prototype指向父对象的一个实例</li>
+</ol>
+<p>​    </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;js继承</span><br><span class="line">    function Father()&#123;</span><br><span class="line">        this.fatherProp &#x3D; &#39;我是父级的属性&#39;;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    Father.prototype.showFatherProp &#x3D; function ()&#123;</span><br><span class="line">       console.log(this.fatherProp);</span><br><span class="line">     &#125;</span><br><span class="line">    </span><br><span class="line">    function Sun()&#123;</span><br><span class="line">        this.sunProp &#x3D; &#39;我是子级的属性&#39;</span><br><span class="line">    &#125;</span><br><span class="line">    Sun.prototype&#x3D; new Father;</span><br><span class="line"></span><br><span class="line">    Sun.prototype.showSunProp &#x3D; function ()&#123;</span><br><span class="line">        console.log(this.sunProp);</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">     console.log(new Sun);</span><br><span class="line">     let objSun &#x3D; new Sun;</span><br><span class="line">     objSun.showFatherProp();</span><br></pre></td></tr></table></figure>
+
+
+
+<p>3.组合继承</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;js继承</span><br><span class="line">    function Father()&#123;</span><br><span class="line">        this.fatherProp &#x3D; &#39;我是父级的属性&#39;;</span><br><span class="line">        this.showFatherProp &#x3D; function ()&#123;</span><br><span class="line">        console.log(this.fatherProp);</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    Father.prototype.zuhe &#x3D; function ()&#123;</span><br><span class="line">        console.log(&#39;组合继承&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    function Sun()&#123;</span><br><span class="line">        Father.call(this);</span><br><span class="line">        this.sunProp &#x3D; &#39;我是子级的属性&#39;</span><br><span class="line">    &#125;</span><br><span class="line">    Sun.prototype&#x3D; new Father;</span><br><span class="line"></span><br><span class="line">    Sun.prototype.showSunProp &#x3D; function ()&#123;</span><br><span class="line">        console.log(this.sunProp);</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">     console.log(new Sun);</span><br><span class="line">     let objSun &#x3D; new Sun;</span><br><span class="line">     objSun.zuhe();</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>参考：<a href="https://www.bilibili.com/video/BV1Tc411h7k5?from=search&seid=17393899360482070174" target="_blank" rel="noopener">JavaScript继承的多种方法</a></p>
+<p><a href="https://www.bilibili.com/video/BV1jJ411n7SU?from=search&seid=17393899360482070174" target="_blank" rel="noopener">JS高级_原型链继承</a></p>
+</blockquote>
+<h2 id="Object-assign-方法"><a href="#Object-assign-方法" class="headerlink" title="Object.assign()方法"></a>Object.assign()方法</h2><p><code>**Object.assign()**</code> 方法用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const target &#x3D; &#123; a: 1, b: 2 &#125;;</span><br><span class="line">const source &#x3D; &#123; b: 4, c: 5 &#125;;</span><br><span class="line"></span><br><span class="line">const returnedTarget &#x3D; Object.assign(target, source);</span><br><span class="line"></span><br><span class="line">console.log(target);&#x2F;&#x2F;目标对象</span><br><span class="line">&#x2F;&#x2F; expected output: Object &#123; a: 1, b: 4, c: 5 &#125;</span><br><span class="line"></span><br><span class="line">console.log(returnedTarget);&#x2F;&#x2F;返回的目标对象</span><br><span class="line">&#x2F;&#x2F; expected output: Object &#123; a: 1, b: 4, c: 5 &#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/2020/05/08/js%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/" data-id="ckaf361hh0000mwvq39mzg430" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js%E9%9B%B6%E7%A2%8E%E6%96%B9%E6%B3%95/" rel="tag">js零碎方法</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-css样式方法总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/08/css%E6%A0%B7%E5%BC%8F%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2020-05-08T02:44:20.000Z" itemprop="datePublished">2020-05-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/08/css%E6%A0%B7%E5%BC%8F%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/">css样式方法总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/2020/05/08/css%E6%A0%B7%E5%BC%8F%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/" data-id="ckaf361hw0005mwvq7jfahf82" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-vueQuillEditor富文本编辑器的使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/07/vueQuillEditor%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time datetime="2020-05-07T07:25:51.000Z" itemprop="datePublished">2020-05-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%B0%8F%E6%96%B9%E6%B3%95/">小方法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/07/vueQuillEditor%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/">vueQuillEditor富文本编辑器的使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="vueQuillEditor富文本编辑器的使用"><a href="#vueQuillEditor富文本编辑器的使用" class="headerlink" title="vueQuillEditor富文本编辑器的使用"></a>vueQuillEditor富文本编辑器的使用</h5><blockquote>
+<p><a href="[https://github.com/surmon-china/vue-quill-editor](https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2Fsurmon-china%2Fvue-quill-editor)"><strong>vue-quill-editor</strong> github地址</a></p>
+<p><a href="https://github.com/surmon-china/vue-quill-editor">官方文档地址</a></p>
+</blockquote>
+<h4 id="vue项目中，npm安装依赖"><a href="#vue项目中，npm安装依赖" class="headerlink" title="vue项目中，npm安装依赖"></a>vue项目中，npm安装依赖</h4><p><code>npm install vue-quill-editor --save</code></p>
+<h4 id="两种引用方法，全局引用和局部引用"><a href="#两种引用方法，全局引用和局部引用" class="headerlink" title="两种引用方法，全局引用和局部引用"></a>两种引用方法，全局引用和局部引用</h4><ul>
+<li>全局引用，项目入口文件中（main.js）注册</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> VueQuillEditor <span class="keyword">from</span> <span class="string">'vue-quill-editor'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// require styles</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'quill/dist/quill.core.css'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'quill/dist/quill.snow.css'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'quill/dist/quill.bubble.css'</span></span><br><span class="line"></span><br><span class="line">Vue.use(VueQuillEditor)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>局部引用，在需调用的vue页面中声明</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'quill/dist/quill.core.css'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'quill/dist/quill.snow.css'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'quill/dist/quill.bubble.css'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; quillEditor &#125; <span class="keyword">from</span> <span class="string">'vue-quill-editor'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  components: &#123;</span><br><span class="line">    quillEditor</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>完成上述步骤之后即可使用</p>
+<h4 id="下面是我自己使用示例代码"><a href="#下面是我自己使用示例代码" class="headerlink" title="下面是我自己使用示例代码"></a>下面是我自己使用示例代码</h4><p>在mine.js中引入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 引入富文本编辑器、</span><br><span class="line">import VueQuillEditor from &#39;vue-quill-editor&#39;</span><br><span class="line"></span><br><span class="line">import &#39;quill&#x2F;dist&#x2F;quill.core.css&#39; &#x2F;&#x2F; import styles</span><br><span class="line">import &#39;quill&#x2F;dist&#x2F;quill.snow.css&#39; &#x2F;&#x2F; for snow theme</span><br><span class="line">import &#39;quill&#x2F;dist&#x2F;quill.bubble.css&#39; &#x2F;&#x2F; for bubble theme</span><br><span class="line"></span><br><span class="line">Vue.use(VueQuillEditor, &#x2F;* &#123; default global options &#125; *&#x2F;)</span><br></pre></td></tr></table></figure>
+
+<p>在组件中使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;hello&quot;&gt;</span><br><span class="line">    &lt;!-- Two-way Data-Binding --&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;hai&quot;&gt;</span><br><span class="line">      &lt;quill-editor</span><br><span class="line">        ref&#x3D;&quot;myQuillEditor&quot;</span><br><span class="line">        style&#x3D;&quot;height:300px;display: flex;</span><br><span class="line">    flex-direction: column;&quot;</span><br><span class="line">        v-model&#x3D;&quot;content&quot;</span><br><span class="line">        :options&#x3D;&quot;editorOption&quot;</span><br><span class="line">        @blur&#x3D;&quot;onEditorBlur($event)&quot;</span><br><span class="line">        @focus&#x3D;&quot;onEditorFocus($event)&quot;</span><br><span class="line">        @ready&#x3D;&quot;onEditorReady($event)&quot;</span><br><span class="line">      &#x2F;&gt;</span><br><span class="line">       &lt;button @click&#x3D;&quot;chakan&quot;&gt;查看&lt;&#x2F;button&gt;</span><br><span class="line">      &lt;!-- Or manually control the data synchronization --&gt;</span><br><span class="line">      &lt;!-- &lt;quill-editor</span><br><span class="line">      :content&#x3D;&quot;content02&quot;</span><br><span class="line">      :options&#x3D;&quot;editorOption&quot;</span><br><span class="line">       @change&#x3D;&quot;onEditorChange($event)&quot;</span><br><span class="line">      &#x2F;&gt;--&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">&#x2F;&#x2F; You can also register Quill modules in the component</span><br><span class="line">&#x2F;&#x2F; import Quill from &#39;quill&#39;</span><br><span class="line">&#x2F;&#x2F; import someModule from &#39;..&#x2F;yourModulePath&#x2F;someQuillModule.js&#39;</span><br><span class="line">&#x2F;&#x2F; Quill.register(&#39;modules&#x2F;someModule&#39;, someModule)</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &quot;HelloWorld&quot;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      content: &quot;&lt;h2&gt;请编辑&lt;&#x2F;h2&gt;&quot;,</span><br><span class="line">      content02: &quot;&quot;,</span><br><span class="line">      editorOption: &#123;</span><br><span class="line">        &#x2F;&#x2F; Some Quill options...</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    onEditorBlur(quill) &#123;</span><br><span class="line">      console.log(&quot;editor blur!&quot;, quill);</span><br><span class="line">    &#125;,</span><br><span class="line">    onEditorFocus(quill) &#123;</span><br><span class="line">      console.log(&quot;editor focus!&quot;, quill);</span><br><span class="line">    &#125;,</span><br><span class="line">    onEditorReady(quill) &#123;</span><br><span class="line">      console.log(&quot;editor ready!&quot;, quill);</span><br><span class="line">    &#125;,</span><br><span class="line">    onEditorChange(&#123; quill, html, text &#125;) &#123;</span><br><span class="line">      console.log(&quot;editor change!&quot;, quill, html, text);</span><br><span class="line">      this.content &#x3D; html;</span><br><span class="line">    &#125;,</span><br><span class="line">    chakan() &#123;</span><br><span class="line">      console.log(this.content);</span><br><span class="line">      this.content02 &#x3D; this.content;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    editor() &#123;</span><br><span class="line">      return this.$refs.myQuillEditor.quill;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted() &#123;</span><br><span class="line">    console.log(&quot;this is current quill instance object&quot;, this.editor);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- Add &quot;scoped&quot; attribute to limit CSS to this component only --&gt;</span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">.hai &#123;</span><br><span class="line">  width: 50%;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+<p><em>在使用布局时发现问题，宽确实是可以根据父级自适应，但是高有点小问题。如下图</em></p>
+<p><img src="/2020/05/07/vueQuillEditor%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/D:%5Cxyx%5Chexo%5Csource_posts%5CvueQuillEditor%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8%5C1.png" alt></p>
+<p><em>根据打印台盒模型分析分析为，设置的高度为300px为整体高度。但是编辑区的高度为100%，未计算按钮区的高度，所以会被称下来，才导致了重叠。</em></p>
+<p><strong>解决方法:</strong>找到按钮区和编辑区公用的父级标签，设置弹性盒子属性，更改子元素排列方向。并设置编辑区自动铺满。</p>
+<p><img src="/2020/05/07/vueQuillEditor%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/D:%5Cxyx%5Chexo%5Csource_posts%5CvueQuillEditor%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8%5C2.jpg" alt="2"></p>
+<p><em>效果图：</em></p>
+<p><em><img src="/2020/05/07/vueQuillEditor%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/D:%5Cxyx%5Chexo%5Csource_posts%5CvueQuillEditor%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8%5C3.jpg" alt="3"></em></p>
+<blockquote>
+<p>参考网址：<a href="https://www.jianshu.com/p/a6cba69d6e49" target="_blank" rel="noopener">vue-quill-editor富文本编辑器使用</a></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/2020/05/07/vueQuillEditor%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="ckaf361hn0001mwvqe62cdid3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue-vuequilldeitor-%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8/" rel="tag">vue vuequilldeitor 富文本编辑器</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-vue移动端禁用手机物理返回按键" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/04/26/vue%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%A6%81%E7%94%A8%E6%89%8B%E6%9C%BA%E7%89%A9%E7%90%86%E8%BF%94%E5%9B%9E%E6%8C%89%E9%94%AE/" class="article-date">
@@ -686,449 +955,6 @@ var TransferUpload = function (number, blobOrNull, duration, blobRec, isClose) {
 
 
   
-    <article id="post-HZRecroder-js的使用方法" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/30/HZRecroder-js%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" class="article-date">
-  <time datetime="2020-03-30T09:52:11.000Z" itemprop="datePublished">2020-03-30</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%B0%8F%E6%96%B9%E6%B3%95/">小方法</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/30/HZRecroder-js%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">HZRecroder.js的使用方法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="HZRecroder-js的使用方法"><a href="#HZRecroder-js的使用方法" class="headerlink" title="HZRecroder.js的使用方法"></a>HZRecroder.js的使用方法</h3><p><em>继上一节成功的在台式机上挂载上耳机上自带的麦克风后，我终于是可以在公司这个台式机上尝试着使用麦克风录音了。</em></p>
-<p>使用HZRecroder.js插件。</p>
-<blockquote>
-<p><a href="https://github.com/xiangyuecn/Recorder">官方网址</a></p>
-</blockquote>
-<p> <img src="/2020/03/30/HZRecroder-js%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/1.jpg" alt></p>
-<blockquote>
-<p>我参考的是<a href="https://xiangyuecn.github.io/Recorder/QuickStart.html" target="_blank" rel="noopener">示例页面</a>的源文件。</p>
-</blockquote>
-<p>下面开始整个过程的讲解吧。</p>
-<h5 id="1-引入这个插件到自己的项目"><a href="#1-引入这个插件到自己的项目" class="headerlink" title="1. 引入这个插件到自己的项目"></a>1. 引入这个插件到自己的项目</h5><p> 必须引入的录音核心<br><code>&lt;script src=&quot;src/recorder-core.js&quot;&gt;&lt;/script&gt;</code><br>相应格式支持文件；如果需要多个格式支持，把这些格式的编码引擎js文件放到后面统统加载进来即可<br><code>&lt;script src=&quot;src/engine/mp3.js&quot;&gt;&lt;/script&gt;</code><br>如果此格式有额外的编码引擎的话，也要加上<br><code>&lt;script src=&quot;src/engine/mp3-engine.js&quot;&gt;&lt;/script&gt;</code> </p>
-<p>示例：<br><img src="/2020/03/30/HZRecroder-js%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/2.jpg" alt></p>
-<p>什么是波形效果呢？就是这个：</p>
-<p><img src="/2020/03/30/HZRecroder-js%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/3.jpg" alt></p>
-<h5 id="2-使用方法"><a href="#2-使用方法" class="headerlink" title="2. 使用方法"></a>2. 使用方法</h5><ol>
-<li><p>获取录音权限</p>
-<pre><code>var rec, wave, recBlob;
-/**调用open打开录音请求好录音权限**/
-var recOpen = function () {//一般在显示出录音按钮或相关的录音界面时进行此方法调用，后面用户点击开始录音时就能畅通无阻了
-    //实例对象
-    rec = null;
-    //效果图的方法
-    wave = null;
-    //储存生成的文件信息
-    recBlob = null;
-    var newRec = Recorder({
-        type: &quot;mp3&quot;, sampleRate: 16000, bitRate: 16 //mp3格式，指定采样率hz、比特率kbps，其他参数使用默认配置；注意：是数字的参数必须提供数字，不要用字符串；需要使用的type类型，需提前把格式支持文件加载进来，比如使用wav格式需要提前加载wav.js编码引擎
-        , onProcess: function (buffers, powerLevel, bufferDuration, bufferSampleRate, newBufferIdx, asyncEnd) {
-            // console.log(buffers);
-            //录音实时回调，大约1秒调用12次本回调
-            document.querySelector(&quot;.recpowerx&quot;).style.width = powerLevel + &quot;%&quot;;
-            document.querySelector(&quot;.recpowert&quot;).innerText = bufferDuration + &quot; / &quot; + powerLevel;
-
-            //可视化图形绘制
-            wave.input(buffers[buffers.length - 1], powerLevel, bufferSampleRate);
-        }
-    });
-
-    // createDelayDialog(); //我们可以选择性的弹一个对话框：为了防止移动端浏览器存在第三种情况：用户忽略，并且（或者国产系统UC系）浏览器没有任何回调，此处demo省略了弹窗的代码
-    newRec.open(function () {//打开麦克风授权获得相关资源
-
-        // dialogCancel(); //如果开启了弹框，此处需要取消
-        console.log(&apos;打开麦克风成功&apos;)
-        rec = newRec;
-
-        //此处创建这些音频可视化图形绘制浏览器支持妥妥的
-        wave = Recorder.WaveView({ elem: &quot;.recwave&quot; });
-
-        //reclog(&quot;已打开录音，可以点击录制开始录音了&quot;, 2);
-    }, function (msg, isUserNotAllow) {//用户拒绝未授权或不支持
-        //dialogCancel(); //如果开启了弹框，此处需要取消
-        //reclog((isUserNotAllow ? &quot;UserNotAllow，&quot; : &quot;&quot;) + &quot;打开录音失败：&quot; + msg, 1);
-        console.log(&apos;打开麦克风失败&apos;, msg, isUserNotAllow);
-    });
-
-    window.waitDialogClick = function () {
-        console.log(&apos;window.waitDialogClick&apos;);
-        //dialogCancel();
-        //reclog(&quot;打开失败：权限请求被忽略，&lt;span style=&apos;color:#f00&apos;&gt;用户主动点击的弹窗&lt;/span&gt;&quot;, 1);
-    };
-};</code></pre><ol start="2">
-<li><p>放弃录音功能</p>
-<p>  /<strong>关闭录音，释放资源</strong>/<br> function recClose() {</p>
-<pre><code>if (rec) {
-    rec.close();
-    console.log(&quot;已关闭&quot;);
-} else {
-    console.log(&quot;未打开录音&quot;, 1);
-};</code></pre><p> };</p>
-</li>
-</ol>
-</li>
-</ol>
-<ol start="3">
-<li><p>开始录音</p>
-<pre><code> /**开始录音**/
-  function recStart() {//打开了录音后才能进行start、stop调用
-    // &amp;&amp; Recorder.IsOpen()
-    if (rec) {
-        recBlob = null;
-        rec.start();
-        console.log(&quot;已开始录音...&quot;);
-    } else {
-        console.log(&quot;未打开录音&quot;, 1);
-    };
-};</code></pre></li>
-<li><p>结束录音</p>
-<pre><code>/**结束录音，得到音频文件**/
-function recStop() {
-    //  &amp;&amp; Recorder.IsOpen()
-    if (!(rec)) {
-        console.log(&quot;未打开录音&quot;, 1);
-        return;
-    };
-    rec.stop(function (blob, duration) {
-        console.log(blob, (window.URL || webkitURL).createObjectURL(blob), &quot;时长:&quot; + duration + &quot;ms&quot;);
-
-        recBlob = blob;
-        console.log(&quot;已录制mp3：&quot; + duration + &quot;ms &quot; + blob.size + &quot;字节，可以点击播放、上传了&quot;, 2);
-    }, function (msg) {
-        console.log(&quot;录音失败:&quot; + msg, 1);
-    });
-};</code></pre></li>
-<li><pre><code>/**暂停录音**/
- function recPause() {
-     if (rec &amp;&amp; Recorder.IsOpen()) {
-         rec.pause();
-     } else {
-         console.log(&quot;未打开录音&quot;, 1);
-     };
- };
-
- /**恢复录音**/
- function recResume() {
-     if (rec &amp;&amp; Recorder.IsOpen()) {
-         rec.resume();
-     } else {
-         console.log(&quot;未打开录音&quot;, 1);
-     };
- };</code></pre></li>
-<li><p>播放刚才录制的音频</p>
-<pre><code>/**播放**/
-function recPlay() {
-    if (!recBlob) {
-        console.log(&quot;请先录音，然后停止后再播放&quot;, 1);
-        return;
-    };
-    var cls = (&quot;a&quot; + Math.random()).replace(&quot;.&quot;, &quot;&quot;);
-    reclog(&apos;播放中: &lt;span class=&quot;&apos; + cls + &apos;&quot;&gt;&lt;/span&gt;&apos;);
-    var audio = document.createElement(&quot;audio&quot;);
-    audio.controls = true;
-    document.querySelector(&quot;.&quot; + cls).appendChild(audio);
-    //简单利用URL生成播放地址，注意不用了时需要revokeObjectURL，否则霸占内存
-    audio.src = (window.URL || webkitURL).createObjectURL(recBlob);
-    audio.play();
-
-    setTimeout(function () {
-        (window.URL || webkitURL).revokeObjectURL(audio.src);
-    }, 5000);
-};</code></pre></li>
-</ol>
-<blockquote>
-<p><a href="https://www.jianshu.com/p/8ac5bcc2ef4f" target="_blank" rel="noopener">window.URL.createObjectURL</a></p>
-</blockquote>
-<ol start="7">
-<li><p>上传录音</p>
-<pre><code>  /**上传**/
-function recUpload() {
-    var blob = recBlob;
-    if (!blob) {
-        reclog(&quot;请先录音，然后停止后再上传&quot;, 1);
-        return;
-    };
-
-    //本例子假设使用原始XMLHttpRequest请求方式，实际使用中自行调整为自己的请求方式
-    //录音结束时拿到了blob文件对象，可以用FileReader读取出内容，或者用FormData上传
-    var api = &quot;https://xx.xx/test_request&quot;;
-    var onreadystatechange = function (title) {
-        return function () {
-            if (xhr.readyState == 4) {
-                if (xhr.status == 200) {
-                    reclog(title + &quot;上传成功&quot;, 2);
-                } else {
-                    reclog(title + &quot;没有完成上传，演示上传地址无需关注上传结果，只要浏览器控制台内Network面板内看到的请求数据结构是预期的就ok了。&quot;, &quot;#d8c1a0&quot;);
-
-                    console.error(title + &quot;上传失败&quot;, xhr.status, xhr.responseText);
-                };
-            };
-        };
-    };
-    reclog(&quot;开始上传到&quot; + api + &quot;，请求稍后...&quot;);
-
-    /***方式一：将blob文件转成base64纯文本编码，使用普通application/x-www-form-urlencoded表单上传***/
-    var reader = new FileReader();
-    reader.onloadend = function () {
-        var postData = &quot;&quot;;
-        postData += &quot;mime=&quot; + encodeURIComponent(blob.type);//告诉后端，这个录音是什么格式的，可能前后端都固定的mp3可以不用写
-        postData += &quot;&amp;upfile_b64=&quot; + encodeURIComponent((/.+;\s*base64\s*,\s*(.+)$/i.exec(reader.result) || [])[1]) //录音文件内容，后端进行base64解码成二进制
-        //...其他表单参数
-
-        var xhr = new XMLHttpRequest();
-        xhr.open(&quot;POST&quot;, api);
-        xhr.setRequestHeader(&quot;Content-Type&quot;, &quot;application/x-www-form-urlencoded&quot;);
-        xhr.onreadystatechange = onreadystatechange(&quot;上传方式一【Base64】&quot;);
-        xhr.send(postData);
-    };
-    reader.readAsDataURL(blob);
-
-    /***方式二：使用FormData用multipart/form-data表单上传文件***/
-    var form = new FormData();
-    form.append(&quot;upfile&quot;, blob, &quot;recorder.mp3&quot;); //和普通form表单并无二致，后端接收到upfile参数的文件，文件名为recorder.mp3
-    //...其他表单参数
-
-    var xhr = new XMLHttpRequest();
-    xhr.open(&quot;POST&quot;, api);
-    xhr.onreadystatechange = onreadystatechange(&quot;上传方式二【FormData】&quot;);
-    xhr.send(form);
-};</code></pre></li>
-</ol>
-<blockquote>
-<p>想继续看的可转至下一章<a href>录音文件分段上传</a></p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://github.com/2020/03/30/HZRecroder-js%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" data-id="ck8edaaw20000u8vqe0ad7it8" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BD%95%E9%9F%B3/" rel="tag">录音</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-记录戴尔台式机如何设置耳机麦克风" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/30/%E8%AE%B0%E5%BD%95%E6%88%B4%E5%B0%94%E5%8F%B0%E5%BC%8F%E6%9C%BA%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/" class="article-date">
-  <time datetime="2020-03-30T05:46:27.000Z" itemprop="datePublished">2020-03-30</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%B0%8F%E6%96%B9%E6%B3%95/">小方法</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/30/%E8%AE%B0%E5%BD%95%E6%88%B4%E5%B0%94%E5%8F%B0%E5%BC%8F%E6%9C%BA%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/">记录戴尔台式机如何设置耳机麦克风</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="记录戴尔台式机如何设置耳机麦克风"><a href="#记录戴尔台式机如何设置耳机麦克风" class="headerlink" title="记录戴尔台式机如何设置耳机麦克风"></a>记录戴尔台式机如何设置耳机麦克风</h3><p><em>因公司现要开发语音面试系统，随意需要运动到麦克风设备，但是台式机没有麦克风，插上带有麦克风的耳机后电脑系统并没有自己检测到，遂通过篇文档记录下，设置耳机麦克风的过程。</em></p>
-<ol>
-<li><p>首先通过控制面板。</p>
-<p><em>网上的百度教程也都是先让你打开控制面板，然后找一个什么，‘realtek高清晰音频管理器’，但是我查看了多台电脑，都没有发现这个功能选项。</em></p>
-<p><img src="/2020/03/30/%E8%AE%B0%E5%BD%95%E6%88%B4%E5%B0%94%E5%8F%B0%E5%BC%8F%E6%9C%BA%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/1.jpg" alt></p>
-<p>继续为什么没有 ‘realtek高清晰音频管理器’ 的原因。</p>
-<blockquote>
-<p>参考文献：<a href="https://www.44jj.com/youxishuma/diannao/100680.html" target="_blank" rel="noopener">Win10系统插入耳机麦克风不显示设备的解决方法</a><br><a href="https://zhidao.baidu.com/question/1308613443357726259.html" target="_blank" rel="noopener">win10怎么设置耳机上的麦克风？</a></p>
-</blockquote>
-<ol start="2">
-<li>驱动问题</li>
-</ol>
-<p><em>百度文献上说，是音频驱动的问题，加上这台电脑的显卡驱动确实是有问题，我就半信半疑的下载了驱动精灵来检查一下。发现音频驱动没有问题，但是显卡驱动确实有问题，我想会不会是显卡驱动影响的，升级了一下，发现不是。</em></p>
-</li>
-</ol>
-<p><img src="/2020/03/30/%E8%AE%B0%E5%BD%95%E6%88%B4%E5%B0%94%E5%8F%B0%E5%BC%8F%E6%9C%BA%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/2.png" alt></p>
-<blockquote>
-<p>参考文献：<a href="https://jingyan.baidu.com/article/a501d80c1418a2ec630f5e09.html" target="_blank" rel="noopener">恢复Win10系统Realtek高清晰音频管理器的方法</a><br><a href="https://zhidao.baidu.com/question/2016457653241356108.html" target="_blank" rel="noopener">声卡驱动更新后,在控制面板里找不到realtek高清晰音频管理器,怎么办?</a><br><a href="https://jingyan.baidu.com/article/a65957f441d67764e67f9be7.html" target="_blank" rel="noopener">WIN10系统Realtek高清晰音频管理器找不到怎么办</a></p>
-</blockquote>
-<ol start="3">
-<li>打开方式不对。</li>
-</ol>
-<p><em>上述参考文献中有从文件中更新驱动得方法。</em><br>路径：顺序点击c盘program   files–realtek–audio–hda–RtlUpd64.exe</p>
-<p><img src="/2020/03/30/%E8%AE%B0%E5%BD%95%E6%88%B4%E5%B0%94%E5%8F%B0%E5%BC%8F%E6%9C%BA%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/3.jpg" alt></p>
-<p>本人亲测，点击后没有任何反应，不知道是不是我的电脑问题。</p>
-<p><img src="/2020/03/30/%E8%AE%B0%E5%BD%95%E6%88%B4%E5%B0%94%E5%8F%B0%E5%BC%8F%E6%9C%BA%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/4.png" alt></p>
-<p>但是在我的电脑上有这样一个红色的喇叭应用程序，我开后发现，这不就是高级音频控制的面板吗。<br>如图：</p>
-<p><img src="/2020/03/30/%E8%AE%B0%E5%BD%95%E6%88%B4%E5%B0%94%E5%8F%B0%E5%BC%8F%E6%9C%BA%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/5.png" alt></p>
-<p>找到这个插孔信息，前面板。点击：</p>
-<p> <img src="/2020/03/30/%E8%AE%B0%E5%BD%95%E6%88%B4%E5%B0%94%E5%8F%B0%E5%BC%8F%E6%9C%BA%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/6.jpg" alt></p>
-<p> 选择插入了耳机带麦克风。点击确定，即可。然后你就可以在控制面板的声音选项卡中检测你的麦克风了。</p>
-<p>  <img src="/2020/03/30/%E8%AE%B0%E5%BD%95%E6%88%B4%E5%B0%94%E5%8F%B0%E5%BC%8F%E6%9C%BA%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/7.jpg" alt></p>
-<blockquote>
-<p><a href="https://xiangyuecn.github.io/Recorder/" target="_blank" rel="noopener">附上一个网页检测麦克风的链接</a></p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://github.com/2020/03/30/%E8%AE%B0%E5%BD%95%E6%88%B4%E5%B0%94%E5%8F%B0%E5%BC%8F%E6%9C%BA%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/" data-id="ck8edaawc0003u8vq3ltu78i8" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8F%B0%E5%BC%8F%E6%9C%BA%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/" rel="tag">台式机设置耳机麦克风</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-浏览器从输入url到渲染页面的过程" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/28/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E6%B8%B2%E6%9F%93%E9%A1%B5%E9%9D%A2%E7%9A%84%E8%BF%87%E7%A8%8B/" class="article-date">
-  <time datetime="2020-03-28T05:48:35.000Z" itemprop="datePublished">2020-03-28</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%B0%8F%E6%96%B9%E6%B3%95/">小方法</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/28/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E6%B8%B2%E6%9F%93%E9%A1%B5%E9%9D%A2%E7%9A%84%E8%BF%87%E7%A8%8B/">浏览器从输入url到渲染页面的过程</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="浏览器从输入url到渲染页面的过程"><a href="#浏览器从输入url到渲染页面的过程" class="headerlink" title="浏览器从输入url到渲染页面的过程"></a>浏览器从输入url到渲染页面的过程</h3><p><strong>从输入URL到渲染出整个页面的过程包括三个部分：</strong></p>
-<p>1、DNS解析URL的过程</p>
-<p>2、浏览器发送请求与服务器交互的过程</p>
-<p>3、浏览器对接收到的html页面渲染的过程</p>
-<h5 id="一、DNS解析URL的过程"><a href="#一、DNS解析URL的过程" class="headerlink" title="一、DNS解析URL的过程"></a>一、DNS解析URL的过程</h5><p>  DNS解析的过程就是寻找哪个服务器上有请求的资源。因为ip地址不容易记忆，一般会使用URL域名（如<a href="http://www.baidu.com）作为网址。DNS解析就是将域名翻译成IP地址的过程。" target="_blank" rel="noopener">www.baidu.com）作为网址。DNS解析就是将域名翻译成IP地址的过程。</a></p>
-<p>具体过程：</p>
-<p>1）浏览器缓存：浏览器会按照一定的频率 缓存DNS记录</p>
-<p> 　　2）操作系统缓存：如果浏览器缓存中找不到需要的DNS记录，就会取操作系统中找</p>
-<p>　　 3）路由缓存：路由器也有DNS缓存</p>
-<p>　　 4）ISP的DNS服务器：ISP有专门的DNS服务器应对DNS查询请求</p>
-<p>　　 5）根服务器：ISP的DNS服务器找不到之后，就要向根服务器发出请求，进行递归查询</p>
-<h5 id="二、浏览器与服务器交互过程"><a href="#二、浏览器与服务器交互过程" class="headerlink" title="二、浏览器与服务器交互过程"></a>二、浏览器与服务器交互过程</h5><p>1）首先浏览器利用tcp协议通过三次握手与服务器建立连接</p>
-<p>　　http请求包括header和body。header中包括请求的方式（get和post）、请求的协议 （http、https、ftp）、请求的地址ip、缓存cookie。body中有请求的内容。</p>
-<p>　　2）浏览器根据解析到的IP地址和端口号发起http的get请求.</p>
-<p>　　3）服务器接收到http请求之后，开始搜索html页面，并使用http返回响应报文</p>
-<p>　　4）若状态码为200显示响应成功，浏览器接收到返回的html页面之后，开始进行页面的渲染</p>
-<h5 id="三、浏览器页面渲染过程"><a href="#三、浏览器页面渲染过程" class="headerlink" title="三、浏览器页面渲染过程"></a>三、浏览器页面渲染过程</h5><p>　1）浏览器根据深度遍历的方式把html节点遍历成dom 树</p>
-<p>　　2）将css解析成CSS DOM树</p>
-<p>　　3）将dom树和CSS DOM树构造成render树</p>
-<p>　　4）JS根据得到的render树 计算所有节点在屏幕中的位置，进行布局（回流）</p>
-<p>　　5）遍历render树并调用硬件API绘制所有节点（重绘）</p>
-<pre><code>补充： 构造render渲染树的过程</code></pre><p><img src="/2020/03/28/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E6%B8%B2%E6%9F%93%E9%A1%B5%E9%9D%A2%E7%9A%84%E8%BF%87%E7%A8%8B/1.jpg" alt></p>
-<ol>
-<li>从DOM树的根节点开始遍历每个可见的节点。</li>
-<li>对于每个可见的节点，找到CSS树中的对应的规则，并且应用他们。</li>
-<li>根据每个可见的节点及其对应的样式，组合生成渲染树。</li>
-</ol>
-<blockquote>
-<p>参考文章：<a href="https://www.jianshu.com/p/b00db2754cdf" target="_blank" rel="noopener">浏览器的工作原理</a><br><a href="https://www.jianshu.com/p/6b2550bfeaf7" target="_blank" rel="noopener">浏览器1-浏览器的工作原理</a><br><a href="http://www.ruanyifeng.com/blog/2013/04/processes_and_threads.html" target="_blank" rel="noopener">进程与线程的一个简单解释</a><br><a href="https://www.jianshu.com/p/5a52f2492759" target="_blank" rel="noopener">图解浏览器的基本工作原理</a><br><a href="https://www.jianshu.com/p/839f949b4036" target="_blank" rel="noopener">浏览器的解析原理</a><br><a href="https://www.cnblogs.com/qing-5/p/11126524.html" target="_blank" rel="noopener">浏览器从输入URL到渲染完页面的整个过程</a></p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://github.com/2020/03/28/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E6%B8%B2%E6%9F%93%E9%A1%B5%E9%9D%A2%E7%9A%84%E8%BF%87%E7%A8%8B/" data-id="ck8edaawh0004u8vqak8udkuy" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-vue-cl3回退到cl2" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/28/vue-cl3%E5%9B%9E%E9%80%80%E5%88%B0cl2/" class="article-date">
-  <time datetime="2020-03-28T03:24:01.000Z" itemprop="datePublished">2020-03-28</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%B0%8F%E6%96%B9%E6%B3%95/">小方法</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/28/vue-cl3%E5%9B%9E%E9%80%80%E5%88%B0cl2/">vue cl3回退到cl2</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="vue-cl3回退到cl2"><a href="#vue-cl3回退到cl2" class="headerlink" title="vue cl3回退到cl2"></a>vue cl3回退到cl2</h3><p><em>今天想试试在命令行创建uniapp项目，但是创建他得需要vuecli3以上，所以我把脚手架升级了一下，但是现在想回退到cli2</em></p>
-<ol>
-<li>window版本</li>
-</ol>
-<p>（1）卸载vue-cli3<br>运行：npm install -g @vue/cli //安装<br>npm uninstall -g @vue/cli //卸载</p>
-<p>（2）安装vue-cli2<br>运行：npm install -g vue-cli //安装<br>npm uninstall -g vue-cli //卸载</p>
-<p><em>记录一下吧，万一以后想买一个苹果笔记本呢</em><br>2. mac版本<br>由于mac版本有一些权限问题，所以直接向window一样卸载会出问题，应运行sudo命令(这个经常出错)</p>
-<p>（1）卸载vue-cli3<br>运行 sudo npm install -g @vue/cli //安装<br>sudo npm uninstall -g @vue/cli //卸载</p>
-<p>（2）安装vue-cli2<br>运行：sudo npm install -g vue-cli //安装<br>sudo npm uninstall -g vue-cli //卸载</p>
-<blockquote>
-<p>参考文献：<a href="https://www.cnblogs.com/liweiz/p/10960262.html" target="_blank" rel="noopener">关于vue-cli3脚手架安装后回退到vue-cli2版本的问题</a></p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://github.com/2020/03/28/vue-cl3%E5%9B%9E%E9%80%80%E5%88%B0cl2/" data-id="ck8edaaw60001u8vqeearfuso" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1144,7 +970,7 @@ function recUpload() {
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/css%E6%A0%B7%E5%BC%8F/">css样式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B0%8F%E6%96%B9%E6%B3%95/">小方法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/">软件使用</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/css%E6%A0%B7%E5%BC%8F/">css样式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js%E6%96%B9%E6%B3%95/">js方法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/vue%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/">vue相关知识</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B0%8F%E6%96%B9%E6%B3%95/">小方法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/">软件使用</a></li></ul>
     </div>
   </div>
 
@@ -1154,7 +980,7 @@ function recUpload() {
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Axure/" rel="tag">Axure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitlab/" rel="tag">gitlab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA/" rel="tag">gulp前端自动化构建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sdk%E7%AD%BE%E5%90%8D/" rel="tag">sdk签名</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-html%E8%BD%ACpdf/" rel="tag">vue-html转pdf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vw-vh/" rel="tag">vw,vh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">前端性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%B0%E5%BC%8F%E6%9C%BA%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/" rel="tag">台式机设置耳机麦克风</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BD%95%E9%9F%B3/" rel="tag">录音</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">搭建gitlab服务器</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Axure/" rel="tag">Axure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitlab/" rel="tag">gitlab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA/" rel="tag">gulp前端自动化构建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E9%9B%B6%E7%A2%8E%E6%96%B9%E6%B3%95/" rel="tag">js零碎方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sdk%E7%AD%BE%E5%90%8D/" rel="tag">sdk签名</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-vuequilldeitor-%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8/" rel="tag">vue vuequilldeitor 富文本编辑器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-html%E8%BD%ACpdf/" rel="tag">vue-html转pdf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue%E5%8A%A8%E6%80%81%E6%B7%BB%E5%8A%A0%E8%B7%AF%E7%94%B1-router-addRouters/" rel="tag">vue动态添加路由 router.addRouters</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vw-vh/" rel="tag">vw,vh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">前端性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%B0%E5%BC%8F%E6%9C%BA%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/" rel="tag">台式机设置耳机麦克风</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BD%95%E9%9F%B3/" rel="tag">录音</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">搭建gitlab服务器</a></li></ul>
     </div>
   </div>
 
@@ -1164,7 +990,7 @@ function recUpload() {
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Axure/" style="font-size: 10px;">Axure</a> <a href="/tags/gitlab/" style="font-size: 10px;">gitlab</a> <a href="/tags/gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA/" style="font-size: 10px;">gulp前端自动化构建</a> <a href="/tags/sdk%E7%AD%BE%E5%90%8D/" style="font-size: 10px;">sdk签名</a> <a href="/tags/vue-html%E8%BD%ACpdf/" style="font-size: 10px;">vue-html转pdf</a> <a href="/tags/vw-vh/" style="font-size: 10px;">vw,vh</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">前端性能优化</a> <a href="/tags/%E5%8F%B0%E5%BC%8F%E6%9C%BA%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/" style="font-size: 10px;">台式机设置耳机麦克风</a> <a href="/tags/%E5%BD%95%E9%9F%B3/" style="font-size: 20px;">录音</a> <a href="/tags/%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">搭建gitlab服务器</a>
+      <a href="/tags/Axure/" style="font-size: 10px;">Axure</a> <a href="/tags/gitlab/" style="font-size: 10px;">gitlab</a> <a href="/tags/gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA/" style="font-size: 10px;">gulp前端自动化构建</a> <a href="/tags/js%E9%9B%B6%E7%A2%8E%E6%96%B9%E6%B3%95/" style="font-size: 10px;">js零碎方法</a> <a href="/tags/sdk%E7%AD%BE%E5%90%8D/" style="font-size: 10px;">sdk签名</a> <a href="/tags/vue-vuequilldeitor-%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8/" style="font-size: 10px;">vue vuequilldeitor 富文本编辑器</a> <a href="/tags/vue-html%E8%BD%ACpdf/" style="font-size: 10px;">vue-html转pdf</a> <a href="/tags/vue%E5%8A%A8%E6%80%81%E6%B7%BB%E5%8A%A0%E8%B7%AF%E7%94%B1-router-addRouters/" style="font-size: 10px;">vue动态添加路由 router.addRouters</a> <a href="/tags/vw-vh/" style="font-size: 10px;">vw,vh</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">前端性能优化</a> <a href="/tags/%E5%8F%B0%E5%BC%8F%E6%9C%BA%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/" style="font-size: 10px;">台式机设置耳机麦克风</a> <a href="/tags/%E5%BD%95%E9%9F%B3/" style="font-size: 20px;">录音</a> <a href="/tags/%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">搭建gitlab服务器</a>
     </div>
   </div>
 
@@ -1173,7 +999,7 @@ function recUpload() {
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
     </div>
   </div>
 
@@ -1186,23 +1012,23 @@ function recUpload() {
       <ul>
         
           <li>
+            <a href="/2020/05/20/%E8%AE%B0%E5%BD%95vue%E5%8A%A8%E6%80%81%E6%B7%BB%E5%8A%A0%E8%B7%AF%E7%94%B1/">记录vue动态添加路由</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/08/js%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/">js使用方法总结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/08/css%E6%A0%B7%E5%BC%8F%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/">css样式方法总结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/07/vueQuillEditor%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/">vueQuillEditor富文本编辑器的使用</a>
+          </li>
+        
+          <li>
             <a href="/2020/04/26/vue%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%A6%81%E7%94%A8%E6%89%8B%E6%9C%BA%E7%89%A9%E7%90%86%E8%BF%94%E5%9B%9E%E6%8C%89%E9%94%AE/">vue移动端禁用手机物理返回按键</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/21/vue%E4%B8%AD%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8canvas%E5%8F%8A%E5%B0%8F%E6%96%B9%E6%B3%95/">vue中如何使用canvas及小方法</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/03/gitlab%E6%90%AD%E5%BB%BA%E6%80%BB%E7%BB%93/">gitlab搭建总结</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/01/commonJS%E8%A7%84%E8%8C%83/">commonJS规范</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/31/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87js%E8%8E%B7%E5%8F%96%E8%85%BE%E8%AE%AFsdk%E7%AD%BE%E5%90%8D%E4%BF%A1%E6%81%AF/">如何通过js获取腾讯sdk签名信息</a>
           </li>
         
       </ul>

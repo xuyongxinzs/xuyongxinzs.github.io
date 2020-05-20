@@ -64,6 +64,552 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-http协议" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/11/http%E5%8D%8F%E8%AE%AE/" class="article-date">
+  <time datetime="2020-03-11T05:03:17.520Z" itemprop="datePublished">2020-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/11/http%E5%8D%8F%E8%AE%AE/">http协议</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="http请求协议"><a href="#http请求协议" class="headerlink" title="http请求协议"></a>http请求协议</h3><p>HTTP(Hyper Text Transfer Protocol)&lt;超文本传输协议&gt;的缩写.是用于从WWW服务器传输超文本到本地浏览器的传输协议.HTTP是一个应用层协议,由请求和响应构成,是一个标准的个客户端和服务器模型.它的主要特点如下:</p>
+<ol>
+<li>支持客服端/服务器模型</li>
+<li>简单快速</li>
+</ol>
+<p>客户向服务器请求服务时，只需传送请求方式和路径。请求方式常用的有GET,HEAD,POST。每种方式规定了客户与服务器练习的类型不同。由于HTTP协议简单，使得HTTP服务器的程序规模小，因而通信速度快</p>
+<ol start="3">
+<li>灵活</li>
+</ol>
+<p>HTTP允许传输任意类型的数据对象，正在传输的类型由Conten-Type加以标记，常见的Content-Type的取值如下：</p>
+<p><img src="./http%E5%8D%8F%E8%AE%AE/1.jpg" alt></p>
+<ol start="4">
+<li>无连接</li>
+</ol>
+<p>无连接的含义是限制每次连接只处理一个请求，服务器处理完客户端的请求，然后响应，并收到应答之后，就断开连接。这种方式可以节省传输时间</p>
+<ol start="5">
+<li>无状态</li>
+</ol>
+<p>HTTP协议是无状态协议。无状态是指协议对于事务处理没有记忆能力。这种方式的一个坏处就是，如果后续的处理需要用到之前的信息，则必须要重传，这样就导致了每次传输的数据量增大。好处就是，如果后续的连接不需要之前提供的信息，相应就会比较快。而为了解决HTTP的无状态特性，出现了Cookie和Session技术。</p>
+<blockquote>
+<ul>
+<li>URL篇</li>
+</ul>
+<p><em>HTTP协议是一个基于请求和应答模式的,存在于传输层之上的应用层协议,是一个无状态的协议,通常是基于TCP的连接方式.HTTP的URL是一种特殊类型的URI,包含了用于定位查找某个网络资源的路径,格式如下:<br><a href="http://host[&#39;:&#39;port][abs_path]">http://host[&#39;:&#39;port][abs_path]</a></em></p>
+</blockquote>
+<p>http表示通过http协议来定位网络资源;host表示合法的Internet主机域名或者IP地址;port指定一个端口,如果缺省,默认是80端口.abs_path表示的是请求的资源的URL,如果什么都没写,则浏览器会帮我们加上/,作为初始的路径地址.</p>
+<p>###请求篇(Request)</p>
+<p>HTTP请求由三部分构成：请求行 请求头 空行 请求正文</p>
+<p><img src="./http%E5%8D%8F%E8%AE%AE/2.jpg" alt></p>
+<p>下面是一个报文实例：</p>
+<p><img src="./http%E5%8D%8F%E8%AE%AE/3.jpg" alt></p>
+<p> ①是请求方法，GET和POST是最常见的HTTP方法，除此以外还包括DELETE、HEAD、OPTIONS、PUT、TRACE。不过，当前的大多数浏览器只支持GET和POST<br> ②为请求对应的URL地址，它和报文头的Host属性组成完整的请求URL，<br> ③是协议名称及版本号。<br> ④是HTTP的报文头，报文头包含若干个属性，格式为“属性名:属性值”，服务端据此获取客户端的信息。<br> ⑤是报文体，它将一个页面表单中的组件值通过param1=value1&amp;param2=value2的键值对形式编码成一个格式化串，它承载多个请求参数的数据。不但报文体可以传递请求参数，请求URL也可以通过类似于“/chapter15/user.html? param1=value1&amp;param2=value2”的方式传递请求参数。</p>
+<p><strong>常见的报文头的属性</strong></p>
+<table>
+<thead>
+<tr>
+<th>Accept</th>
+<th align="center">可接收的响应内容类型</th>
+<th>Accept:text/plain(文本类型)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Accept-Charset</td>
+<td align="center">可接收的字符集</td>
+<td>Accept-Charset:utf-8</td>
+</tr>
+<tr>
+<td>Accept-Encoding</td>
+<td align="center">可接受的响应内容的编码方式</td>
+<td>Accept-Encoding:gzipdeflate</td>
+</tr>
+<tr>
+<td>Accept-Language</td>
+<td align="center">可接受的响应内容语言</td>
+<td>Accept-Language:en-US</td>
+</tr>
+<tr>
+<td>Accept-Datetime</td>
+<td align="center">可接受的按照时间来表示的响应内容版本</td>
+<td>Accept-Datetime:Sat,26 Dec 2015 17:30:00 GMT</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td align="center">HTTP协议中需要认证资源的认证信息</td>
+<td>Authorization: Basic OSdjJGRpbjpvcGVuIANlc2SdDE==</td>
+</tr>
+<tr>
+<td>Cache-Control</td>
+<td align="center">请求/回复中的,是否使用缓存机制</td>
+<td>Cache-Control: no-cache</td>
+</tr>
+<tr>
+<td>Connection</td>
+<td align="center">客户端想要优先使用的连接类型</td>
+<td>Connection: keep-alive Connection: Upgrade</td>
+</tr>
+<tr>
+<td>Content-Length</td>
+<td align="center">以8进制表示的请求体的长度</td>
+<td>Content-Length: 348</td>
+</tr>
+<tr>
+<td>Content-Type</td>
+<td align="center">请求体的MIME类型</td>
+<td>Content-Type: application/x-www-form-urlencoded</td>
+</tr>
+<tr>
+<td>Date</td>
+<td align="center">发送该消息的日期和时间</td>
+<td>Date: Dec, 26 Dec 2015 17:30:00 GMT</td>
+</tr>
+<tr>
+<td>From</td>
+<td align="center">发起此请求的用户的邮件地址</td>
+<td>From: <a href="mailto:user@itbilu.com">user@itbilu.com</a></td>
+</tr>
+<tr>
+<td>Host</td>
+<td align="center">服务器域名和端口号,默认端口可省略</td>
+<td>Host: <a href="http://www.itbilu.com:80" target="_blank" rel="noopener">www.itbilu.com:80</a> or <a href="http://www.itbilu.com" target="_blank" rel="noopener">www.itbilu.com</a></td>
+</tr>
+<tr>
+<td>If-Match</td>
+<td align="center">主要用于PUT,实体匹配才可以操作</td>
+<td>If-Match: “9jd00cdj34pss9ejqiw39d82f20d0ikd”</td>
+</tr>
+<tr>
+<td>If-Modified-Since</td>
+<td align="center">资源未被修改的情况下返回304未修改</td>
+<td>If-Modified-Since: Dec, 26 Dec 2015 17:30:00 GMT</td>
+</tr>
+<tr>
+<td>User-Agent</td>
+<td align="center">浏览器的身份标识字符串</td>
+<td>User-Agent: Mozilla/</td>
+</tr>
+<tr>
+<td>Upgrade</td>
+<td align="center">要求服务器升级到一个高版本协议</td>
+<td>Upgrade: HTTP/2.0, SHTTP/1.3, IRC/6.9, RTA/x11</td>
+</tr>
+<tr>
+<td>Via</td>
+<td align="center">告诉服务器,这个请求是由哪个代理发出的</td>
+<td>Via: 1.0 fred, 1.1 itbilu.com.com (Apache/1.1)</td>
+</tr>
+<tr>
+<td>Referer</td>
+<td align="center">表示跳转到当前页面的之前的页面</td>
+<td>Referer: <a href="http://itbilu.com/nodejs" target="_blank" rel="noopener">http://itbilu.com/nodejs</a></td>
+</tr>
+<tr>
+<td>Origin</td>
+<td align="center">发起一个针对跨域资源共享的请求</td>
+<td>Origin: <a href="http://www.itbilu.com" target="_blank" rel="noopener">http://www.itbilu.com</a></td>
+</tr>
+</tbody></table>
+<p><strong>首先看看http请求消息（就是浏览器丢给服务器的）：</strong><br>一个http请求代表客户端浏览器向服务器发送的数据。一个完整的http请求消息，包含一个请求行，若干个消息头（请求头），换行，实体内容</p>
+<p>请求行：描述客户端的请求方式、请求资源的名称、http协议的版本号。 例如： GET/BOOK/JAVA.HTML HTTP/1.1</p>
+<p>请求头（消息头）包含（客户机请求的服务器主机名，客户机的环境信息等）：</p>
+<p>Accept：用于告诉服务器，客户机支持的数据类型  （例如：Accept:text/html,image/*）<br>Accept-Charset：用于告诉服务器，客户机采用的编码格式<br>Accept-Encoding：用于告诉服务器，客户机支持的数据压缩格式<br>Accept-Language：客户机语言环境<br>Host:客户机通过这个服务器，想访问的主机名<br>If-Modified-Since：客户机通过这个头告诉服务器，资源的缓存时间<br>Referer：客户机通过这个头告诉服务器，它（客户端）是从哪个资源来访问服务器的（防盗链）<br>User-Agent：客户机通过这个头告诉服务器，客户机的软件环境（操作系统，浏览器版本等）<br>Cookie：客户机通过这个头，将Coockie信息带给服务器<br>Connection：告诉服务器，请求完成后，是否保持连接<br>Date：告诉服务器，当前请求的时间</p>
+<p>实体内容：<br>就是指浏览器端通过http协议发送给服务器的实体数据。例如：name=dylan&amp;id=110<br>（get请求时，通过url传给服务器的值。post请求时，通过表单发送给服务器的值）</p>
+<p><strong>再看看HTTP响应消息（服务器返回给浏览器的）：</strong></p>
+<p><em>一个http响应代表服务器端向客户端回送的数据，它包括：<br>一个状态行，若干个消息头，以及实体内容</em></p>
+<p>响应头(消息头)包含:<br>Location：这个头配合302状态吗，用于告诉客户端找谁<br>Server：服务器通过这个头，告诉浏览器服务器的类型<br>Content-Encoding：告诉浏览器，服务器的数据压缩格式<br>Content-Length：告诉浏览器，回送数据的长度<br>Content-Type：告诉浏览器，回送数据的类型<br>Last-Modified：告诉浏览器当前资源缓存时间<br>Refresh：告诉浏览器，隔多长时间刷新<br>Content-Disposition：告诉浏览器以下载的方式打开数据。例如： context.Response.AddHeader(“Content-Disposition”,”attachment:filename=aa.jpg”);                                        context.Response.WriteFile(“aa.jpg”);<br>Transfer-Encoding：告诉浏览器，传送数据的编码格式<br>ETag：缓存相关的头（可以做到实时更新）<br>Expries：告诉浏览器回送的资源缓存多长时间。如果是-1或者0，表示不缓存<br>Cache-Control：控制浏览器不要缓存数据   no-cache<br>Pragma：控制浏览器不要缓存数据          no-cache</p>
+<p>Connection：响应完成后，是否断开连接。  close/Keep-Alive<br>Date：告诉浏览器，服务器响应时间<br>状态行：  例如：  HTTP/1.1  200 OK   （协议的版本号是1.1  响应状态码为200  响应结果为 OK）<br>实体内容（实体头）：响应包含浏览器能够解析的静态内容，例如：html，纯文本，图片等等信息<br>理解了以上的http请求消息和响应消息，相信你对于http协议已经理解得足够深刻了。关于http协议的更多具体细节，可以参照http RFC文档。</p>
+<p>###HTTP协议request常见的方法,请求行的首部常用的方法介绍</p>
+<ul>
+<li><p>get<br>当客户端要从服务器上读取文档,点开某个链接,或者是通过浏览器上输入网址来浏览网页的时候,使用的都是GET方法.GET方法请求参数和对应的值附加在URL后面,利用一个?代表URL的结尾以及附带参数的开始,参数用key=value键值对的方式书写,参数和参数之间用&amp;符号隔开.一般GET请求的参数的大小受限,最大不超过1024.由于参数明文的显示在了URL上面,因此不太适合传递私密的数据.</p>
+</li>
+<li><p>post<br>POST方法将请求的参数封装在了HTTP请求的请求体中,以名称/值的形式出现,可以传输大量的数据.POST请求一般用于表单数据的提交中.</p>
+</li>
+<li><p>GET和POST的区别</p>
+</li>
+</ul>
+<p>从参数的传递方面来看,GET请求的参数是直接拼接在地址栏URL的后面,而POST请求的参数是放到请求体里面的.<br>从长度限制方面来看,GET请求有具体的长度限制,一般不超过1024KB,而POST理论上没有,但是浏览器一般都有一个界限.<br>从安全方面来看,GET请求相较于POST,因为数据都是明文显示在URL上面的,所以安全和私密性不如POST<br>从本质上来说,GET和POST都是TCP连接,并无实质的区别.但是由于HTTP/浏览器的限定,导致它们在应用过程中体现出了一些不同.GET产生一个数据包,POST产生两个数据包.对于GET请求,浏览器会把http header 和 data 一并发出去,服务器响应200(返回数据).而对于POST,浏览器先发送header,服务器响应100 continue,浏览器再发送data,服务器响应200 ok</p>
+<p>###响应篇(Response)</p>
+<p>在接收到请求之后,服务器经过解释之后,会返回个一个HTTP响应<br>HTTP响应是由四部分构成:状态行 响应头 空行 响应体</p>
+<p><img src="http%E5%8D%8F%E8%AE%AE/4.jpg" alt></p>
+<p>第一部分:<br>状态行,由HTTP/1.1(协议版本) 200(状态码) OK(状态码的描述) 构成<br>第二部分:<br>响应头,由一些键值对构成,用来说明客户端要使用的一些附加信息<br>第三部分:<br>空行,响应头后面的空行时必须的<br>第四部分:<br>响应正文,服务器返回给客户端的文本信息</p>
+<p><strong>HTTP响应的状态码</strong></p>
+<p><img src="http%E5%8D%8F%E8%AE%AE/5.jpg" alt></p>
+<p>###HTTP的工作原理</p>
+<p>HTTP协议定义了web客户端如何从web服务器请求Web页面,以及服务器如何把Web页面传送给客户端.HTTP协议采用了请求/响应模型.客户端向服务器发送一个请求报文,请求报文包括请求的方法,url,协议版本,请求头部和请求数据.服务器以一个状态行作为响应,响应的内容包括协议的版本,成功或者错误代码,服务器信息,响应头部和响应数据</p>
+<p><strong>以下是HTTP协议的请求/响应步骤</strong></p>
+<ol>
+<li>客户端连接到we服务器</li>
+</ol>
+<p><em>一个HTTP客户端,通常是浏览器,与Web服务器的HTTP端口(默认是80)建立一个TCP套接字连接.</em></p>
+<ol start="2">
+<li>发送HTTP请求</li>
+</ol>
+<p><em>通过TCP套接字,客户端向Web服务器发送一个文本的请求报文,一个请求报文由请求行,请求头部,空行和请求体4个部分构成.</em></p>
+<ol start="3">
+<li>服务区接收解释请求并返回HTTP响应</li>
+</ol>
+<p><em>Web解析请求,定位请求资源.服务器将资源复本写到TCP套接字,由客户端获取.一个响应由状态行,响应 头,空行和响应数据4部分组成.</em></p>
+<ol start="4">
+<li>释放连接TCP连接</li>
+</ol>
+<p><em>若Connection模式为close,则服务器主动关闭TCP连接,客户端被动关闭TCP连接,释放TCP连接.若Connection为keepalive,则该连接会保持一段时间,该时间内可以持续使用该连接接收请求,做出响应</em></p>
+<ol start="5">
+<li>客户端浏览器解析HTML内容<br><img src="http%E5%8D%8F%E8%AE%AE/6.jpg" alt></li>
+</ol>
+<p>###HTTP几个重要的概念</p>
+<ol>
+<li>连接: Connection</li>
+</ol>
+<p><img src="http%E5%8D%8F%E8%AE%AE/7.jpg" alt></p>
+<ol start="2">
+<li>消息: Message</li>
+</ol>
+<p><em>HTTP通讯的基本单位,包括一个结构化的八元组序列并通过连续传输</em></p>
+<ol start="3">
+<li>请求:Request</li>
+</ol>
+<p><em>一个客户端到服务器的请求消息包括应用于资源的方法,资源的标识符和协议的版本号</em></p>
+<ol start="4">
+<li>响应:Response</li>
+</ol>
+<p><em>一个从服务器返回的信息包括HTTP协议的版本号、请求的状态(例如“成功”或“没找到”)和文档的MIME类型</em></p>
+<ol start="5">
+<li>资源: Resource</li>
+</ol>
+<p><em>由URL标识的网络数据对象或服务</em></p>
+<ol start="6">
+<li>实体:Entity</li>
+</ol>
+<p><em>数据资源或来自服务资源的回映的一种特殊表示方法，它可能被包围在一个请求或响应信息中。一个实体包括实体头信息和实体的本身内容</em></p>
+<ol start="7">
+<li>客户机:Client</li>
+</ol>
+<p><em>一个为发送请求目的而建立连接的应用程序</em></p>
+<ol start="8">
+<li>用户代理:User-Agent</li>
+</ol>
+<p><em>初始化一个请求的客户机.它们是浏览器,编辑器或者其他工具</em></p>
+<ol start="9">
+<li>代理:Proxy</li>
+</ol>
+<p><em>个中间程序，它可以充当一个服务器，也可以充当一个客户机，为其它客户机建立请求。请求是通过可能的翻译在内部或经过传递到其它的服务器中。一个代理在发送请求信息之前，必须解释并且如果可能重写它。<br>代理经常作为通过防火墙的客户机端的门户，代理还可以作为一个帮助应用来通过协议处理没有被用户代理完成的请求。</em></p>
+<ol start="10">
+<li>网关:Gateway</li>
+</ol>
+<p><em>一个作为其它服务器中间媒介的服务器。与代理不同的是，网关接受请求就好象对被请求的资源来说它就是源服务器；发出请求的客户机并没有意识到它在同网关打交道。<br>网关经常作为通过防火墙的服务器端的门户，网关还可以作为一个协议翻译器以便存取那些存储在非HTTP系统中的资源</em></p>
+<ol start="11">
+<li>通道：Tunnel</li>
+</ol>
+<p><em>是作为两个连接中继的中介程序。一旦激活，通道便被认为不属于HTTP通讯，尽管通道可能是被一个HTTP请求初始化的。当被中继的连接两端关闭时，通道便消失。当一个门户(Portal)必须存在或中介(Intermediary)不能解释中继的通讯时通道被经常使用。</em></p>
+<ol start="12">
+<li>缓存：Cache</li>
+</ol>
+<p><em>反应信息的局域存储</em></p>
+<blockquote>
+<p>参考文档地址：<br> 1.<a href="https://www.jianshu.com/p/7c8b4576e4bb" target="_blank" rel="noopener">https://www.jianshu.com/p/7c8b4576e4bb</a><br> 2.<a href="https://www.cnblogs.com/haiyan123/p/7777924.html" target="_blank" rel="noopener">https://www.cnblogs.com/haiyan123/p/7777924.html</a></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/2020/03/11/http%E5%8D%8F%E8%AE%AE/" data-id="ck7muzf8c0004esvq4zd43jpz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-git仓库使用命令" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/11/git%E4%BB%93%E5%BA%93%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4/" class="article-date">
+  <time datetime="2020-03-11T05:03:17.519Z" itemprop="datePublished">2020-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/11/git%E4%BB%93%E5%BA%93%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4/">git仓库使用命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Git仓库命令"><a href="#Git仓库命令" class="headerlink" title="Git仓库命令"></a>Git仓库命令</h2><h4 id="1、git-init-初始化当前目录为Git仓库"><a href="#1、git-init-初始化当前目录为Git仓库" class="headerlink" title="1、git init   初始化当前目录为Git仓库"></a>1、git init   初始化当前目录为Git仓库</h4><h4 id="2、git-init-newrepo-指定某个目录（newrepo）为git仓库"><a href="#2、git-init-newrepo-指定某个目录（newrepo）为git仓库" class="headerlink" title="2、git init newrepo 指定某个目录（newrepo）为git仓库"></a>2、git init newrepo 指定某个目录（newrepo）为git仓库</h4><p><em>初始化后，会在目录下面出现一个名为.git的目录。所有git需要的数据个资源都存放在这个目录中。</em></p>
+<h4 id="3、"><a href="#3、" class="headerlink" title="3、"></a>3、</h4><p>`<br>$ git add *.c</p>
+<p>$ git add README    </p>
+<p>$ git commit -m ‘初始化项目版本’<br>`</p>
+<p><em>以上命令是将目录下以.c结尾和README文件提交到仓库中，若想一次提交目录下所有文件 $ git add . 。然后提交附上注释。</em></p>
+<h4 id="4、git-clone-从现有的git仓库中拷贝项目"><a href="#4、git-clone-从现有的git仓库中拷贝项目" class="headerlink" title="4、git clone 从现有的git仓库中拷贝项目"></a>4、git clone 从现有的git仓库中拷贝项目</h4><p><code>git clone &lt;repo&gt; 克隆项目到当前目录
+Git clone &lt;repo&gt; &lt;directory&gt; 克隆项目到指定目录</code></p>
+<p>例如克隆 github 上的项目：$ git clone <a href="mailto:git@github.com">git@github.com</a>:schacon/simplegit.git<br>克隆完后，在当前目录下会生成一个 simplegit 目录：</p>
+<p>`<br>$ cd simplegit</p>
+<p>$ ls<br>`<br><em>上述操作将复制该项目的全部记录</em></p>
+<h4 id="5、git-status-命令用于查看项目的当前状态"><a href="#5、git-status-命令用于查看项目的当前状态" class="headerlink" title="5、git status 命令用于查看项目的当前状态"></a>5、git status 命令用于查看项目的当前状态</h4><h4 id="6、git-diff-命令显示已写入缓存与已修改但尚未写入缓存的改动的区别。"><a href="#6、git-diff-命令显示已写入缓存与已修改但尚未写入缓存的改动的区别。" class="headerlink" title="6、git diff 命令显示已写入缓存与已修改但尚未写入缓存的改动的区别。"></a>6、git diff 命令显示已写入缓存与已修改但尚未写入缓存的改动的区别。</h4><h4 id="7、要从git中移除某个文件，就必须从已跟踪文件清单中移除，然后提交。从已跟踪文件中移除"><a href="#7、要从git中移除某个文件，就必须从已跟踪文件清单中移除，然后提交。从已跟踪文件中移除" class="headerlink" title="7、要从git中移除某个文件，就必须从已跟踪文件清单中移除，然后提交。从已跟踪文件中移除"></a>7、要从git中移除某个文件，就必须从已跟踪文件清单中移除，然后提交。从已跟踪文件中移除</h4><p><code>git rm &lt;file&gt;</code></p>
+<h4 id="8、如果删除之前修改过并且已经放到暂存区域的话，则必须要用强制删除选项"><a href="#8、如果删除之前修改过并且已经放到暂存区域的话，则必须要用强制删除选项" class="headerlink" title="8、如果删除之前修改过并且已经放到暂存区域的话，则必须要用强制删除选项"></a>8、如果删除之前修改过并且已经放到暂存区域的话，则必须要用强制删除选项</h4><p><code>git rm -f &lt;file&gt;</code><br>####9、如果把文件从暂存区移除，但仍希望保留在当前工作目录中<br><code>git rm --cached &lt;file&gt;</code></p>
+<h4 id="10、Git-mv-用于移动或重命名一个文件、目录、软连接。"><a href="#10、Git-mv-用于移动或重命名一个文件、目录、软连接。" class="headerlink" title="10、Git mv 用于移动或重命名一个文件、目录、软连接。"></a>10、Git mv 用于移动或重命名一个文件、目录、软连接。</h4><h4 id="11、Git-log-命令列出历史提交记录。"><a href="#11、Git-log-命令列出历史提交记录。" class="headerlink" title="11、Git log 命令列出历史提交记录。"></a>11、Git log 命令列出历史提交记录。</h4><hr>
+<p>###Git远程仓库</p>
+<p>由于你的本地git仓库和gitHub仓库之间的传输是通过ssh加密的，所以我们需要配置验证信息：</p>
+<p>1.首先需要检查你的电脑是否已经有 SSH key</p>
+<p><code>$ cd ~/.ssh</code><br><code>$ ls</code></p>
+<p>2.创建一个SSH key</p>
+<p><code>$ ssh-keygen -t rsa -C “youremail@example.com”</code></p>
+<p>后面的邮箱是你在github上注册的邮箱，之后会请求确认路径和输入密码。一路回车就好。成功的话会在~/下生成.ssh文件夹，进去，打开id_rsa.puh（公匙），复制里面的key。然后在github上注册就好。</p>
+<p>3.git remote add origin(你起的仓库名可修改) branch_Name（为空时默认为master）url    关联远程仓库，关联之后可以用git remote -v 来检查是否关联成功。</p>
+<p><em>一般情况下含有共同文件时需要执行 git merge origin/master –allow-unrelated-histories 之后解决一下冲突。</em></p>
+<p>4.git push -u origin master(分支，默认为master)   提交至远程仓库</p>
+<p>####提取远程仓库</p>
+<p><strong>Git有两个命令用来提取远程仓库的更新。</strong></p>
+<p>1.git fetch 从远程仓库下载新分支与数据<br>2.git merge 从远端仓库提取数据并尝试合并到当前分支。</p>
+<p><em>该命令就是在执行git fetch之后紧接着执行git merge远程分支到你所在的任意分支。假设你配置好了一个远程仓库，并且你想要提取更新的数据，你可以首先执行 git fetch [alias] 告诉git去获取它有你没有的数据，然后你可以执行git merge [alias]/[branch] 以将服务器上的任何更新合并到你当前分支。</em></p>
+<blockquote>
+<p>参考网址：<br><a href="https://www.jianshu.com/p/2779b5d6a59a" target="_blank" rel="noopener">https://www.jianshu.com/p/2779b5d6a59a</a><br><a href="https://www.jianshu.com/p/dd053c18e5ee" target="_blank" rel="noopener">https://www.jianshu.com/p/dd053c18e5ee</a><br><a href="https://www.runoob.com/git/git-server.html" target="_blank" rel="noopener">https://www.runoob.com/git/git-server.html</a><br><a href="https://www.cnblogs.com/yanglang/p/9563496.html" target="_blank" rel="noopener">https://www.cnblogs.com/yanglang/p/9563496.html</a></p>
+</blockquote>
+<p>补充：1.git config –global –list 查看所有全局配置。<br>2.git remote set-url origin <your url>  直接修改远程仓库的地址s</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/2020/03/11/git%E4%BB%93%E5%BA%93%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4/" data-id="ck7muzf8a0003esvq94nah07x" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-gitlib" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/11/gitlib/" class="article-date">
+  <time datetime="2020-03-11T05:03:17.518Z" itemprop="datePublished">2020-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/11/gitlib/">gitlib</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="gitlab-ʹ��"><a href="#gitlab-ʹ��" class="headerlink" title="gitlab ʹ��"></a>gitlab ʹ��</h3><p>1.������Ŀ���ӱ������е�git�ֿ����ύ��Ŀ��Ҫ���޸Ĺ�����ַ��<br>   git remote set-url origin <your url>  ����ֱ���޸�Զ�ֿ̲��ַ��</your></p>
+<p><a href="https://www.cnblogs.com/vickystudy/p/11505936.html" target="_blank" rel="noopener">�ο���ַ</a></p>
+<p>2.���Ǩ����ǰ����Ŀ��gitlab</p>
+<ul>
+<li><ol>
+<li>����origin ������Ҫ�޸�Զ�ֿ̲�ļ��  git remote rename origin old-origin</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>��������ڻ�������Ĳ���ִ����� ��������Ҫ�����µĵ�ַ git remote add origin &lt;url���gitlab�ֿ��ַ&gt;</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>Ȼ���ύ git push -u origin –all   ����ʾ��֤���gitlab���ʺ����롣</li>
+</ol>
+</li>
+</ul>
+<p><a href="https://www.jianshu.com/p/93926e202f68" target="_blank" rel="noopener">�ο���ַ</a></p>
+<p>3.���ڽ����gitlab�ύ����ʱ��Ҫ������������</p>
+<ul>
+<li><p>1.�����������Ϥ��github���ύ�������ʹ��sshЭ�飬���Ծ���������·�в��С�</p>
+</li>
+<li></li>
+<li><p>�ҵ�����ʹ��git ssh-keygen ��ȡ�Ĺ��׺�˽�ף����ƹ��׵�gitlab�ϣ�Ȼ��ͨ�� </p>
+</li>
+<li><p>git remote -u set-url &lt;�µ�ַsshЭ��&gt; �޸�Զ�����Ӻ󣬾��������в��С�</p>
+</li>
+<li><p>��������git push origin master ���ֹ���������������롣��ʱ������������������ʲô���밡��</p>
+</li>
+<li><p>��Ϊ��װgitʱû��ʹ�ù����룬���ҹ��ƾͿ������ҵ�¼gitlabʱ�������ˡ������������ʱ��ȴû�з�Ӧ</p>
+</li>
+<li><p>Ȼ���Ҹ�����https��ַ�����ֿ����ύ��</p>
+</li>
+<li><ol start="2">
+<li>gitlabϵͳ�û�git��ס��˵��git�û���ס�ˣ���Ҫ�������룬Ȼ����ܵ�¼��ȥ��</li>
+</ol>
+<p>*passwd git<br>*��������:123456<br>*Ȼ����<br>*’git@git.xxxx.com’s password:<br>*����123456<br>*�ܵ�¼��ȥ�ˣ����������ϵͳ��ssh<br>*��¼����ϵͳ��������<br>*ֱ��������<br>*git clone git@<a href="mailto:git@git.xxxx.com">git@git.xxxx.com</a>:testuser/project1.git</p>
+</li>
+<li><p>���ֻ��ǲ���</p>
+</li>
+</ul>
+<p>*3. sshû���ҵ���Ӧ��authorized_keys</p>
+<p> *���Ż᲻����gitlab�ϵĹ��׺ͱ��ص�˽�ײ�ƥ��<br> *�Ҿ��ְ�gitlab�ϵ�ע����Ϣ��ɾ���������¸������˱��صĹ��ס��ٴ�ע�ᡣȻ���ֻ��ǲ��С�</p>
+<p> <a href="https://blog.csdn.net/skyhh/article/details/88992408" target="_blank" rel="noopener">�ο���ַ</a></p>
+<p>*4.�ҵ�����һƪ��ͬ�������ĵ����������ķ�����������<br>*eval ��ssh-agent -s��<br>*ssh-add<br>*���ǲ��С�</p>
+<p> <a href="https://blog.csdn.net/qq_42817166/article/details/86475709" target="_blank" rel="noopener">�ο���ַ</a></p>
+<p>*5.�������ֿ��.ssh�ļ�����������ļ�Ȩ�޴���<br>*��ԭȨ��<br>*chmod 700 ~/.ssh<br>*chmod 400 ~/.ssh/rsa_id<br>*chmod 644 ~/.ssh/rsa_id.pub<br>*�����Ҳû������Ҳ��֪������ôŪ��</p>
+<p><a href="https://blog.csdn.net/shilei_zhang/article/details/80094096" target="_blank" rel="noopener">�ο���ַ</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/2020/03/11/gitlib/" data-id="ck7muzf870001esvqgg691x9t" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2019-12-16swiper" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/11/2019-12-16swiper/" class="article-date">
+  <time datetime="2020-03-11T05:03:17.517Z" itemprop="datePublished">2020-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/11/2019-12-16swiper/">2019-12-16swiper</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###Swiper5的使用</p>
+<p><strong>1.new Swiper(swiperContainer, parameters)</strong></p>
+<p><em>用于初始化一个Swiper，返回初始化后的Swiper实例。其中第一个参数为class选择器（必选），第二个为swiper的配置。</em></p>
+<p><img src="/2020/03/11/2019-12-16swiper/1583201505(1).jpg" alt></p>
+<p><strong>2.swiper第二个配置参数中的一般选项</strong></p>
+<blockquote>
+<p>initialslide  设置为2后，Swiper初始化时展示的页面成了第三个</p>
+</blockquote>
+<p><img src="/2020/03/11/2019-12-16swiper/1583201645(1).jpg" alt></p>
+<blockquote>
+<p>direction  页面的滑动方向，可设置水平(horizontal)或垂直(vertical)。可使用swiper.changeDirection()方法动态切换方向。</p>
+</blockquote>
+<p><img src="/2020/03/11/2019-12-16swiper/1583201725(1).jpg" alt></p>
+<blockquote>
+<p>speed 切换速度，即slider自动滑动开始到结束的时间（单位ms），也是触摸滑动时释放至贴合的时间。<br><em>小技巧：利用transition-timing-function或transition-delay改变Swiper的切换时间曲线</em><br><code>.swiper-wrapper{
+   transition-timing-function:  ....  ;
+}</code><br><strong>可取值：</strong></p>
+<ol>
+<li>transition-timing-function: ease;</li>
+<li>transition-timing-function: ease-in;</li>
+<li>transition-timing-function: ease-out;</li>
+<li>transition-timing-function: ease-in-out;</li>
+<li>transition-timing-function: linear;</li>
+<li>transition-timing-function: cubic-bezier(0.1, 0.7, 1.0, 0.1);</li>
+<li>transition-timing-function: step-start;</li>
+<li>transition-timing-function: step-end;</li>
+<li>transition-timing-function: steps(4, end);</li>
+<li>transition-timing-function: ease, step-start, cubic-bezier(0.1, 0.7, 1.0, 0.1);</li>
+<li>transition-timing-function: inherit;</li>
+</ol>
+</blockquote>
+<p><img src="/2020/03/11/2019-12-16swiper/1583202021(1).jpg" alt></p>
+<blockquote>
+<p>grabCursor 设置为true时，鼠标覆盖Swiper时指针会变成手掌形状，拖动时指针会变成抓手形状。（根据浏览器形状有所不同）</p>
+</blockquote>
+<p><img src="/2020/03/11/2019-12-16swiper/1583202127.jpg" alt></p>
+<blockquote>
+<p>parallax 设置为true开启视差效果。效果可以应用于container或slide的子元素。当应用于container的子元素（常用于视差背景图），每次切换时视差效果仅有设定值的slide个数-1分之1</p>
+</blockquote>
+<p><strong>1.视差位移变化</strong></p>
+<blockquote>
+<p>在所需要的元素上增加data-swiper-parallax属性（与Swiper切换方向相同）或data-swiper-parallax-x （x方向） data-swiper-parallax-y（y方向）</p>
+</blockquote>
+<p><em>data-swiper-parallax接受两种类型的参数。</em></p>
+<ol>
+<li>number（单位：px），如-300，从右边300px进入左边出去。</li>
+<li>percentage（百分比），移动距离=该元素宽度 * percentage。</li>
+</ol>
+<p><strong>2.视差透明度变化</strong></p>
+<blockquote>
+<p>在所需要的元素上增加data-swiper-parallax-opacity属性。可选值0-1，如0.5，从半透明进入半透明出去</p>
+</blockquote>
+<p><strong>3.视差缩放变化</strong></p>
+<blockquote>
+<p>在所需要的元素上增加data-swiper-parallax-scale属性。可选值如0.5，从一半大小进入一半大小出去<br>还可通过data-swiper-parallax-duration设定视差动画持续时间（ms）。默认值是Swiper的speed，与切换时间同步。<br><em>*设定透明度或缩放必须同时设定位移，否则无效(4.0.5) <code>&lt;div data-swiper-parallax=&quot;0&quot; data-swiper-parallax-opacity=&quot;0.5&quot; &gt;透明度变化&lt;/div&gt;</code></em></p>
+</blockquote>
+<p><img src="/2020/03/11/2019-12-16swiper/1583202513(1).jpg" alt></p>
+<blockquote>
+<p>breakpoints 断点设定：根据屏幕宽度设置某参数为不同的值，类似于响应式布局的media only screen and (min-width: 480px)</p>
+</blockquote>
+<p><em>只有部分不需要变换布局方式和逻辑结构的参数支持断点设定，如slidesPerView、slidesPerGroup、 spaceBetween、slidesPerColumn，而像loop、direction、effect等则无效。</em></p>
+<p><img src="/2020/03/11/2019-12-16swiper/1583202895(1).jpg" alt></p>
+<blockquote>
+<p>autoHeight 自动高度。设置为true时，wrapper和container会随着当前slide的高度而发生变化。</p>
+</blockquote>
+<p><img src="/2020/03/11/2019-12-16swiper/1583203521(1).jpg" alt></p>
+<blockquote>
+<p>// nested 用于嵌套相同方向的swiper时，当切换到子swiper时停止父swiper的切换。</p>
+</blockquote>
+<p><img src="/2020/03/11/2019-12-16swiper/1583203574(1).jpg" alt></p>
+<blockquote>
+<p>rubCallbacksOninit  因为loop模式初始化时会触发一次slideChange回调，如果刚加载时不想触发，就将次参数设置为false</p>
+</blockquote>
+<p><img src="/2020/03/11/2019-12-16swiper/1583203622(1).jpg" alt></p>
+<blockquote>
+<p>on 注册事件，从4版本开始使用关键词this代指Swiper实例</p>
+</blockquote>
+<p><img src="/2020/03/11/2019-12-16swiper/1583203673(1).jpg" alt></p>
+<blockquote>
+<p>init 当你创建一个Swiper实例时是否立即初始化。如果禁止了，可以稍后使用mySwiper.init()来初始化。</p>
+</blockquote>
+<p><img src="/2020/03/11/2019-12-16swiper/1583203740(1).jpg" alt></p>
+<p><strong>3.swiper页面的布局样式(网格分布)</strong></p>
+<blockquote>
+<p>centeredSlides 设定为true时，第一个显示页面会居中，而不是默认状态下的居左。</p>
+</blockquote>
+<p><em>centeredSlidesBounds 当设置了Active Slide居中后，还可以配合设置此参数，使得第一个和最后一个Slide 始终贴合边缘。</em><br><img src="/2020/03/11/2019-12-16swiper/1583203861(1).jpg" alt></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/2020/03/11/2019-12-16swiper/" data-id="ck7muzf810000esvq6l1j9oyv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-搭建模拟机" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/03/11/%E6%90%AD%E5%BB%BA%E6%A8%A1%E6%8B%9F%E6%9C%BA/" class="article-date">
@@ -488,7 +1034,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/css%E6%A0%B7%E5%BC%8F/">css样式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B0%8F%E6%96%B9%E6%B3%95/">小方法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/">软件使用</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/css%E6%A0%B7%E5%BC%8F/">css样式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js%E6%96%B9%E6%B3%95/">js方法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/vue%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/">vue相关知识</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B0%8F%E6%96%B9%E6%B3%95/">小方法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/">软件使用</a></li></ul>
     </div>
   </div>
 
@@ -498,7 +1044,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Axure/" rel="tag">Axure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitlab/" rel="tag">gitlab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA/" rel="tag">gulp前端自动化构建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sdk%E7%AD%BE%E5%90%8D/" rel="tag">sdk签名</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-html%E8%BD%ACpdf/" rel="tag">vue-html转pdf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vw-vh/" rel="tag">vw,vh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">前端性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%B0%E5%BC%8F%E6%9C%BA%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/" rel="tag">台式机设置耳机麦克风</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BD%95%E9%9F%B3/" rel="tag">录音</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">搭建gitlab服务器</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Axure/" rel="tag">Axure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitlab/" rel="tag">gitlab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA/" rel="tag">gulp前端自动化构建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E9%9B%B6%E7%A2%8E%E6%96%B9%E6%B3%95/" rel="tag">js零碎方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sdk%E7%AD%BE%E5%90%8D/" rel="tag">sdk签名</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-vuequilldeitor-%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8/" rel="tag">vue vuequilldeitor 富文本编辑器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-html%E8%BD%ACpdf/" rel="tag">vue-html转pdf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue%E5%8A%A8%E6%80%81%E6%B7%BB%E5%8A%A0%E8%B7%AF%E7%94%B1-router-addRouters/" rel="tag">vue动态添加路由 router.addRouters</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vw-vh/" rel="tag">vw,vh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">前端性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%B0%E5%BC%8F%E6%9C%BA%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/" rel="tag">台式机设置耳机麦克风</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BD%95%E9%9F%B3/" rel="tag">录音</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">搭建gitlab服务器</a></li></ul>
     </div>
   </div>
 
@@ -508,7 +1054,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Axure/" style="font-size: 10px;">Axure</a> <a href="/tags/gitlab/" style="font-size: 10px;">gitlab</a> <a href="/tags/gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA/" style="font-size: 10px;">gulp前端自动化构建</a> <a href="/tags/sdk%E7%AD%BE%E5%90%8D/" style="font-size: 10px;">sdk签名</a> <a href="/tags/vue-html%E8%BD%ACpdf/" style="font-size: 10px;">vue-html转pdf</a> <a href="/tags/vw-vh/" style="font-size: 10px;">vw,vh</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">前端性能优化</a> <a href="/tags/%E5%8F%B0%E5%BC%8F%E6%9C%BA%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/" style="font-size: 10px;">台式机设置耳机麦克风</a> <a href="/tags/%E5%BD%95%E9%9F%B3/" style="font-size: 20px;">录音</a> <a href="/tags/%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">搭建gitlab服务器</a>
+      <a href="/tags/Axure/" style="font-size: 10px;">Axure</a> <a href="/tags/gitlab/" style="font-size: 10px;">gitlab</a> <a href="/tags/gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA/" style="font-size: 10px;">gulp前端自动化构建</a> <a href="/tags/js%E9%9B%B6%E7%A2%8E%E6%96%B9%E6%B3%95/" style="font-size: 10px;">js零碎方法</a> <a href="/tags/sdk%E7%AD%BE%E5%90%8D/" style="font-size: 10px;">sdk签名</a> <a href="/tags/vue-vuequilldeitor-%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8/" style="font-size: 10px;">vue vuequilldeitor 富文本编辑器</a> <a href="/tags/vue-html%E8%BD%ACpdf/" style="font-size: 10px;">vue-html转pdf</a> <a href="/tags/vue%E5%8A%A8%E6%80%81%E6%B7%BB%E5%8A%A0%E8%B7%AF%E7%94%B1-router-addRouters/" style="font-size: 10px;">vue动态添加路由 router.addRouters</a> <a href="/tags/vw-vh/" style="font-size: 10px;">vw,vh</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">前端性能优化</a> <a href="/tags/%E5%8F%B0%E5%BC%8F%E6%9C%BA%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/" style="font-size: 10px;">台式机设置耳机麦克风</a> <a href="/tags/%E5%BD%95%E9%9F%B3/" style="font-size: 20px;">录音</a> <a href="/tags/%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">搭建gitlab服务器</a>
     </div>
   </div>
 
@@ -517,7 +1063,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
     </div>
   </div>
 
@@ -530,23 +1076,23 @@
       <ul>
         
           <li>
+            <a href="/2020/05/20/%E8%AE%B0%E5%BD%95vue%E5%8A%A8%E6%80%81%E6%B7%BB%E5%8A%A0%E8%B7%AF%E7%94%B1/">记录vue动态添加路由</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/08/js%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/">js使用方法总结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/08/css%E6%A0%B7%E5%BC%8F%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/">css样式方法总结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/07/vueQuillEditor%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/">vueQuillEditor富文本编辑器的使用</a>
+          </li>
+        
+          <li>
             <a href="/2020/04/26/vue%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%A6%81%E7%94%A8%E6%89%8B%E6%9C%BA%E7%89%A9%E7%90%86%E8%BF%94%E5%9B%9E%E6%8C%89%E9%94%AE/">vue移动端禁用手机物理返回按键</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/21/vue%E4%B8%AD%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8canvas%E5%8F%8A%E5%B0%8F%E6%96%B9%E6%B3%95/">vue中如何使用canvas及小方法</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/03/gitlab%E6%90%AD%E5%BB%BA%E6%80%BB%E7%BB%93/">gitlab搭建总结</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/01/commonJS%E8%A7%84%E8%8C%83/">commonJS规范</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/31/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87js%E8%8E%B7%E5%8F%96%E8%85%BE%E8%AE%AFsdk%E7%AD%BE%E5%90%8D%E4%BF%A1%E6%81%AF/">如何通过js获取腾讯sdk签名信息</a>
           </li>
         
       </ul>

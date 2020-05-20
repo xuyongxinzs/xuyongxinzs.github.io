@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>vueQuillEditor富文本编辑器的使用 | 山有木兮木有枝</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="vueQuillEditor富文本编辑器的使用 vue-quill-editor github地址 官方文档地址  vue项目中，npm安装依赖npm install vue-quill-editor --save 两种引用方法，全局引用和局部引用 全局引用，项目入口文件中（main.js）注册  123456789import Vue from &#39;vue&#39;import VueQuillEdito">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vueQuillEditor富文本编辑器的使用">
+<meta property="og:url" content="https://github.com/2020/05/07/vueQuillEditor%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="山有木兮木有枝">
+<meta property="og:description" content="vueQuillEditor富文本编辑器的使用 vue-quill-editor github地址 官方文档地址  vue项目中，npm安装依赖npm install vue-quill-editor --save 两种引用方法，全局引用和局部引用 全局引用，项目入口文件中（main.js）注册  123456789import Vue from &#39;vue&#39;import VueQuillEdito">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/2020/05/07/vueQuillEditor%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/D:%5Cxyx%5Chexo%5Csource_posts%5CvueQuillEditor%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8%5C1.png">
+<meta property="og:image" content="https://github.com/2020/05/07/vueQuillEditor%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/D:%5Cxyx%5Chexo%5Csource_posts%5CvueQuillEditor%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8%5C2.jpg">
+<meta property="og:image" content="https://github.com/2020/05/07/vueQuillEditor%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/D:%5Cxyx%5Chexo%5Csource_posts%5CvueQuillEditor%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8%5C3.jpg">
+<meta property="article:published_time" content="2020-05-07T07:25:51.000Z">
+<meta property="article:modified_time" content="2020-05-07T07:49:27.885Z">
+<meta property="article:author" content="许柴柴">
+<meta property="article:tag" content="vue vuequilldeitor 富文本编辑器">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/2020/05/07/vueQuillEditor%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/D:%5Cxyx%5Chexo%5Csource_posts%5CvueQuillEditor%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8%5C1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="山有木兮木有枝" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">山有木兮木有枝</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://github.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-vueQuillEditor富文本编辑器的使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/07/vueQuillEditor%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time datetime="2020-05-07T07:25:51.000Z" itemprop="datePublished">2020-05-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%B0%8F%E6%96%B9%E6%B3%95/">小方法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      vueQuillEditor富文本编辑器的使用
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="vueQuillEditor富文本编辑器的使用"><a href="#vueQuillEditor富文本编辑器的使用" class="headerlink" title="vueQuillEditor富文本编辑器的使用"></a>vueQuillEditor富文本编辑器的使用</h5><blockquote>
+<p><a href="[https://github.com/surmon-china/vue-quill-editor](https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2Fsurmon-china%2Fvue-quill-editor)"><strong>vue-quill-editor</strong> github地址</a></p>
+<p><a href="https://github.com/surmon-china/vue-quill-editor">官方文档地址</a></p>
+</blockquote>
+<h4 id="vue项目中，npm安装依赖"><a href="#vue项目中，npm安装依赖" class="headerlink" title="vue项目中，npm安装依赖"></a>vue项目中，npm安装依赖</h4><p><code>npm install vue-quill-editor --save</code></p>
+<h4 id="两种引用方法，全局引用和局部引用"><a href="#两种引用方法，全局引用和局部引用" class="headerlink" title="两种引用方法，全局引用和局部引用"></a>两种引用方法，全局引用和局部引用</h4><ul>
+<li>全局引用，项目入口文件中（main.js）注册</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> VueQuillEditor <span class="keyword">from</span> <span class="string">'vue-quill-editor'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// require styles</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'quill/dist/quill.core.css'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'quill/dist/quill.snow.css'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'quill/dist/quill.bubble.css'</span></span><br><span class="line"></span><br><span class="line">Vue.use(VueQuillEditor)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>局部引用，在需调用的vue页面中声明</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'quill/dist/quill.core.css'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'quill/dist/quill.snow.css'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'quill/dist/quill.bubble.css'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; quillEditor &#125; <span class="keyword">from</span> <span class="string">'vue-quill-editor'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  components: &#123;</span><br><span class="line">    quillEditor</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>完成上述步骤之后即可使用</p>
+<h4 id="下面是我自己使用示例代码"><a href="#下面是我自己使用示例代码" class="headerlink" title="下面是我自己使用示例代码"></a>下面是我自己使用示例代码</h4><p>在mine.js中引入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 引入富文本编辑器、</span><br><span class="line">import VueQuillEditor from &#39;vue-quill-editor&#39;</span><br><span class="line"></span><br><span class="line">import &#39;quill&#x2F;dist&#x2F;quill.core.css&#39; &#x2F;&#x2F; import styles</span><br><span class="line">import &#39;quill&#x2F;dist&#x2F;quill.snow.css&#39; &#x2F;&#x2F; for snow theme</span><br><span class="line">import &#39;quill&#x2F;dist&#x2F;quill.bubble.css&#39; &#x2F;&#x2F; for bubble theme</span><br><span class="line"></span><br><span class="line">Vue.use(VueQuillEditor, &#x2F;* &#123; default global options &#125; *&#x2F;)</span><br></pre></td></tr></table></figure>
+
+<p>在组件中使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;hello&quot;&gt;</span><br><span class="line">    &lt;!-- Two-way Data-Binding --&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;hai&quot;&gt;</span><br><span class="line">      &lt;quill-editor</span><br><span class="line">        ref&#x3D;&quot;myQuillEditor&quot;</span><br><span class="line">        style&#x3D;&quot;height:300px;display: flex;</span><br><span class="line">    flex-direction: column;&quot;</span><br><span class="line">        v-model&#x3D;&quot;content&quot;</span><br><span class="line">        :options&#x3D;&quot;editorOption&quot;</span><br><span class="line">        @blur&#x3D;&quot;onEditorBlur($event)&quot;</span><br><span class="line">        @focus&#x3D;&quot;onEditorFocus($event)&quot;</span><br><span class="line">        @ready&#x3D;&quot;onEditorReady($event)&quot;</span><br><span class="line">      &#x2F;&gt;</span><br><span class="line">       &lt;button @click&#x3D;&quot;chakan&quot;&gt;查看&lt;&#x2F;button&gt;</span><br><span class="line">      &lt;!-- Or manually control the data synchronization --&gt;</span><br><span class="line">      &lt;!-- &lt;quill-editor</span><br><span class="line">      :content&#x3D;&quot;content02&quot;</span><br><span class="line">      :options&#x3D;&quot;editorOption&quot;</span><br><span class="line">       @change&#x3D;&quot;onEditorChange($event)&quot;</span><br><span class="line">      &#x2F;&gt;--&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">&#x2F;&#x2F; You can also register Quill modules in the component</span><br><span class="line">&#x2F;&#x2F; import Quill from &#39;quill&#39;</span><br><span class="line">&#x2F;&#x2F; import someModule from &#39;..&#x2F;yourModulePath&#x2F;someQuillModule.js&#39;</span><br><span class="line">&#x2F;&#x2F; Quill.register(&#39;modules&#x2F;someModule&#39;, someModule)</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &quot;HelloWorld&quot;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      content: &quot;&lt;h2&gt;请编辑&lt;&#x2F;h2&gt;&quot;,</span><br><span class="line">      content02: &quot;&quot;,</span><br><span class="line">      editorOption: &#123;</span><br><span class="line">        &#x2F;&#x2F; Some Quill options...</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    onEditorBlur(quill) &#123;</span><br><span class="line">      console.log(&quot;editor blur!&quot;, quill);</span><br><span class="line">    &#125;,</span><br><span class="line">    onEditorFocus(quill) &#123;</span><br><span class="line">      console.log(&quot;editor focus!&quot;, quill);</span><br><span class="line">    &#125;,</span><br><span class="line">    onEditorReady(quill) &#123;</span><br><span class="line">      console.log(&quot;editor ready!&quot;, quill);</span><br><span class="line">    &#125;,</span><br><span class="line">    onEditorChange(&#123; quill, html, text &#125;) &#123;</span><br><span class="line">      console.log(&quot;editor change!&quot;, quill, html, text);</span><br><span class="line">      this.content &#x3D; html;</span><br><span class="line">    &#125;,</span><br><span class="line">    chakan() &#123;</span><br><span class="line">      console.log(this.content);</span><br><span class="line">      this.content02 &#x3D; this.content;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    editor() &#123;</span><br><span class="line">      return this.$refs.myQuillEditor.quill;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted() &#123;</span><br><span class="line">    console.log(&quot;this is current quill instance object&quot;, this.editor);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- Add &quot;scoped&quot; attribute to limit CSS to this component only --&gt;</span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">.hai &#123;</span><br><span class="line">  width: 50%;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+<p><em>在使用布局时发现问题，宽确实是可以根据父级自适应，但是高有点小问题。如下图</em></p>
+<p><img src="/2020/05/07/vueQuillEditor%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/D:%5Cxyx%5Chexo%5Csource_posts%5CvueQuillEditor%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8%5C1.png" alt></p>
+<p><em>根据打印台盒模型分析分析为，设置的高度为300px为整体高度。但是编辑区的高度为100%，未计算按钮区的高度，所以会被称下来，才导致了重叠。</em></p>
+<p><strong>解决方法:</strong>找到按钮区和编辑区公用的父级标签，设置弹性盒子属性，更改子元素排列方向。并设置编辑区自动铺满。</p>
+<p><img src="/2020/05/07/vueQuillEditor%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/D:%5Cxyx%5Chexo%5Csource_posts%5CvueQuillEditor%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8%5C2.jpg" alt="2"></p>
+<p><em>效果图：</em></p>
+<p><em><img src="/2020/05/07/vueQuillEditor%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/D:%5Cxyx%5Chexo%5Csource_posts%5CvueQuillEditor%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8%5C3.jpg" alt="3"></em></p>
+<blockquote>
+<p>参考网址：<a href="https://www.jianshu.com/p/a6cba69d6e49" target="_blank" rel="noopener">vue-quill-editor富文本编辑器使用</a></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/2020/05/07/vueQuillEditor%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="ckaf361hn0001mwvqe62cdid3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue-vuequilldeitor-%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8/" rel="tag">vue vuequilldeitor 富文本编辑器</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/05/08/css%E6%A0%B7%E5%BC%8F%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          css样式方法总结
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/04/26/vue%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%A6%81%E7%94%A8%E6%89%8B%E6%9C%BA%E7%89%A9%E7%90%86%E8%BF%94%E5%9B%9E%E6%8C%89%E9%94%AE/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">vue移动端禁用手机物理返回按键</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/css%E6%A0%B7%E5%BC%8F/">css样式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/js%E6%96%B9%E6%B3%95/">js方法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/vue%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/">vue相关知识</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B0%8F%E6%96%B9%E6%B3%95/">小方法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/">软件使用</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Axure/" rel="tag">Axure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitlab/" rel="tag">gitlab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA/" rel="tag">gulp前端自动化构建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E9%9B%B6%E7%A2%8E%E6%96%B9%E6%B3%95/" rel="tag">js零碎方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sdk%E7%AD%BE%E5%90%8D/" rel="tag">sdk签名</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-vuequilldeitor-%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8/" rel="tag">vue vuequilldeitor 富文本编辑器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-html%E8%BD%ACpdf/" rel="tag">vue-html转pdf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue%E5%8A%A8%E6%80%81%E6%B7%BB%E5%8A%A0%E8%B7%AF%E7%94%B1-router-addRouters/" rel="tag">vue动态添加路由 router.addRouters</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vw-vh/" rel="tag">vw,vh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">前端性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%B0%E5%BC%8F%E6%9C%BA%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/" rel="tag">台式机设置耳机麦克风</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BD%95%E9%9F%B3/" rel="tag">录音</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">搭建gitlab服务器</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Axure/" style="font-size: 10px;">Axure</a> <a href="/tags/gitlab/" style="font-size: 10px;">gitlab</a> <a href="/tags/gulp%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA/" style="font-size: 10px;">gulp前端自动化构建</a> <a href="/tags/js%E9%9B%B6%E7%A2%8E%E6%96%B9%E6%B3%95/" style="font-size: 10px;">js零碎方法</a> <a href="/tags/sdk%E7%AD%BE%E5%90%8D/" style="font-size: 10px;">sdk签名</a> <a href="/tags/vue-vuequilldeitor-%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8/" style="font-size: 10px;">vue vuequilldeitor 富文本编辑器</a> <a href="/tags/vue-html%E8%BD%ACpdf/" style="font-size: 10px;">vue-html转pdf</a> <a href="/tags/vue%E5%8A%A8%E6%80%81%E6%B7%BB%E5%8A%A0%E8%B7%AF%E7%94%B1-router-addRouters/" style="font-size: 10px;">vue动态添加路由 router.addRouters</a> <a href="/tags/vw-vh/" style="font-size: 10px;">vw,vh</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">前端性能优化</a> <a href="/tags/%E5%8F%B0%E5%BC%8F%E6%9C%BA%E8%AE%BE%E7%BD%AE%E8%80%B3%E6%9C%BA%E9%BA%A6%E5%85%8B%E9%A3%8E/" style="font-size: 10px;">台式机设置耳机麦克风</a> <a href="/tags/%E5%BD%95%E9%9F%B3/" style="font-size: 20px;">录音</a> <a href="/tags/%E6%90%AD%E5%BB%BAgitlab%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">搭建gitlab服务器</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/05/20/%E8%AE%B0%E5%BD%95vue%E5%8A%A8%E6%80%81%E6%B7%BB%E5%8A%A0%E8%B7%AF%E7%94%B1/">记录vue动态添加路由</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/08/js%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/">js使用方法总结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/08/css%E6%A0%B7%E5%BC%8F%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/">css样式方法总结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/07/vueQuillEditor%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/">vueQuillEditor富文本编辑器的使用</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/vue%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%A6%81%E7%94%A8%E6%89%8B%E6%9C%BA%E7%89%A9%E7%90%86%E8%BF%94%E5%9B%9E%E6%8C%89%E9%94%AE/">vue移动端禁用手机物理返回按键</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 许柴柴<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
